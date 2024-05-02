@@ -99,6 +99,23 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "version": 2
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "money-keeper:build:production",
+              "serveTarget": "money-keeper:serve:production"
+            },
+            "development": {
+              "buildTarget": "money-keeper:build:development",
+              "serveTarget": "money-keeper:serve:development"
+            }
+          },
+          "defaultConfiguration": "production"
         }
       }
     }

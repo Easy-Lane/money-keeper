@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, inject} from '@angular/core';
 import {RouterOutlet} from '@angular/router';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {CustomValidators} from "../../../services/custom-valiodators/CustomValidators";
@@ -6,6 +6,7 @@ import {NgIf, NgTemplateOutlet} from "@angular/common";
 import {ErrorHandlerComponent} from "../../../error-handler/error-handler.component";
 import {Subject} from "rxjs";
 import {ModalService} from "../../../services/modal-services/modal.service";
+import { Auth, createUserWithEmailAndPassword, updateProfile } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-register',
@@ -17,7 +18,7 @@ import {ModalService} from "../../../services/modal-services/modal.service";
 export class RegisterComponent implements OnInit{
 
   public registrationForm!: FormGroup;
-
+  public auth = inject(Auth)
   constructor(private formBuilder: FormBuilder,
               private modalService: ModalService) {}
 
@@ -37,6 +38,16 @@ export class RegisterComponent implements OnInit{
     if (this.registrationForm.invalid) {
       return;
     }
-    console.log(this.registrationForm.value);
+    createUserWithEmailAndPassword(this.auth, this.registrationForm.value["email"], this.registrationForm.value["password"])
+      .then((user) => {
+        if (this.auth.currentUser)
+          updateProfile(this.auth.currentUser, { displayName: this.registrationForm.value["username"],});
+
+        console.log(user)
+      })
+      .catch((error) => {
+        console.log(error.code)
+        console.log(error.message)
+      });
   }
 }

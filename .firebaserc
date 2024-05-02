@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "money-keeper-5942d": {
+      "hosting": {
+        "money-keeper": [
+          "money-keeper-5942d"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "money-keeper-5942d"
+  }
+}
