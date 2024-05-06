@@ -1,4 +1,4 @@
-import {Component, OnInit, inject} from '@angular/core';
+import {Component, OnInit, Inject} from '@angular/core';
 import {RouterOutlet} from '@angular/router';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {CustomValidators} from "../../../services/custom-valiodators/CustomValidators";
@@ -7,6 +7,7 @@ import {ErrorHandlerComponent} from "../../../error-handler/error-handler.compon
 import {Subject} from "rxjs";
 import {ModalService} from "../../../services/modal-services/modal.service";
 import { Auth, createUserWithEmailAndPassword, updateProfile } from '@angular/fire/auth';
+import { IUserInterface, IUserToken } from '../../../interfaces/IUserInterface';
 
 @Component({
   selector: 'app-register',
@@ -18,10 +19,17 @@ import { Auth, createUserWithEmailAndPassword, updateProfile } from '@angular/fi
 export class RegisterComponent implements OnInit{
 
   public registrationForm!: FormGroup;
-  public auth = inject(Auth)
-  constructor(private formBuilder: FormBuilder,
-              private modalService: ModalService) {}
+  //public auth = inject(Auth)
+  
+  constructor(
+    @Inject(IUserToken) private User: IUserInterface,
+    private formBuilder: FormBuilder,
+    private modalService: ModalService,
+) {}
 
+
+
+              
   public closeRegisterModal(): void {
     this.modalService.destroyComponent();
   }
@@ -38,16 +46,13 @@ export class RegisterComponent implements OnInit{
     if (this.registrationForm.invalid) {
       return;
     }
-    createUserWithEmailAndPassword(this.auth, this.registrationForm.value["email"], this.registrationForm.value["password"])
-      .then((user) => {
-        if (this.auth.currentUser)
-          updateProfile(this.auth.currentUser, { displayName: this.registrationForm.value["username"],});
-
-        console.log(user)
-      })
-      .catch((error) => {
-        console.log(error.code)
-        console.log(error.message)
-      });
+    this.User.register({
+      email: this.registrationForm.value["email"],
+      password: this.registrationForm.value["password"],
+      username: this.registrationForm.value["username"]
+    }).then((user) => {
+      console.log(user)
+    })
+   
   }
 }
