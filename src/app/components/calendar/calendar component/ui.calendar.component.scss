@@ -17,6 +17,12 @@
 }
 .month-navigation {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     margin-bottom: 45px;
+    width: 250px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.month-nav-arrow {
+    cursor: pointer;
 }

@@ -1,5 +1,11 @@
 <div class="month-navigation">
-    <label>Month 2077</label>
+    <a class="month-nav-arrow" (click)="changeMonth(-1)">
+        <img src="/assets/images/Left.svg">
+    </a>
+    <label>{{months[currentMonth] + " " +currentYear}}</label>
+    <a class="month-nav-arrow" (click)="changeMonth(1)">
+        <img src="/assets/images/Right.svg">
+    </a>
 </div>
 <li class="days-names columns">
     <label class="name" *ngFor="let item of names"> {{item}}</label>
