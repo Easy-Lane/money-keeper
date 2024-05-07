@@ -1,11 +1,11 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, Inject} from '@angular/core';
 import {RouterOutlet} from '@angular/router';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {NgIf, NgTemplateOutlet} from "@angular/common";
 import {CustomValidators} from "../../../services/custom-valiodators/CustomValidators";
 import {ErrorHandlerComponent} from "../../../error-handler/error-handler.component";
 import {ModalService} from "../../../services/modal-services/modal.service";
-
+import { IUserInterface, IUserToken } from '../../../interfaces/IUserInterface';
 @Component({
   selector: 'app-login',
   standalone: true,
@@ -17,8 +17,11 @@ export class LoginComponent implements OnInit{
 
   public loginForm!: FormGroup;
 
-  constructor(private formBuilder: FormBuilder,
-              private modalService: ModalService) {}
+  constructor(
+    @Inject(IUserToken) private User: IUserInterface,
+    private formBuilder: FormBuilder,
+    private modalService: ModalService
+            ) {}
 
   public closeLoginModal(): void {
     this.modalService.destroyComponent();
@@ -33,5 +36,12 @@ export class LoginComponent implements OnInit{
 
   onSubmit():void {
     console.log(this.loginForm.value);
+    this.User.login({
+      email: this.loginForm.value["email"],
+      password: this.loginForm.value["password"]
+    }).then( (user) => {
+      this.User.saveSessionInfo(user)
+
+    })
   }
 }

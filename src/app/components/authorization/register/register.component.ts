@@ -51,6 +51,7 @@ export class RegisterComponent implements OnInit{
       password: this.registrationForm.value["password"],
       username: this.registrationForm.value["username"]
     }).then((user) => {
+      this.User.saveSessionInfo(user)
       console.log(user)
     })
    

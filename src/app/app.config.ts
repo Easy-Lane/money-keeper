@@ -1,6 +1,6 @@
 import { ApplicationConfig, importProvidersFrom  } from '@angular/core';
 import { provideRouter } from '@angular/router';
-
+import { AuthGuard } from './guards/auth.guard';
 import {firebaseConfig } from '../environments/firebase'
 import {
   ScreenTrackingService,
@@ -28,6 +28,7 @@ export const appConfig: ApplicationConfig = {
       provideFirestore(() => getFirestore()),
       provideStorage(() => getStorage())
     ]),
-    { provide: IUserToken, useClass: UserManagmentService }
+    { provide: IUserToken, useClass: UserManagmentService },
+    AuthGuard
   ]
 };

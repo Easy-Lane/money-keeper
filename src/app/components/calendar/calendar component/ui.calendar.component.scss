@@ -1,0 +1,22 @@
+.columns {
+    display: grid;
+    grid-template-columns: repeat(7,200px);
+}
+.name {
+    font-size: 20px;
+    color: rgba($color: #000000, $alpha: 0.4);
+    font-family: "DM Sans", sans-serif;
+    font-weight: lighter;
+}
+.days-names {
+    margin-bottom: 28px;
+}
+.month-navigation label {
+    font-size: 22px;
+    font-family: "DM Sans", sans-serif;
+}
+.month-navigation {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 45px;
+}

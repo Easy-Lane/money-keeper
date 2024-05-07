@@ -1,7 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import {IAuthCredentials} from "../../interfaces/IAuthCredentials";
 import {Auth, signInWithEmailAndPassword, createUserWithEmailAndPassword, UserCredential, updateProfile} from "@angular/fire/auth";
-import firebase from 'firebase/compat/app';
 import {IUserInterface} from "../../interfaces/IUserInterface";
 import {BehaviorSubject} from "rxjs";
 
@@ -23,6 +22,7 @@ export class UserManagmentService implements  IUserInterface{
   public signOut(){
     localStorage.removeItem("session");
     this._isAuthorized$.next(false);
+    //this.Auth.signOut();
   }
 
   public register(credentials: IAuthCredentials): Promise<UserCredential>{
@@ -40,5 +40,6 @@ export class UserManagmentService implements  IUserInterface{
 
   public isAuthorized(){
     return localStorage.getItem("session") !== null;
+   // return this.Auth.currentUser != null; 
   }
 }
