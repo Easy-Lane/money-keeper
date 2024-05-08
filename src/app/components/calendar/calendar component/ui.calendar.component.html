@@ -11,5 +11,6 @@
     <label class="name" *ngFor="let item of names"> {{item}}</label>
 </li>
 <div class="days-container columns" >
+    <app-day *ngFor="let item of lastDays"> </app-day>
     <app-day *ngFor="let item of days" [day]="item"> </app-day>
 </div>

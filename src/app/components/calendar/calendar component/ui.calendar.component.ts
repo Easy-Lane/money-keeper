@@ -15,6 +15,7 @@ export class UICalendarComponent {
   months: string[] = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
   currentMonth = this.todayDate.getMonth();
   currentYear: number = this.todayDate.getFullYear();
+  lastDays: number[] = Array.from({length: new Date(this.currentYear, this.currentMonth, 0).getDay()});
   days: number[] = Array.from({length: new Date(this.currentYear, this.currentMonth + 1, 0).getDate()}, (_, i) => i + 1);
   
   public changeMonth(diff: number):void {
@@ -29,5 +30,6 @@ export class UICalendarComponent {
       } 
 
       this.days = Array.from({length: new Date(this.currentYear, this.currentMonth + 1, 0).getDate()}, (_, i) => i + 1);
+      this.lastDays = Array.from({length: new Date(this.currentYear, this.currentMonth, 0).getDay()});
   }
 }
