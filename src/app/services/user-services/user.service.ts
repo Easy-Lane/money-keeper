@@ -13,7 +13,7 @@ export class UserService {
   }
 
   public getExpenses(): number {
-    return 1000000;
+    return 100000000;
   }
 
   public getIncomes(): number {
