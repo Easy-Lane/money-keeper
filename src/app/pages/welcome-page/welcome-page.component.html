@@ -1,0 +1,12 @@
+<header-navigation [isAuthorized]="isAuthorized"></header-navigation>
+
+<div class="welcome-page__container">
+  <h1 class="welcome-page__title">{{title}}</h1>
+  <div class="welcome-page__description">
+    {{description}}
+  </div>
+  <button class="welcome-page__button" *ngIf="isAuthorized">
+    Go Profile
+  </button>
+  <authorization-buttons *ngIf="!isAuthorized"></authorization-buttons>
+</div>

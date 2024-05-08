@@ -1,0 +1,14 @@
+.button-container {
+  width: 55%;
+  display: flex;
+  justify-content: end;
+  margin-top: 7%;
+}
+button {
+  border-radius: 20px;
+  border: 1px solid black;
+  padding: 10px;
+  font-family: "DM Sans", sans-serif;
+  width: 150px;
+  background-color: white;
+}

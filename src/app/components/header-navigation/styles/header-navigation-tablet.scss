@@ -1,0 +1,33 @@
+@media (max-width: 900px) {
+  .header-navigation {
+    width: 100% !important;
+    height: 80px;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 18px;
+    position: relative;
+
+    &__burger-menu {
+      flex-direction: row;
+      row-gap: 0;
+    }
+
+    &__logo-name {
+      display: block !important;
+    }
+
+    &__icon {
+      width: 30px;
+      height: 30px;
+    }
+  }
+
+  .hidden-text {
+    display: none;
+  }
+
+  ul {
+    flex-direction: row;
+    height: 50%;
+  }
+}

@@ -1,0 +1,35 @@
+/* You can add global styles to this file, and also import other styles files */
+@import "normalize.css";
+
+body {
+  background-color: #F8F8F8;
+}
+
+h1 {
+  margin: 0;
+  padding: 0;
+}
+
+:active, :hover, :focus {
+  outline: 0;
+  outline-offset: 0;
+}
+
+button {
+  cursor: pointer;
+  user-select: none;
+}
+
+@font-face {
+  font-family: 'AnekLatin';
+  src: url("/assets/fonts/AnekLatin-Bold.ttf") format('truetype');
+  font-style: normal;
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: 'DM Sans';
+  src: url("/assets/fonts/DMSans_18pt-Medium.ttf") format('truetype');
+  font-style: normal;
+  font-weight: normal;
+}

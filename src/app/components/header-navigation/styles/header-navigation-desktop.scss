@@ -1,0 +1,77 @@
+.header-navigation {
+  width: 96px;
+  height: 100vh;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  position: absolute;
+  box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.10);
+
+  &__burger-menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    row-gap: 20vh;
+  }
+
+  &__icon-account-list {
+    height: 50%;
+  }
+
+  &__li {
+    user-select: none;
+    display: flex;
+    white-space: nowrap;
+    align-items: center;
+    gap: 10px;
+    font-family: "DM Sans", sans-serif;
+    font-size: 24px;
+    padding: 10px;
+
+    &-undisabled {
+      color: #000000;
+      cursor: pointer;
+    }
+
+    &-undisabled:hover {
+      outline: 2px solid #000;
+      border-radius: 20px;
+    }
+
+    &-undisabled:active {
+      background-color: #e0e0e0;
+    }
+
+    &-disabled {
+      color: #8c8c8c;
+      cursor: not-allowed;
+
+      &:hover {
+        border-radius: 20px;
+        outline: 2px dashed #8c8c8c;
+      }
+    }
+  }
+
+  &__icon {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 20vh;
+}
+
+.hidden-text {
+  display: none;
+}

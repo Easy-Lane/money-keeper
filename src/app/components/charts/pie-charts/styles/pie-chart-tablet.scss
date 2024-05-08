@@ -1,0 +1,17 @@
+@media (max-width: 900px) {
+  .pie-chart {
+    &__block {
+      align-items: center;
+      flex-direction: column;
+
+      &__chart {
+        width: 40%;
+        min-width: 256px;
+      }
+
+      &__list {
+        width: 50%;
+      }
+    }
+  }
+}

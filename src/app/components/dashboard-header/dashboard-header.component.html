@@ -1,0 +1,34 @@
+<div class="header">
+  <img class="header__image" src="{{ image }}" />
+  <p class="header__username">{{ lastName }} {{ username }}</p>
+  <div class="header__money">
+    <div class="header__money__box-incomes">
+      <img style="z-index: 1" src="/assets/images/green-polygon.svg" />
+      <div style="z-index: 0" class="header__money__incomes">
+        <p
+          [ngClass]="
+            !isIncomesLong
+              ? 'header__money__incomes__text'
+              : 'header__money__incomes__text-long'
+          "
+        >
+          {{ incomes }} $
+        </p>
+      </div>
+    </div>
+    <div class="header__money__box-expenses">
+      <img style="z-index: 1" src="/assets/images/red-polygon.svg" />
+      <div style="z-index: 0" class="header__money__expenses">
+        <p
+          [ngClass]="
+            !isExpensesLong
+              ? 'header__money__expenses__text'
+              : 'header__money__expenses__text-long'
+          "
+        >
+          {{ expenses }} $
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
