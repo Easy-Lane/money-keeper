@@ -1,0 +1,21 @@
+.menu-container {
+
+    width: 700px;
+    height: 100vh;
+    z-index: 1500;
+    right: 0;
+    top:0;
+    position: absolute;
+    background: lightcoral;
+
+    &__content {
+        right: 0;
+    }
+}
+
+.temp {
+    left: 200px;
+    top: 0;
+    z-index: 1500;
+    position: absolute;
+}

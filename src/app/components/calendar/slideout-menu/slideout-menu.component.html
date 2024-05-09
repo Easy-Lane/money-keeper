@@ -1,0 +1,8 @@
+<button class="temp" (click)="isChanged = !isChanged"> open </button>
+<div class="menu-container"
+[@slideAnimation]="isChanged ? 'changed' : 'default'"
+>
+  <div class="manu-container__content"[@showContent]="isChanged ? 'changed' : 'default'">
+  <h2> PEPEPGA </h2>
+  </div>
+</div>

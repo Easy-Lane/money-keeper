@@ -5,19 +5,21 @@
     text-align: center;
     line-height: 30px;
     border-color: rgba(0,0,0,0.1);
+    background-repeat: no-repeat;
+    user-select: none;
+
+    &:hover {
+      background-color: lightgray;
+      cursor: pointer;
+    }
+    &__date {
+      font-family: "DM Sans", sans-serif;
+      font-weight: lighter;
+      font-size: 20px;
+      margin: 0;
+      padding-right: 30px;
+      padding-top: 20px;
+      text-align: right;
+    }
   }
   
-  .day:hover {
-    background-color: lightgray;
-    cursor: pointer;
-  }
-
-  .date{
-    font-family: "DM Sans", sans-serif;
-    font-weight: lighter;
-    font-size: 20px;
-    margin: 0;
-    padding-right: 30px;
-    padding-top: 20px;
-    text-align: right;
-  }

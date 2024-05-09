@@ -9,6 +9,7 @@ import { CommonModule } from '@angular/common';
 })
 export class DayComponent {
   
-  @Input() day: number = 0;
-  public value: string = "";
+  @Input() day?: number;
+  @Input() img?: string;
+  @Input() value?: number;
 }
