@@ -1,7 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import {IUserInfo} from "../../interfaces/IUserInfo";
 import {Auth, signInWithEmailAndPassword, createUserWithEmailAndPassword, UserCredential, updateProfile, updatePassword} from "@angular/fire/auth";
-import { Firestore, doc, collection, getDoc, getDocs, query, where, and, addDoc, updateDoc, setDoc,QueryFilterConstraint } from "@angular/fire/firestore";
+import { Firestore, doc, collection, getDoc, getDocs, query, where, and, addDoc, updateDoc, setDoc,QueryFilterConstraint, DocumentReference } from "@angular/fire/firestore";
 import {IUserInterface} from "../../interfaces/IUserInterface";
 import {BehaviorSubject,Observable,from, tap, map, delay} from "rxjs";
 import { IDayExpenses } from '../../interfaces/calendar/IDayExpenses';
@@ -85,23 +85,22 @@ export class UserManagmentService implements  IUserInterface{
     return from(addDoc(collection(this.firestore, `users/${uid}/DayExpenses/`),data))
               .pipe(
                 map((doc) => {
+                    console.log(doc);
                     return doc.id
                 }
               )
             )
   }
 
-  public AddExpenses(uid: string,eid: string, data: IExpensesInfo[]): Observable<string> {
-    return from(addDoc(collection(this.firestore, `users/${uid}/DayExpenses/${eid}`),data))
+  public UpdateDocs(uid: string,eid: string, data: IDayExpenses): Observable<void> {
+    return from(updateDoc(doc(this.firestore, `users/${uid}/DayExpenses/${eid}`), {expenses: data.expenses}))
               .pipe(
                 map((doc) => {
-                    return doc.id
+                    return doc
                 }
               )
             )
   }
-
-  // Сделано по уродски
 
   public GetDocsBy(uid: string, ...queryConstraints: QueryFilterConstraint[]): Observable<[string, IDayExpenses][]> {
     return from(getDocs(query(collection(this.firestore, `users/${uid}/DayExpenses/`), and(...queryConstraints) )))
@@ -109,20 +108,8 @@ export class UserManagmentService implements  IUserInterface{
                 map((obj) => {
                   const data: [string, IDayExpenses][] = [];
                   obj.docs.forEach(element => {
-                    const temp: IDayExpenses = element.data() as IDayExpenses;
-                    temp.expenses = [];
-                    getDocs(collection(this.firestore, `users/${uid}/DayExpenses/${element.id}/expenses`))
-                    .then((obj) => 
-                      {
-                        obj.docs.forEach(element => {
-                          temp.expenses?.push(element.data() as IExpensesInfo)
-                      })
-                    }
-                    )
-                    
-                    data.push([element.id,temp]);
+                    data.push([element.id,element.data() as IDayExpenses]);
                   });
-                  console.log(data);
                   return data
                 }
               )

@@ -9,10 +9,10 @@
         <a class="menu-container__closeButton" (click)="isChanged = !isChanged; isCreate = false"> 
           <img src="assets/images/CloseRight.svg">
         </a>
-        <span class="menu-container__date__text"> {{date}} </span>
+        <span class="menu-container__date__text"> {{date.day + " " + date.month + " " + date.year}} </span>
       </div>
       <div class="menu-container__content__expenses-container"> 
-        <expense-card *ngFor="let item of info" [info]="item"> </expense-card>
+        <expense-card *ngFor="let item of date.expenses" [info]="item"> </expense-card>
         <div class="create-card" (click)="isCreate=true"> 
           <img src="assets/images/Plus.svg">
         </div>
@@ -41,6 +41,6 @@
     <textarea class="creation-container__desc"></textarea>
     <div class="creation-container__buttons">
       <button (click)="isCreate=false">Cencel</button>
-      <button>Save</button>
+      <button (click)="createNewExpense()">Save</button>
     </div>
   </div>

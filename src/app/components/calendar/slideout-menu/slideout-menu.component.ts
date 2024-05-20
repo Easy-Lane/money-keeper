@@ -38,8 +38,7 @@ export class SlideoutMenuComponent implements OnInit {
 
   public UserService = inject(IUserToken);
 
-  public date?: string;
-  public info?: IExpensesInfo[];
+  public date: IDayExpenses = {day: 0, month: "", year: 0};
   public isChanged: boolean = false;
   public isCreate: boolean = false;
   private uid: string = "";
@@ -54,11 +53,16 @@ export class SlideoutMenuComponent implements OnInit {
   ngOnInit() {
    
     this.clickEmitter.clickEvent$.subscribe((data: [string, IDayExpenses]) => {
-      this.date = data[1].day +" "+ data[1].month +" "+ data[1].year;
-      this.info = data[1].expenses;
+      this.date = data[1];
       this.eid = data[0];
       this.isChanged = true;
     });
 
+  }
+
+  public createNewExpense() {
+   // this.UserService.CreateDocs(this.uid, {day: this.date.day, month: this.date?.month, year: this.date?.year, expenses: [{ name: "kekw", value: 69, desc: "nice", type: "non"}]}).subscribe();
+   this.date.expenses?.push({ name: "second kekw", value: 70, desc: "nicen't", type: "non"});
+   this.UserService.UpdateDocs(this.uid,this.eid, this.date).subscribe();
   }
 }

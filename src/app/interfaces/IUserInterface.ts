@@ -17,5 +17,6 @@ export interface IUserInterface {
   UpgradeUserInfo: (uid: string, newData: IUserInfo) =>  Observable<void>;
   GetDocsBy: (uid: string, ...queryConstraints: QueryFilterConstraint[]) => Observable<[string, IDayExpenses][]>;
   CreateDocs: (uid: string, data: IDayExpenses) => Observable<string> ;
+  UpdateDocs: (uid: string,eid: string, data: IDayExpenses) => Observable<void>;
   //GetUserInfo: () => IUserInfo;
 }
