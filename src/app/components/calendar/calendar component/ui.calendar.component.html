@@ -12,5 +12,5 @@
 </li>
 <div class="days-container columns" >
     <app-day *ngFor="let item of lastDays"> </app-day>
-    <app-day *ngFor="let item of days" [day]="item"> </app-day>
+    <app-day *ngFor="let item of days" [day]="item" (click)="onDayClick(item)"> </app-day>
 </div>

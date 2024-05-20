@@ -1,8 +1,46 @@
-<button class="temp" (click)="isChanged = !isChanged"> open </button>
+<div class="background" [@showBackground]="isChanged ? 'changed' : 'default'"> </div>
+
+
 <div class="menu-container"
-[@slideAnimation]="isChanged ? 'changed' : 'default'"
->
-  <div class="manu-container__content"[@showContent]="isChanged ? 'changed' : 'default'">
-  <h2> PEPEPGA </h2>
+  [@slideAnimation]="isChanged ? 'changed' : 'default'"
+  >
+    <div class="menu-container__content"[@showContent]="isChanged ? 'changed' : 'default'">
+      <div class="menu-container__date">
+        <a class="menu-container__closeButton" (click)="isChanged = !isChanged; isCreate = false"> 
+          <img src="assets/images/CloseRight.svg">
+        </a>
+        <span class="menu-container__date__text"> {{date}} </span>
+      </div>
+      <div class="menu-container__content__expenses-container"> 
+        <expense-card *ngFor="let item of info" [info]="item"> </expense-card>
+        <div class="create-card" (click)="isCreate=true"> 
+          <img src="assets/images/Plus.svg">
+        </div>
+      </div>
+    </div>
   </div>
-</div>
+
+  <div class="menu-container creation-container"
+  [@slideAnimation]="isCreate ? 'changed' : 'default'"
+  >
+    <div class="creation-container__content">
+      <div class="creation-container__content__category">
+        <label>Category:</label>
+        <select>
+          <option value="">Type</option>
+          <option value="">GitHub</option>
+          <option value="">Instagram</option>
+          <option value="">Facebook</option>
+          <option value="">LinkedIn</option>
+          <option value="">Twitter</option>
+          <option value="">Reddit</option>
+        </select>
+      </div>
+      <input/>
+    </div>
+    <textarea class="creation-container__desc"></textarea>
+    <div class="creation-container__buttons">
+      <button (click)="isCreate=false">Cencel</button>
+      <button>Save</button>
+    </div>
+  </div>

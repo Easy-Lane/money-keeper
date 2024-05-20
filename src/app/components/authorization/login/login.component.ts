@@ -35,13 +35,9 @@ export class LoginComponent implements OnInit{
   }
 
   onSubmit():void {
-    console.log(this.loginForm.value);
-    this.User.login({
+    this.User.Login({
       email: this.loginForm.value["email"],
       password: this.loginForm.value["password"]
-    }).then( (user) => {
-      this.User.saveSessionInfo(user)
-
-    })
+    }).subscribe();
   }
 }

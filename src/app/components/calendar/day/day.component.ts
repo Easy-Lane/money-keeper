@@ -1,5 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
 @Component({
   selector: 'app-day',
   standalone: true,
@@ -8,7 +9,6 @@ import { CommonModule } from '@angular/common';
   styleUrl: './day.component.scss'
 })
 export class DayComponent {
-  
   @Input() day?: number;
   @Input() img?: string;
   @Input() value?: number;

@@ -8,6 +8,7 @@ import {Subject} from "rxjs";
 import {ModalService} from "../../../services/modal-services/modal.service";
 import { Auth, createUserWithEmailAndPassword, updateProfile } from '@angular/fire/auth';
 import { IUserInterface, IUserToken } from '../../../interfaces/IUserInterface';
+import { IUserInfo } from '../../../interfaces/IUserInfo';
 
 @Component({
   selector: 'app-register',
@@ -46,14 +47,12 @@ export class RegisterComponent implements OnInit{
     if (this.registrationForm.invalid) {
       return;
     }
-    this.User.register({
+    const userInfo: IUserInfo = {
       email: this.registrationForm.value["email"],
       password: this.registrationForm.value["password"],
       username: this.registrationForm.value["username"]
-    }).then((user) => {
-      this.User.saveSessionInfo(user)
-      console.log(user)
-    })
-   
+    }
+    this.User.Register(userInfo).subscribe();
+  
   }
 }

@@ -4,13 +4,14 @@ import { WelcomePageComponent } from './pages/welcome-page/welcome-page.componen
 import { CalendarComponent } from './pages/calendar/calendar.component';
 export const routes: Routes = [
   { 
-    path: '', 
-    component: WelcomePageComponent
-    //loadChildren: () => import("./pages/welcome-page/welcome-page.component").then(m => m.WelcomePageComponent)
+    path: 'welcome',
+    pathMatch: 'full', 
+    //component: WelcomePageComponent
+    loadComponent: () => import("./pages/welcome-page/welcome-page.component").then(m => m.WelcomePageComponent)
   },
   { path: 'home', children: [
-    { path: 'calendar', component: CalendarComponent
-    //loadChildren: () => import("./pages/calendar/calendar.component").then(m => m.CalendarComponent) 
+    { path: 'calendar/:uid', 
+    loadComponent: () => import("./pages/calendar/calendar.component").then(m => m.CalendarComponent) 
     }
     //{ path: 'calendar', component: CalendarComponent }
   ],

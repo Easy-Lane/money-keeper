@@ -1,45 +1,146 @@
 import { Injectable, inject } from '@angular/core';
-import {IAuthCredentials} from "../../interfaces/IAuthCredentials";
-import {Auth, signInWithEmailAndPassword, createUserWithEmailAndPassword, UserCredential, updateProfile} from "@angular/fire/auth";
+import {IUserInfo} from "../../interfaces/IUserInfo";
+import {Auth, signInWithEmailAndPassword, createUserWithEmailAndPassword, UserCredential, updateProfile, updatePassword} from "@angular/fire/auth";
+import { Firestore, doc, collection, getDoc, getDocs, query, where, and, addDoc, updateDoc, setDoc,QueryFilterConstraint } from "@angular/fire/firestore";
 import {IUserInterface} from "../../interfaces/IUserInterface";
-import {BehaviorSubject} from "rxjs";
+import {BehaviorSubject,Observable,from, tap, map, delay} from "rxjs";
+import { IDayExpenses } from '../../interfaces/calendar/IDayExpenses';
+import { IExpensesInfo } from '../../interfaces/calendar/IExpenses';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class UserManagmentService implements  IUserInterface{
 
-  constructor() {
+  constructor(
+    private router: Router
+  ) {
+    
     if(this.isAuthorized())
       this._isAuthorized$.next(true);
   }
   private Auth = inject(Auth);
+  private firestore = inject(Firestore);
   private _isAuthorized$ = new BehaviorSubject<boolean>(false);
   public isAuthorized$ = this._isAuthorized$.asObservable();
 
-  public login(credentials: IAuthCredentials): Promise<UserCredential>{
-    return signInWithEmailAndPassword(this.Auth,credentials.email, credentials.password);
+  public Login(credentials: IUserInfo): Observable<UserCredential>{
+    return from(signInWithEmailAndPassword(this.Auth,credentials.email, credentials.password))
+            .pipe(
+              tap((obj) => {
+                this.LoadUserInfo(obj.user.uid)
+              })
+            )
   }
 
-  public signOut(){
+  public LogOut(){
     localStorage.removeItem("session");
-    this._isAuthorized$.next(false);
-    //this.Auth.signOut();
   }
 
-  public register(credentials: IAuthCredentials): Promise<UserCredential>{
-    return createUserWithEmailAndPassword(this.Auth, credentials.email, credentials.password)
-    .then((userCredential) => {
-      updateProfile(userCredential.user, {displayName: credentials.username} );
-      return userCredential;
-    });
+  public Register(credentials: IUserInfo): Observable<UserCredential>{
+    return from(createUserWithEmailAndPassword(this.Auth, credentials.email, credentials.password))
+            .pipe(
+              tap((obj: UserCredential) => {
+                this.CreateUserInfo(obj.user.uid, credentials)
+                this.SaveSessionInfo(credentials, obj.user.uid)
+                this.router.navigate(["/home/calendar", obj.user.uid]);
+              })
+            )
   }
 
-  public saveSessionInfo(sessionInfo: UserCredential){
-    localStorage.setItem("session", JSON.stringify(sessionInfo));
-    this._isAuthorized$.next(true);
+  public SaveSessionInfo(sessionInfo: IUserInfo, uid:string){
+    localStorage.setItem("session", JSON.stringify([uid, sessionInfo]));
   }
 
   public isAuthorized(){
     return localStorage.getItem("session") !== null;
-   // return this.Auth.currentUser != null; 
   }
+
+  public ChangePassword(newPassword: string) {
+    if (this.Auth.currentUser != null)
+      updatePassword(this.Auth.currentUser, newPassword)
+
+  }
+
+  public CreateUserInfo(uid: string, user: IUserInfo): Observable<void> {
+    return from(setDoc(doc(this.firestore,"users",uid), user))
+              .pipe(
+                  map((obj) => {
+                      return obj
+                  }
+                )
+              )
+  }
+
+  public LoadUserInfo(uid: string): Observable<IUserInfo> {
+    return from(getDoc(doc(this.firestore, `users/${uid}`)))
+              .pipe(
+                map((user) => {
+                  return user.data() as IUserInfo;
+              }
+            )
+          )
+  }
+
+  public CreateDocs(uid: string, data: IDayExpenses): Observable<string> {
+    return from(addDoc(collection(this.firestore, `users/${uid}/DayExpenses/`),data))
+              .pipe(
+                map((doc) => {
+                    return doc.id
+                }
+              )
+            )
+  }
+
+  public AddExpenses(uid: string,eid: string, data: IExpensesInfo[]): Observable<string> {
+    return from(addDoc(collection(this.firestore, `users/${uid}/DayExpenses/${eid}`),data))
+              .pipe(
+                map((doc) => {
+                    return doc.id
+                }
+              )
+            )
+  }
+
+  // Сделано по уродски
+
+  public GetDocsBy(uid: string, ...queryConstraints: QueryFilterConstraint[]): Observable<[string, IDayExpenses][]> {
+    return from(getDocs(query(collection(this.firestore, `users/${uid}/DayExpenses/`), and(...queryConstraints) )))
+              .pipe(
+                map((obj) => {
+                  const data: [string, IDayExpenses][] = [];
+                  obj.docs.forEach(element => {
+                    const temp: IDayExpenses = element.data() as IDayExpenses;
+                    temp.expenses = [];
+                    getDocs(collection(this.firestore, `users/${uid}/DayExpenses/${element.id}/expenses`))
+                    .then((obj) => 
+                      {
+                        obj.docs.forEach(element => {
+                          temp.expenses?.push(element.data() as IExpensesInfo)
+                      })
+                    }
+                    )
+                    
+                    data.push([element.id,temp]);
+                  });
+                  console.log(data);
+                  return data
+                }
+              )
+  )
+  }
+
+  public UpgradeUserInfo(uid: string, newData: IUserInfo):Observable<void> {
+    return from(updateDoc(doc(this.firestore, `users/${uid}`), {"username" : newData.username, "email" : newData.email, "password" : newData.password}))
+            .pipe(
+              map((user) => {
+                  return user
+              }
+            )
+          )
+  }
+  // public GetUserInfo(): IUserInfo {
+
+  //   return {}
+
+  // }
 }

@@ -1,0 +1,31 @@
+.card{
+    width: 600px;
+    height: 200px;
+    outline: black solid 2px;
+    border-radius: 20px;
+    font-size: 14px;
+    background-color: white;
+    font-family: "DM Sans", sans-serif;
+    display: flex;
+    margin-bottom: 45px;
+    &__content{
+        &__title {
+            display: flex;
+            justify-content: space-between;
+            font-size: 20px;
+            width: 350px;
+            padding-inline: 25px;
+            
+        }
+        p{
+            text-align: center;
+        }
+        &__icon {
+            position: relative;
+            top:0;
+            bottom: 0;
+            left: 0;
+            right: 150px;
+        }
+    }
+}

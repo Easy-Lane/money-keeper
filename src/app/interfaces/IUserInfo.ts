@@ -1,7 +1,6 @@
-export interface IAuthCredentials {
+export interface IUserInfo {
     email: string,
     password: string,
     username?: string,
     photoUrl?: string,
-    returnSecureToken?: boolean,
   }
