@@ -1,0 +1,26 @@
+.custom-input {
+  background: white;
+  color: #000000;
+  border: none;
+  border-bottom: 1px solid #000;
+  font-family: "DM Sans", sans-serif;
+  font-size: 30px;
+  line-height: 120%;
+  padding: 10px;
+
+  &:focus {
+    border-radius: 15px;
+    border: none;
+    outline: 1px solid #000000;
+  }
+}
+
+@media (max-width: 900px) {
+  .custom-input {
+    font-size: 26px;
+  }
+}
+
+@media (max-width: 450px) {
+
+}

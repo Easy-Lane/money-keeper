@@ -1,25 +1,28 @@
 import {Component, OnInit} from '@angular/core';
 import {RouterOutlet} from '@angular/router';
-import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup, NgControl, ReactiveFormsModule, Validators} from "@angular/forms";
 import {CustomValidators} from "../../../services/custom-valiodators/CustomValidators";
 import {NgIf, NgTemplateOutlet} from "@angular/common";
-import {ErrorHandlerComponent} from "../../../error-handler/error-handler.component";
-import {Subject} from "rxjs";
+import {ValidatorsHandlerComponent} from "../../validators-handler/validators-handler.component";
 import {ModalService} from "../../../services/modal-services/modal.service";
+import {InputControlComponent} from "../../input-control/input-control.component";
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [RouterOutlet, ReactiveFormsModule, NgTemplateOutlet, NgIf, ErrorHandlerComponent],
+  imports: [RouterOutlet, ReactiveFormsModule, NgTemplateOutlet, NgIf, ValidatorsHandlerComponent, InputControlComponent],
   templateUrl: 'register.component.html',
   styleUrl: '../styles/authorization.master.scss'
 })
 export class RegisterComponent implements OnInit{
 
   public registrationForm!: FormGroup;
+  public ngControl: FormControl = new FormControl();
 
   constructor(private formBuilder: FormBuilder,
-              private modalService: ModalService) {}
+              private modalService: ModalService) {
+    console.log(this.ngControl)
+  }
 
   public closeRegisterModal(): void {
     this.modalService.destroyComponent();
@@ -39,4 +42,6 @@ export class RegisterComponent implements OnInit{
     }
     console.log(this.registrationForm.value);
   }
+
+  protected readonly NgControl = NgControl;
 }

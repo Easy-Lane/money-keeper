@@ -3,40 +3,43 @@
     <button class="modal-container__close-btn" (click)="closeRegisterModal()">x</button>
     <form class="modal-container__form" [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
       <div>
-        <input
-          type="text"
-          class="modal-container__input"
-          placeholder="Username"
-          formControlName="username"
-          required
-        />
+<!--        <input-->
+<!--          type="text"-->
+<!--          class="modal-container__input"-->
+<!--          placeholder="Username"-->
+<!--          formControlName="username"-->
+<!--          required-->
+<!--        />-->
+        <app-input-control [input]="{ type: 'text', placeholder: 'User name' }" formControlName="username" />
         <ng-container *ngIf="registrationForm.controls['username'].invalid && registrationForm.controls['username'].value.length > 0">
-          <app-error-handler [errors]="registrationForm.controls['username'].errors"></app-error-handler>
+          <app-validators-handler [errors]="registrationForm.controls['username'].errors"></app-validators-handler>
         </ng-container>
       </div>
       <div>
-        <input
-          type="email"
-          class="modal-container__input"
-          placeholder="Email"
-          formControlName="email"
-          required
-        />
+<!--        <input-->
+<!--          type="email"-->
+<!--          class="modal-container__input"-->
+<!--          placeholder="Email"-->
+<!--          formControlName="email"-->
+<!--          required-->
+<!--        />-->
+        <app-input-control [input]="{ type: 'email', placeholder: 'Email' }" [formControl]="ngControl" />
         <ng-container *ngIf="registrationForm.controls['email'].invalid && registrationForm.controls['email'].value.length > 0">
-          <app-error-handler [errors]="registrationForm.controls['email'].errors"></app-error-handler>
+          <app-validators-handler [errors]="registrationForm.controls['email'].errors"></app-validators-handler>
         </ng-container>
       </div>
       <div>
-        <input
-          type="password"
-          class="modal-container__input"
-          placeholder="Password"
-          formControlName="password"
-          autocomplete="on"
-          required
-        />
+<!--        <input-->
+<!--          type="password"-->
+<!--          class="modal-container__input"-->
+<!--          placeholder="Password"-->
+<!--          formControlName="password"-->
+<!--          autocomplete="on"-->
+<!--          required-->
+<!--        />-->
+        <app-input-control [input]="{ type: ''}" />
         <ng-container *ngIf="registrationForm.controls['password'].invalid && registrationForm.controls['password'].value.length > 0">
-          <app-error-handler [errors]="registrationForm.controls['password'].errors"></app-error-handler>
+          <app-validators-handler [errors]="registrationForm.controls['password'].errors"></app-validators-handler>
         </ng-container>
       </div>
     </form>
