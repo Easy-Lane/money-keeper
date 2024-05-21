@@ -5,7 +5,7 @@
   <div class="welcome-page__description">
     {{description}}
   </div>
-  <button class="welcome-page__button" *ngIf="isAuthorized">
+  <button (click)="goCalendar()" class="welcome-page__button" *ngIf="isAuthorized">
     Go Profile
   </button>
   <authorization-buttons *ngIf="!isAuthorized"></authorization-buttons>

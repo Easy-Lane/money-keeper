@@ -42,7 +42,7 @@ export class UserManagmentService implements  IUserInterface{
               tap((obj: UserCredential) => {
                 this.CreateUserInfo(obj.user.uid, credentials)
                 this.SaveSessionInfo(credentials, obj.user.uid)
-                this.router.navigate(["/home/calendar", obj.user.uid]);
+                this.router.navigate(["/home/calendar"], { queryParams: { "uid" : obj.user.uid}});
               })
             )
   }
@@ -125,9 +125,11 @@ export class UserManagmentService implements  IUserInterface{
             )
           )
   }
-  // public GetUserInfo(): IUserInfo {
+  public GetUserInfo(): IUserInfo | null {
+    const storageUser = localStorage.getItem("session");
+    if (!storageUser)
+      return null
+    return JSON.parse(storageUser)[1] as IUserInfo;
 
-  //   return {}
-
-  // }
+   }
 }

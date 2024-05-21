@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { IDayExpenses } from '../../../interfaces/calendar/IDayExpenses';
 import { IUserToken } from '../../../interfaces/IUserInterface';
+import { isEmpty } from 'rxjs';
 @Component({
   selector: 'slide-out',
   standalone: true,
@@ -38,7 +39,7 @@ export class SlideoutMenuComponent implements OnInit {
 
   public UserService = inject(IUserToken);
 
-  public date: IDayExpenses = {day: 0, month: "", year: 0};
+  public date: IDayExpenses = {day: 0, month: "", year: 0, expenses: []};
   public isChanged: boolean = false;
   public isCreate: boolean = false;
   private uid: string = "";
@@ -47,7 +48,8 @@ export class SlideoutMenuComponent implements OnInit {
     private clickEmitter: clickEmitterService,
     private route: ActivatedRoute
   ) {
-    route.params.subscribe(params=>this.uid=params["id"]);
+    //route.params.subscribe(params=>this.uid=params["uid"]);
+    route.queryParams.subscribe(params=>this.uid=params["uid"]);
   }
 
   ngOnInit() {
@@ -61,8 +63,14 @@ export class SlideoutMenuComponent implements OnInit {
   }
 
   public createNewExpense() {
-   // this.UserService.CreateDocs(this.uid, {day: this.date.day, month: this.date?.month, year: this.date?.year, expenses: [{ name: "kekw", value: 69, desc: "nice", type: "non"}]}).subscribe();
-   this.date.expenses?.push({ name: "second kekw", value: 70, desc: "nicen't", type: "non"});
-   this.UserService.UpdateDocs(this.uid,this.eid, this.date).subscribe();
+    
+   if (this.date.expenses?.length == 0) {
+    this.date.expenses?.push({ name: "first kekw", value: 70, desc: "nicen't", type: "non"});
+    this.UserService.CreateDocs(this.uid, this.date).subscribe((id) => { this.eid = id});
+   }
+  else {
+    this.date.expenses?.push({ name: "second kekw", value: 70, desc: "nicen't", type: "non"});
+    this.UserService.UpdateDocs(this.uid,this.eid, this.date).subscribe();
+  }
   }
 }

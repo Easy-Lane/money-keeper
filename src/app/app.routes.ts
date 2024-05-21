@@ -10,7 +10,7 @@ export const routes: Routes = [
     loadComponent: () => import("./pages/welcome-page/welcome-page.component").then(m => m.WelcomePageComponent)
   },
   { path: 'home', children: [
-    { path: 'calendar/:uid', 
+    { path: 'calendar', 
     loadComponent: () => import("./pages/calendar/calendar.component").then(m => m.CalendarComponent) 
     }
     //{ path: 'calendar', component: CalendarComponent }

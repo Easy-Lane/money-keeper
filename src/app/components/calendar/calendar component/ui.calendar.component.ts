@@ -32,7 +32,8 @@ export class UICalendarComponent implements OnInit  {
     private clickEmiter: clickEmitterService,
     private route: ActivatedRoute
   ) {
-    route.params.subscribe(params=>this.id=params["id"]);
+    //route.params.subscribe(params=>this.id=params["uid"]);
+    route.queryParams.subscribe(params=>this.id=params["uid"]);
   }
 
   ngOnInit() {
