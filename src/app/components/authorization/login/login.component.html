@@ -1,31 +1,23 @@
 <div class="background-modal-container">
-  <div class="modal-container" >
-    <button class="modal-container__close-btn" (click)="closeLoginModal()">x</button>
-    <form class="modal-container__form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-      <div>
-        <input
-          type="email"
-          class="modal-container__input"
-          placeholder="Email"
-          formControlName="email"
-        />
-        <ng-container *ngIf="loginForm.controls['email'].invalid && loginForm.controls['email'].value.length > 0">
-          <app-error-handler [errors]="loginForm.controls['email'].errors"></app-error-handler>
-        </ng-container>
-      </div>
-      <div>
-        <input
-          type="password"
-          class="modal-container__input"
-          placeholder="Password"
-          formControlName="password"
-          autocomplete="on"
-        />
-      </div>
-    </form>
-    <div class="modal-container__buttons-container">
-      <button class="modal-container__submit-btn" type="submit" [disabled]="!loginForm.valid" (click)="onSubmit()">login</button>
-      <button class="modal-container__bottom-btn">create account?</button>
+    <div class="modal-container">
+        <button class="modal-container__close-btn" (click)="closeLoginModal()">x</button>
+        <form class="modal-container__form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <div>
+                <app-input-control [input]="{ type: 'email', placeholder: 'Email' }" formControlName="email"/>
+                <ng-container
+                    *ngIf="loginForm.controls['email'].invalid && loginForm.controls['email'].value.length > 0">
+                    <app-validators-handler [errors]="loginForm.controls['email'].errors"></app-validators-handler>
+                </ng-container>
+            </div>
+            <div>
+                <app-input-control [input]="{ type: 'password', placeholder: 'Password'}" formControlName="password"/>
+            </div>
+        </form>
+        <div class="modal-container__buttons-container">
+            <button class="modal-container__submit-btn" type="submit" [disabled]="!loginForm.valid"
+                    (click)="onSubmit()">login
+            </button>
+            <button class="modal-container__bottom-btn">create account?</button>
+        </div>
     </div>
-  </div>
 </div>

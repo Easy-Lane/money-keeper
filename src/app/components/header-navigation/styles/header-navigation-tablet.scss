@@ -1,34 +1,34 @@
 @media (max-width: 900px) {
-  .header-navigation {
-    width: 100% !important;
-    height: 80px;
-    min-height: 0;
-    flex-direction: row;
-    justify-content: space-between;
-    font-size: 18px;
-    position: relative;
+    .header-navigation {
+        width: 100% !important;
+        height: 80px;
+        min-height: 0;
+        flex-direction: row;
+        justify-content: space-between;
+        font-size: 18px;
+        position: relative;
 
-    &__burger-menu {
-      flex-direction: row;
-      row-gap: 0;
+        &__burger-menu {
+            flex-direction: row;
+            row-gap: 0;
+        }
+
+        &__logo-name {
+            display: block !important;
+        }
+
+        &__icon {
+            width: 30px;
+            height: 30px;
+        }
     }
 
-    &__logo-name {
-      display: block !important;
+    .hidden-text {
+        display: none;
     }
 
-    &__icon {
-      width: 30px;
-      height: 30px;
+    ul {
+        flex-direction: row;
+        height: 50%;
     }
-  }
-
-  .hidden-text {
-    display: none;
-  }
-
-  ul {
-    flex-direction: row;
-    height: 50%;
-  }
 }

@@ -1,45 +1,45 @@
 .welcome-page {
 
-  &__container {
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-
-  &__title {
-    font-family: "AnekLatin", sans-serif;
-    font-size: 110px;
-    line-height: 120%;
-    text-align: center;
-  }
-
-  &__description {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 30px;
-    line-height: 120%;
-    text-align: center;
-  }
-
-  &__button {
-    font-family: "DM Sans", sans-serif;
-    font-size: 30px;
-    margin: 30px;
-    background-color: white;
-    padding: 10px 40px;
-    border-radius: 25px;
-    border: 1px solid #000;
-    cursor: pointer;
-    user-select: none;
-
-    &:hover {
-      background-color: #e0e0e0;
+    &__container {
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
     }
 
-    &:active {
-      background-color: #c4c4c4;
+    &__title {
+        font-family: "AnekLatin", sans-serif;
+        font-size: 110px;
+        line-height: 120%;
+        text-align: center;
     }
-  }
+
+    &__description {
+        font-family: 'DM Sans', sans-serif;
+        font-size: 30px;
+        line-height: 120%;
+        text-align: center;
+    }
+
+    &__button {
+        font-family: "DM Sans", sans-serif;
+        font-size: 30px;
+        margin: 30px;
+        background-color: white;
+        padding: 10px 40px;
+        border-radius: 25px;
+        border: 1px solid #000;
+        cursor: pointer;
+        user-select: none;
+
+        &:hover {
+            background-color: #e0e0e0;
+        }
+
+        &:active {
+            background-color: #c4c4c4;
+        }
+    }
 }

@@ -1,24 +1,24 @@
 @media (max-width: 900px) {
-  .user-profile {
+    .user-profile {
 
-    &__container {
-      margin: 0;
-      align-items: center;
-      row-gap: 30px;
-    }
+        &__container {
+            margin: 0;
+            align-items: center;
+            row-gap: 30px;
+        }
 
-    &__form-info-container {
-      flex-direction: column-reverse;
-      row-gap: 20px;
-      margin: 20px 0;
-    }
+        &__form-info-container {
+            flex-direction: column-reverse;
+            row-gap: 20px;
+            margin: 20px 0;
+        }
 
-    &__left-container {
-      row-gap: 20px;
-    }
+        &__left-container {
+            row-gap: 20px;
+        }
 
-    &__buttons-container {
-      justify-content: space-around;
+        &__buttons-container {
+            justify-content: space-around;
+        }
     }
-  }
 }

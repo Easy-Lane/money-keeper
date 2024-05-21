@@ -1,9 +1,7 @@
 <input
-  [type]=input.type
-  [placeholder]=input.placeholder
-  (blur)="onTouched()"
-  class="custom-input"
-  />
-<!--<ng-container *ngIf="ngControl.control?.invalid && value.length > 0">-->
-<!--  <app-validators-handler [errors]="ngControl.control.errors" />-->
-<!--</ng-container>-->
+    [type]=input.type
+    [placeholder]=input.placeholder
+    (blur)="onTouched()"
+    class="custom-input"
+    (input)="onInput($event)"
+/>

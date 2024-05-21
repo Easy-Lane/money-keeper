@@ -1,183 +1,195 @@
 .user-profile {
 
-  &__container {
-    margin-left: 100px;
-    width: 100wv;
-    height: 100%;
-    padding: 50px;
-    display: flex;
-    flex-direction: column;
-  }
-
-  &__title {
-    font-family: 'AnekLatin', sans-serif;
-    font-size: 50px;
-  }
-
-  &__form-info-container {
-    display: flex;
-    justify-content: space-around;
-    height: 100%;
-    margin: 50px 0;
-  }
-
-  &__left-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-
-  &__input-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  &__label {
-    font-family: "DM Sans", sans-serif;
-    font-size: 25px;
-  }
-
-  &__input-text,
-  &__input-date {
-    min-width: 180px;
-    border: none;
-    padding: 4px 10px;
-    background-color: #F8F8F8;
-    font-family: "DM Sans", sans-serif;
-    font-size: 25px;
-    border-bottom: 2px solid #000000;
-
-    &:disabled {
-      background-color: #e0e0e0;
-      border: 2px dashed #000000;
-    }
-  }
-
-  &__input-container__file {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    row-gap: 20px;
-  }
-
-  &__input-file-btn {
-    font-family: "AnekLatin", sans-serif;
-    font-size: 25px;
-    color: #3a3a3a;
-    background-color: #F8F8F8;
-    background-image: url('/assets/images/upload-file.svg');
-    background-repeat: no-repeat;
-    background-position: right center;
-    padding: 4px 30px 4px 10px;
-    border: none;
-
-    &:disabled {
-      background-color: #e0e0e0;
-      border: 2px dashed #3a3a3a;
+    &__container {
+        margin-left: 100px;
+        width: 100wv;
+        height: 100%;
+        padding: 50px;
+        display: flex;
+        flex-direction: column;
     }
 
-    &:hover {
-      border-bottom: 2px solid #3a3a3a;
-      margin-bottom: -2px;
+    &__title {
+        font-family: 'AnekLatin', sans-serif;
+        font-size: 50px;
     }
 
-    &:active {
-      background-color: #e0e0e0;
-    }
-  }
-
-  &__input-file {
-    display: none;
-  }
-
-  &__avatar-img {
-    width: 300px;
-    height: 300px;
-    object-fit: cover;
-    border-radius: 100%;
-    background-color: #e0e0e0;
-  }
-
-  &__buttons-container {
-    display: flex;
-    justify-content: flex-end;
-    column-gap: 50px;
-  }
-
-  &__button-change {
-    font-family: "AnekLatin", sans-serif;
-    font-size: 30px;
-    border: 2px solid #3a3a3a;
-    color: #3a3a3a;
-    background-color: #F8F8F8;
-    padding: 4px 20px;
-    border-radius: 10px;
-    text-align: center;
-
-    &:hover {
-      background-color: #d0d0d0;
+    &__form-info-container {
+        display: flex;
+        justify-content: space-around;
+        height: 100%;
+        margin: 50px 0;
     }
 
-    &:active {
-      background-color: #3a3a3a;
-      color: #F8F8F8;
-    }
-  }
-
-  &__button-save {
-    font-family: "AnekLatin", sans-serif;
-    font-size: 30px;
-    border: 2px solid #3a3a3a;
-    color: #F8F8F8;
-    background-color: #3a3a3a;
-    padding: 4px 40px;
-    border-radius: 10px;
-    text-align: center;
-
-    &:hover {
-      background-color: #6c6c6c;
+    &__left-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
     }
 
-    &:active {
-      background-color: #F8F8F8;
-      color: #3a3a3a;
-      border: 2px solid #3a3a3a;
-    }
-  }
-
-  &__form-pass-container {
-    align-self: center;
-    display: flex;
-    flex-direction: column;
-    max-width: 700px;
-    row-gap: 30px;
-  }
-
-  &__form-pass__title {
-    font-family: "DM Sans", sans-serif;
-    align-self: center;
-    font-size: 30px;
-  }
-
-  &__change-pass-btn {
-    align-self: center;
-    padding: 10px 40px;
-    font-family: AnekLatin, sans-serif;
-    font-size: 30px;
-    background-color: #F8F8F8;
-    border-radius: 10px;
-    color: #3a3a3a;
-    border: 2px solid #3a3a3a;
-
-    &:hover {
-      background-color: #e0e0e0;
+    &__input-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        column-gap: 20px;
     }
 
-    &:active {
-      background-color: #3a3a3a;
-      color: #F8F8F8;
+    &__label {
+        font-family: "DM Sans", sans-serif;
+        font-size: 25px;
     }
-  }
+
+    &__input-text {
+        min-width: 180px;
+        border: none;
+        padding: 4px 10px;
+        background-color: #F8F8F8;
+        font-family: "DM Sans", sans-serif;
+        font-size: 25px;
+        border-bottom: 2px solid #000000;
+
+        &:disabled {
+            background-color: #e0e0e0;
+            border: 2px dashed #000000;
+        }
+    }
+
+    &__input-container__file {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        row-gap: 20px;
+    }
+
+    &__input-file-btn {
+        font-family: "AnekLatin", sans-serif;
+        font-size: 25px;
+        color: #3a3a3a;
+        background-color: #F8F8F8;
+        background-image: url('/assets/images/upload-file.svg');
+        background-repeat: no-repeat;
+        background-position: right center;
+        padding: 4px 30px 4px 10px;
+        border: none;
+
+        &:disabled {
+            background-color: #e0e0e0;
+            border: 2px dashed #3a3a3a;
+        }
+
+        &:hover {
+            border-bottom: 2px solid #3a3a3a;
+            margin-bottom: -2px;
+        }
+
+        &:active {
+            background-color: #e0e0e0;
+        }
+    }
+
+    &__input-file {
+        display: none;
+    }
+
+    &__avatar-img {
+        width: 300px;
+        height: 300px;
+        object-fit: cover;
+        border-radius: 100%;
+        background-color: #e0e0e0;
+    }
+
+    &__buttons-container {
+        display: flex;
+        justify-content: flex-end;
+        column-gap: 50px;
+    }
+
+    &__button-change {
+        font-family: "AnekLatin", sans-serif;
+        font-size: 30px;
+        border: 2px solid #3a3a3a;
+        color: #3a3a3a;
+        background-color: #F8F8F8;
+        padding: 4px 20px;
+        border-radius: 10px;
+        text-align: center;
+
+        &:hover {
+            background-color: #d0d0d0;
+        }
+
+        &:active {
+            background-color: #3a3a3a;
+            color: #F8F8F8;
+        }
+    }
+
+    &__button-save {
+        font-family: "AnekLatin", sans-serif;
+        font-size: 30px;
+        border: 2px solid #3a3a3a;
+        color: #F8F8F8;
+        background-color: #3a3a3a;
+        padding: 4px 40px;
+        border-radius: 10px;
+        text-align: center;
+
+        &:hover {
+            background-color: #6c6c6c;
+        }
+
+        &:active {
+            background-color: #F8F8F8;
+            color: #3a3a3a;
+            border: 2px solid #3a3a3a;
+        }
+    }
+
+    &__form-pass-container {
+        align-self: center;
+        display: flex;
+        flex-direction: column;
+        max-width: 700px;
+        row-gap: 30px;
+    }
+
+    &__form-pass__title {
+        font-family: "DM Sans", sans-serif;
+        align-self: center;
+        font-size: 30px;
+    }
+
+    &__change-pass-btn {
+        align-self: center;
+        padding: 10px 40px;
+        font-family: AnekLatin, sans-serif;
+        font-size: 30px;
+        background-color: #F8F8F8;
+        border-radius: 10px;
+        color: #3a3a3a;
+        border: 2px solid #3a3a3a;
+
+        &:hover {
+            background-color: #e0e0e0;
+        }
+
+        &:active {
+            background-color: #3a3a3a;
+            color: #F8F8F8;
+        }
+    }
+
+    @keyframes pulse-background {
+        0% {
+            background-color: #ddd;
+        }
+        50% {
+            background-color: #c0c0c0;
+        }
+        100% {
+            background-color: #ddd;
+        }
+    }
 }
