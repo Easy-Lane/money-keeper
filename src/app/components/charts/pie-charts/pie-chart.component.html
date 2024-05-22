@@ -1,20 +1,20 @@
 <div class="pie-chart">
-  <p class="pie-chart__title">{{ title }}</p>
-  <div class="pie-chart__block">
-    <div class="pie-chart__block__chart">
-      <tui-pie-chart
-        [size]="size"
-        class="tui-space__left-4 tui-space__top-3"
-        [value]="values"
-      ></tui-pie-chart>
-    </div>
-    <div class="pie-chart__block__list">
-      <ul *ngFor="let label of labels; index as i">
-        <li [style.color]="getColor(i)">
-          <p>{{ label }}</p>
-        </li>
-      </ul>
-    </div>
-  </div>
-  <charts-button></charts-button>
+	<p class="pie-chart__title">{{ title }}</p>
+	<div class="pie-chart__block">
+		<div class="pie-chart__block__chart">
+			<tui-pie-chart
+				[size]="size"
+				class="tui-space__left-4 tui-space__top-3"
+				[value]="values"
+			></tui-pie-chart>
+		</div>
+		<div class="pie-chart__block__list">
+			<ul *forChart="let label of labels; index as i">
+				<li [style.color]="getColor(i)">
+					<p>{{ label }}</p>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<charts-button [title]="'pie-chart'"></charts-button>
 </div>
