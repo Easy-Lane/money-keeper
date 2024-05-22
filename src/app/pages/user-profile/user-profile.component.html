@@ -1,0 +1,87 @@
+<div class="user-profile">
+    <app-header-navigation/>
+    <div class="user-profile__container">
+        <span class="user-profile__title">{{title}}</span>
+        <form
+            [formGroup]="userInfoForm"
+            (ngSubmit)="onSubmitUserInfo()"
+            class="user-profile__form-info-container"
+            autocomplete="on">
+            <div class="user-profile__left-container">
+                <div class="user-profile__input-container">
+                    <label class="user-profile__label" for="name">Username:</label>
+                    <ng-container *ngIf="contentLoaded; else skeletonInputText">
+                        <input *ngIf="contentLoaded" type="text" id="name"
+                               class="user-profile__input-text"
+                               autocomplete="name"
+                               formControlName="name"/>
+                    </ng-container>
+                </div>
+                <div class="user-profile__input-container">
+                    <label class="user-profile__label" for="email">Email:</label>
+                    <ng-container *ngIf="contentLoaded; else skeletonInputText">
+                        <input *ngIf="contentLoaded" type="email" id="email"
+                               class="user-profile__input-text"
+                               autocomplete="email"
+                               formControlName="email"/>
+                    </ng-container>
+                </div>
+                <div class="user-profile__buttons-container">
+                    <button class="user-profile__button-change" type="button" (click)="toggleEditMode()">Change</button>
+                    <button class="user-profile__button-save" type="submit">Save</button>
+                </div>
+            </div>
+            <div class="user-profile__input-container__file">
+                <label class="user-profile__label" for="fileInput">
+                    Avatar:
+                    <button class="user-profile__input-file-btn" (click)="fileInput.click()"
+                            [attr.disabled]="true">Upload file
+                    </button>
+                </label>
+                <input type="file" id="fileInput" #fileInput
+                       class="user-profile__input-file"
+                       autocomplete="img"
+                       formControlName="img"/>
+                <ng-container *ngIf="contentLoaded; else skeletonImg">
+                    <img src="{{userImg}}" alt="user-avatar" class="user-profile__avatar-img"/>
+                </ng-container>
+            </div>
+        </form>
+        <form
+            [formGroup]="passwordChangeForm"
+            (ngSubmit)="changePassword()"
+            class="user-profile__form-pass-container"
+            autocomplete="on">
+            <div class="user-profile__form-pass__title">
+                Change Password
+            </div>
+            <div class="user-profile__input-container">
+                <label class="user-profile__label" for="oldPassword">Your Password:</label>
+                <input type="password" id="oldPassword"
+                       class="user-profile__input-text"
+                       formControlName="oldPassword"/>
+            </div>
+            <div class="user-profile__input-container">
+                <label class="user-profile__label" for="newPassword">New Password:</label>
+                <input type="password" id="newPassword"
+                       class="user-profile__input-text"
+                       formControlName="newPassword"/>
+            </div>
+            <div class="user-profile__input-container">
+                <label class="user-profile__label" for="repeatNewPassword">Repeat new Password:</label>
+                <input type="password" id="repeatNewPassword"
+                       class="user-profile__input-text"
+                       formControlName="repeatNewPassword"/>
+            </div>
+            <button class="user-profile__change-pass-btn" type="submit">Change</button>
+        </form>
+    </div>
+</div>
+
+<ng-template #skeletonImg>
+    <app-skeleton type='avatar'></app-skeleton>
+</ng-template>
+
+<ng-template #skeletonInputText>
+    <app-skeleton type="input-text"></app-skeleton>
+</ng-template>

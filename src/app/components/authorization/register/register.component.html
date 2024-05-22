@@ -1,48 +1,72 @@
 <div class="background-modal-container">
-  <div class="modal-container">
-    <button class="modal-container__close-btn" (click)="closeRegisterModal()">x</button>
-    <form class="modal-container__form" [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
-      <div>
-        <input
-          type="text"
-          class="modal-container__input"
-          placeholder="Username"
-          formControlName="username"
-          required
-        />
-        <ng-container *ngIf="registrationForm.controls['username'].invalid && registrationForm.controls['username'].value.length > 0">
-          <app-error-handler [errors]="registrationForm.controls['username'].errors"></app-error-handler>
-        </ng-container>
-      </div>
-      <div>
-        <input
-          type="email"
-          class="modal-container__input"
-          placeholder="Email"
-          formControlName="email"
-          required
-        />
-        <ng-container *ngIf="registrationForm.controls['email'].invalid && registrationForm.controls['email'].value.length > 0">
-          <app-error-handler [errors]="registrationForm.controls['email'].errors"></app-error-handler>
-        </ng-container>
-      </div>
-      <div>
-        <input
-          type="password"
-          class="modal-container__input"
-          placeholder="Password"
-          formControlName="password"
-          autocomplete="on"
-          required
-        />
-        <ng-container *ngIf="registrationForm.controls['password'].invalid && registrationForm.controls['password'].value.length > 0">
-          <app-error-handler [errors]="registrationForm.controls['password'].errors"></app-error-handler>
-        </ng-container>
-      </div>
-    </form>
-    <div class="modal-container__buttons-container">
-      <button class="modal-container__submit-btn" type="submit" [disabled]="!registrationForm.valid" (click)="onSubmit()">register</button>
-      <button class="modal-container__bottom-btn">already have an account?</button>
-    </div>
-  </div>
+	<div class="modal-container">
+		<button class="modal-container__close-btn" (click)="closeRegisterModal()">
+			x
+		</button>
+		<form
+			class="modal-container__form"
+			[formGroup]="registrationForm"
+			(ngSubmit)="onSubmit()"
+		>
+			<div>
+				<app-input-control
+					[input]="{ type: 'text', placeholder: 'Username' }"
+					formControlName="username"
+				/>
+				<ng-container
+					*ngIf="
+						registrationForm.controls['username'].invalid &&
+						registrationForm.controls['username'].value.length > 0
+					"
+				>
+					<app-validators-handler
+						[errors]="registrationForm.controls['username'].errors"
+					></app-validators-handler>
+				</ng-container>
+			</div>
+			<div>
+				<app-input-control
+					[input]="{ type: 'email', placeholder: 'Email' }"
+					formControlName="email"
+				/>
+				<ng-container
+					*ngIf="
+						registrationForm.controls['email'].invalid &&
+						registrationForm.controls['email'].value.length > 0
+					"
+				>
+					<app-validators-handler
+						[errors]="registrationForm.controls['email'].errors"
+					></app-validators-handler>
+				</ng-container>
+			</div>
+			<div>
+				<app-input-control
+					[input]="{ type: 'password', placeholder: 'Password' }"
+					formControlName="password"
+				/>
+				<ng-container
+					*ngIf="
+						registrationForm.controls['password'].invalid &&
+						registrationForm.controls['password'].value.length > 0
+					"
+				>
+					<app-validators-handler
+						[errors]="registrationForm.controls['password'].errors"
+					></app-validators-handler>
+				</ng-container>
+			</div>
+		</form>
+		<div class="modal-container__buttons-container">
+			<button
+				class="modal-container__submit-btn"
+				type="submit"
+				[disabled]="registrationForm.invalid"
+				(click)="onSubmit()"
+			>
+				register
+			</button>
+			<button class="modal-container__bottom-btn">already have an account?</button>
+		</div>
+	</div>
 </div>

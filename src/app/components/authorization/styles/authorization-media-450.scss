@@ -1,18 +1,18 @@
 @media (max-width: 450px) {
-  .modal-container {
-    padding: 55px 20px;
+	.modal-container {
+		padding: 55px 20px;
 
-    &__buttons-container {
-      margin: 20px 0;
-      row-gap: 10px;
-    }
+		&__buttons-container {
+			margin: 20px 0;
+			row-gap: 10px;
+		}
 
-    &__bottom-btn {
-      font-size: 20px;
-    }
+		&__bottom-btn {
+			font-size: 20px;
+		}
 
-    &__submit-btn {
-      padding: 10px 50px;
-    }
-  }
+		&__submit-btn {
+			padding: 10px 50px;
+		}
+	}
 }

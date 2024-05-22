@@ -1,0 +1,30 @@
+@keyframes pulse-background {
+    0% {
+        background-color: #ddd;
+    }
+    30% {
+        background-color: #c0c0c0;
+    }
+    60% {
+        background-color: #ddd;
+    }
+    100% {
+        background-color: #c0c0c0;
+    }
+}
+
+.skeleton__avatar {
+    background-color: gray;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    animation: pulse-background 2s ease-in-out infinite;
+}
+
+.skeleton__input-text {
+    background-color: gray;
+    min-width: 200px;
+    height: 40px;
+    border-radius: 10px;
+    animation: pulse-background 2s ease-in-out infinite;
+}
