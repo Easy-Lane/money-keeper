@@ -6,7 +6,7 @@
 	(mouseleave)="closeHeader()"
 >
 	<a class="header-navigation__li" routerLink="/">
-		<img class="header-navigation__icon" src="{{ logoIcon }}" alt="logo" />
+		<img class="header-navigation__icon" src="{{ logoIcon }}" alt="logo"/>
 		<div
 			class="header-navigation__logo-name hidden-text"
 			[style.display]="isChanged ? 'block' : 'none'"
@@ -55,19 +55,10 @@
 </header>
 
 <ng-template #burgerIcon>
-	<<<<<<< HEAD
 	<input
 		type="checkbox"
 		id="burger-checkbox"
 		class="header-navigation__burger-checkbox"
 	/>
 	<label for="burger-checkbox" class="header-navigation__burger-label"></label>
-	=======
-	<input
-		type="checkbox"
-		id="burger-checkbox"
-		class="header-navigation__burger-checkbox"
-	/>
-	<label for="burger-checkbox" class="header-navigation__burger-label"></label>
-	>>>>>>> 01ef1c854379975c4595c3bbe5fa191292ac538d
 </ng-template>

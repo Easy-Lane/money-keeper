@@ -2,7 +2,6 @@ import {Component, OnInit} from "@angular/core";
 import {HeaderNavigationComponent} from "../../components/header-navigation/header-navigation.component";
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {CustomValidators} from "../../services/custom-valiodators/CustomValidators";
-import {BehaviorSubject, tap} from "rxjs";
 import {AsyncPipe, NgIf} from "@angular/common";
 import {SkeletonComponent} from "../../components/skeleton/skeleton.component";
 import {InputControlComponent} from "../../components/input-control/input-control.component";
