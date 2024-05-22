@@ -51,7 +51,7 @@ export class HeaderNavigationComponent {
 			icon: '/assets/images/graph.svg',
 			alt: 'graphIcon',
 			text: 'DashBoard',
-			path: '',
+			path: 'dashboard',
 		},
 	];
 
