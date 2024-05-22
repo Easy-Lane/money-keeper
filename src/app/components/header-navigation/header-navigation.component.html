@@ -23,7 +23,9 @@
 			<a
 				class="header-navigation__li"
 				*ngFor="let item of navigationItems"
-				[routerLink]="item.path"
+				routerLink = ""
+				routerLink = {{item.path}}
+				[queryParams]="item.querry">
 			>
 				<img
 					class="header-navigation__icon"

@@ -16,6 +16,6 @@ export class ChartsButtonComponent {
 	constructor(private router: Router) {}
 
 	public async goToChart() {
-		await this.router.navigate(['/dashboard/' + this.title]);
+		await this.router.navigate(['/home/dashboard/' + this.title]);
 	}
 }

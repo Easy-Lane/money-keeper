@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { Params, Router, RouterLink, RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import {
 	animate,
@@ -14,6 +14,7 @@ export interface HeaderNavigationList {
 	alt: string;
 	text: string;
 	path: string;
+	querry?: Params;
 }
 
 @Component({
@@ -32,26 +33,29 @@ export interface HeaderNavigationList {
 	],
 })
 export class HeaderNavigationComponent {
-	public logoIcon: string = '/assets/images/logo.svg';
 
+	constructor (public router: Router) {}
+	public logoIcon: string = '/assets/images/logo.svg';
+	private ls: string = localStorage.getItem("session") || "";
 	public navigationItems: HeaderNavigationList[] = [
 		{
 			icon: '/assets/images/profile.svg',
 			alt: 'profileIcon',
 			text: 'Profile',
-			path: 'user-profile',
+			path: '/home/user-profile',
 		},
 		{
 			icon: '/assets/images/calendar.svg',
 			alt: 'calendarIcon',
 			text: 'Calendar',
-			path: '',
+			path: '/home/calendar',
+			querry:  {uid: JSON.parse(this.ls)[0]}
 		},
 		{
 			icon: '/assets/images/graph.svg',
 			alt: 'graphIcon',
 			text: 'DashBoard',
-			path: 'dashboard',
+			path: '/home/dashboard',
 		},
 	];
 
