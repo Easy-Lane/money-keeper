@@ -13,7 +13,6 @@
                     <ng-container *ngIf="contentLoaded; else skeletonInputText">
                         <input *ngIf="contentLoaded" type="text" id="name"
                                class="user-profile__input-text"
-                               [attr.disabled]="isEditMode | async"
                                autocomplete="name"
                                formControlName="name"/>
                     </ng-container>
@@ -23,7 +22,6 @@
                     <ng-container *ngIf="contentLoaded; else skeletonInputText">
                         <input *ngIf="contentLoaded" type="email" id="email"
                                class="user-profile__input-text"
-                               [attr.disabled]="isEditMode | async"
                                autocomplete="email"
                                formControlName="email"/>
                     </ng-container>
@@ -37,12 +35,11 @@
                 <label class="user-profile__label" for="fileInput">
                     Avatar:
                     <button class="user-profile__input-file-btn" (click)="fileInput.click()"
-                            [attr.disabled]="isEditMode | async">Upload file
+                            [attr.disabled]="true">Upload file
                     </button>
                 </label>
                 <input type="file" id="fileInput" #fileInput
                        class="user-profile__input-file"
-                       [attr.disabled]="isEditMode | async"
                        autocomplete="img"
                        formControlName="img"/>
                 <ng-container *ngIf="contentLoaded; else skeletonImg">

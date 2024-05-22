@@ -5,6 +5,7 @@ import {CustomValidators} from "../../services/custom-valiodators/CustomValidato
 import {BehaviorSubject, tap} from "rxjs";
 import {AsyncPipe, NgIf} from "@angular/common";
 import {SkeletonComponent} from "../../components/skeleton/skeleton.component";
+import {InputControlComponent} from "../../components/input-control/input-control.component";
 
 export interface User {
     name: string,
@@ -21,7 +22,8 @@ export interface User {
         ReactiveFormsModule,
         AsyncPipe,
         NgIf,
-        SkeletonComponent
+        SkeletonComponent,
+        InputControlComponent
     ],
     templateUrl: 'user-profile.component.html',
     styleUrl: './styles/user-profile.master.scss'
@@ -40,7 +42,6 @@ export class UserProfileComponent implements OnInit {
 
     public userInfoForm!: FormGroup;
     public passwordChangeForm!: FormGroup;
-    public isEditMode: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
     constructor(private formBuilder: FormBuilder) {
         this.userInfoForm = this.formBuilder.group({
@@ -59,7 +60,7 @@ export class UserProfileComponent implements OnInit {
     }
 
     public ngOnInit(): void {
-        setTimeout(() => {
+        setTimeout((): void => {
             this.contentLoaded = true;
         }, 2000);
 
@@ -69,22 +70,16 @@ export class UserProfileComponent implements OnInit {
             img: this.user.img
         });
 
-        this.userInfoForm.disable();
+        this.userInfoForm.controls['name'].disable();
+        this.userInfoForm.controls['email'].disable();
+        this.userInfoForm.controls['img'].disable();
     }
 
     public userImg: string = this.user.img ? this.user.img : 'assets/images/default-avatar.png';
 
     public toggleEditMode(): void {
-        this.isEditMode.next(!this.isEditMode.value);
-        this.isEditMode.pipe(
-            tap(value => {
-                if (value) {
-                    this.userInfoForm.enable();
-                } else {
-                    this.userInfoForm.disable();
-                }
-            })
-        )
+        this.userInfoForm.controls['name'].enable();
+        this.userInfoForm.controls['email'].enable();
     }
 
     public changePassword(): void {
@@ -102,26 +97,9 @@ export class UserProfileComponent implements OnInit {
         }
     }
 
-    // public onFileSelect(event: any): void {
-    //   const file = event.target.files[0];
-    //   this.userInfoForm.patchValue({ img: file });
-    //   if (this.userInfoForm.get('img')) {
-    //     this.userInfoForm.get('img')?.updateValueAndValidity();
-    //   }
-    // }
-
     public onSubmitUserInfo(): void {
-        // const formData: FormData = new FormData();
-        // formData.append('username', this.userInfoForm.get('username')?.value);
-        // formData.append('email', this.userInfoForm.get('email')?.value);
-        // formData.append('img', this.userInfoForm.get('img')?.value);
-        // отправить это добро на fb
 
+        console.log(this.userInfoForm.value);
         return alert('Вы успешно изменили данные!');
-    }
-
-    public onSubmitUserPassword(): void {
-        // const formData: FormData = new FormData();
-        // formData.append()
     }
 }
