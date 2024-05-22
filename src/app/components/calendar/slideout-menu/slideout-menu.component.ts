@@ -2,14 +2,12 @@ import { Component, OnInit, inject } from '@angular/core';
 import {animate, state, style, transition, trigger} from "@angular/animations";
 import { clickEmitterService } from '../../../services/open-slideout-service/clickEmitterService';
 import { ExpenseCardComponent } from '../expense-card/expense-card.component';
-import { IExpensesInfo } from '../../../interfaces/calendar/IExpenses';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { IDayExpenses } from '../../../interfaces/calendar/IDayExpenses';
 import { IUserToken } from '../../../interfaces/IUserInterface';
-import { isEmpty } from 'rxjs';
 @Component({
-  selector: 'slide-out',
+  selector: 'app-slide-out',
   standalone: true,
   imports: [ExpenseCardComponent, CommonModule],
   templateUrl: './slideout-menu.component.html',

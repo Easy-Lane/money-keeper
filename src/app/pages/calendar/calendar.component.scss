@@ -2,4 +2,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
+
+    &__dashboard-menu{
+        align-self: end;
+    }
 }

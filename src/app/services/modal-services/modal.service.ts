@@ -1,19 +1,26 @@
-import {ComponentRef, Injectable} from '@angular/core';
+import { ComponentRef, Injectable } from '@angular/core';
+import { RegisterComponent } from '../../components/authorization/register/register.component';
+import { LoginComponent } from '../../components/authorization/login/login.component';
 
 @Injectable({
-  providedIn: 'root'
+	providedIn: 'root',
 })
 export class ModalService {
-  private componentRef: ComponentRef<any> | undefined;
+	private componentRef:
+		| ComponentRef<RegisterComponent>
+		| ComponentRef<LoginComponent>
+		| undefined;
 
-  setComponentRef(componentRef: ComponentRef<any>): void {
-    this.componentRef = componentRef;
-  }
+	setComponentRef(
+		componentRef: ComponentRef<LoginComponent> | ComponentRef<RegisterComponent>
+	): void {
+		this.componentRef = componentRef;
+	}
 
-  destroyComponent(): void {
-    if (this.componentRef) {
-      this.componentRef.destroy();
-      this.componentRef = undefined;
-    }
-  }
+	destroyComponent(): void {
+		if (this.componentRef) {
+			this.componentRef.destroy();
+			this.componentRef = undefined;
+		}
+	}
 }

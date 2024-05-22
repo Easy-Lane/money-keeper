@@ -1,51 +1,64 @@
-<header class="header-navigation"
-        [@headerAnimation]="isChanged ? 'changed' : 'default'"
-        [@.disabled]="isDisabledAnimation"
-        (mouseenter)="openHeader()"
-        (mouseleave)="closeHeader()">
-  <a [ngClass]="isDisabled ?
-    'header-navigation__li-disabled' :
-    'header-navigation__li-undisabled'"
-    class="header-navigation__li">
-    <img class="header-navigation__icon" src="{{logoIcon}}" alt="logo">
-    <div class="header-navigation__logo-name hidden-text"
-         [style.display]="isChanged ? 'block': 'none'">
-      Money Keeper
-    </div>
-  </a>
-  <ng-container [ngTemplateOutlet]="burgerIcon" *ngIf="window.innerWidth <= 450"></ng-container>
-  <div class="header-navigation__burger-menu">
-    <ul class="header-navigation__icon-list">
-      <a [ngClass]="isDisabled ?
-      '=header-navigation__li-disabled' :
-      'header-navigation__li-undisabled'"
-      class="header-navigation__li"
-      *ngFor="let item of navigationItems">
-        <img class="header-navigation__icon" src="{{item.icon}}" alt="{{item.alt}}">
-        <div class="hidden-text"
-             [style.display]="isChanged ? 'block': 'none'">
-          {{item.text}}
-        </div>
-      </a>
-    </ul>
-    <ul class="header-navigation__icon-account-list">
-      <a [ngClass]="isDisabled ?
-      'header-navigation__li-disabled' :
-      'header-navigation__li-undisabled'"
-      class="header-navigation__li"
-      *ngFor="let elem of accountInteraction">
-        <img class="header-navigation__icon" src="{{elem.icon}}" alt="{{elem.alt}}">
-        <div class="hidden-text"
-             [style.display]="isChanged ? 'block': 'none'">
-          {{elem.text}}
-        </div>
-      </a>
-    </ul>
-  </div>
+<header
+	class="header-navigation"
+	[@headerAnimation]="isChanged ? 'changed' : 'default'"
+	[@.disabled]="isDisabledAnimation"
+	(mouseenter)="openHeader()"
+	(mouseleave)="closeHeader()"
+>
+	<a class="header-navigation__li" routerLink="/">
+		<img class="header-navigation__icon" src="{{ logoIcon }}" alt="logo"/>
+		<div
+			class="header-navigation__logo-name hidden-text"
+			[style.display]="isChanged ? 'block' : 'none'"
+		>
+			Money Keeper
+		</div>
+	</a>
+	<ng-container
+		[ngTemplateOutlet]="burgerIcon"
+		*ngIf="window.innerWidth <= 450"
+	></ng-container>
+	<div class="header-navigation__burger-menu">
+		<ul class="header-navigation__icon-list">
+			<a
+				class="header-navigation__li"
+				*ngFor="let item of navigationItems"
+				[routerLink]="item.path"
+			>
+				<img
+					class="header-navigation__icon"
+					src="{{ item.icon }}"
+					alt="{{ item.alt }}"
+				/>
+				<div class="hidden-text" [style.display]="isChanged ? 'block' : 'none'">
+					{{ item.text }}
+				</div>
+			</a>
+		</ul>
+		<ul class="header-navigation__icon-account-list">
+			<a
+				class="header-navigation__li"
+				*ngFor="let elem of accountInteraction"
+				routerLink="/{{ elem.path }}"
+			>
+				<img
+					class="header-navigation__icon"
+					src="{{ elem.icon }}"
+					alt="{{ elem.alt }}"
+				/>
+				<div class="hidden-text" [style.display]="isChanged ? 'block' : 'none'">
+					{{ elem.text }}
+				</div>
+			</a>
+		</ul>
+	</div>
 </header>
 
-
 <ng-template #burgerIcon>
-  <input type="checkbox" id="burger-checkbox" class="header-navigation__burger-checkbox">
-  <label for="burger-checkbox" class="header-navigation__burger-label"></label>
+	<input
+		type="checkbox"
+		id="burger-checkbox"
+		class="header-navigation__burger-checkbox"
+	/>
+	<label for="burger-checkbox" class="header-navigation__burger-label"></label>
 </ng-template>

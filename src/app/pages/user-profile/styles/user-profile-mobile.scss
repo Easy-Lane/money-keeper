@@ -1,0 +1,36 @@
+@media (max-width: 450px) {
+    .user-profile {
+        &__container {
+            padding: 100px 20px 50px 20px;
+        }
+
+        &__title {
+            font-size: 35px;
+        }
+
+        &__avatar-img {
+            width: 150px;
+            height: 150px;
+        }
+
+        &__label,
+        &__input-text,
+        &__input-date,
+        {
+            font-size: 18px;
+        }
+
+        &__buttons-container {
+            flex-direction: column;
+            align-items: center;
+            row-gap: 50px;
+        }
+
+        &__button-change,
+        &__button-save {
+            padding: 16px 0;
+            width: 160px;
+            font-size: 25px;
+        }
+    }
+}

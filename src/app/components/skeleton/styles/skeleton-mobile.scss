@@ -1,0 +1,13 @@
+@media (max-width: 450px) {
+    .skeleton {
+
+        &__avatar {
+            width: 150px;
+            height: 150px;
+        }
+
+        &__input-text {
+            height: 30px;
+        }
+    }
+}

@@ -3,23 +3,29 @@ import {RouterOutlet} from '@angular/router';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {CustomValidators} from "../../../services/custom-valiodators/CustomValidators";
 import {NgIf, NgTemplateOutlet} from "@angular/common";
-import {ErrorHandlerComponent} from "../../../error-handler/error-handler.component";
-import {Subject} from "rxjs";
 import {ModalService} from "../../../services/modal-services/modal.service";
-import { Auth, createUserWithEmailAndPassword, updateProfile } from '@angular/fire/auth';
 import { IUserInterface, IUserToken } from '../../../interfaces/IUserInterface';
 import { IUserInfo } from '../../../interfaces/IUserInfo';
+import { InputControlComponent } from '../../input-control/input-control.component';
+import { ValidatorsHandlerComponent } from '../../validators-handler/validators-handler.component';
 
 @Component({
-  selector: 'app-register',
-  standalone: true,
-  imports: [RouterOutlet, ReactiveFormsModule, NgTemplateOutlet, NgIf, ErrorHandlerComponent],
-  templateUrl: 'register.component.html',
-  styleUrl: '../styles/authorization.master.scss'
+	selector: 'app-register',
+	standalone: true,
+	imports: [
+		RouterOutlet,
+		ReactiveFormsModule,
+		NgTemplateOutlet,
+		NgIf,
+		ValidatorsHandlerComponent,
+		InputControlComponent,
+	],
+	templateUrl: 'register.component.html',
+	styleUrl: '../styles/authorization.master.scss',
 })
-export class RegisterComponent implements OnInit{
+export class RegisterComponent implements OnInit {
+	public registrationForm!: FormGroup;
 
-  public registrationForm!: FormGroup;
   //public auth = inject(Auth)
   
   constructor(

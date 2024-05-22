@@ -2,34 +2,43 @@
 @import "normalize.css";
 
 body {
-  background-color: #F8F8F8;
-  overflow-x: hidden;
+	background-color: #f8f8f8;
+	overflow-x: hidden;
 }
 
 h1 {
-  margin: 0;
+	margin: 0;
+	padding: 0;
 }
 
-:active, :hover, :focus {
-  outline: 0;
-  outline-offset: 0;
+:active,
+:hover,
+:focus {
+	outline: 0;
+	outline-offset: 0;
 }
 
 button {
-  cursor: pointer;
-  user-select: none;
+	cursor: pointer;
+	user-select: none;
+}
+
+a {
+	text-decoration: none;
+	color: black;
+	cursor: pointer;
 }
 
 @font-face {
-  font-family: 'AnekLatin';
-  src: url("/assets/fonts/AnekLatin-Bold.ttf") format('truetype');
-  font-style: normal;
-  font-weight: normal;
+	font-family: "AnekLatin";
+	src: url("/assets/fonts/AnekLatin-Bold.ttf") format("truetype");
+	font-style: normal;
+	font-weight: normal;
 }
 
 @font-face {
-  font-family: 'DM Sans';
-  src: url("/assets/fonts/DMSans_18pt-Medium.ttf") format('truetype');
-  font-style: normal;
-  font-weight: normal;
+	font-family: "DM Sans";
+	src: url("/assets/fonts/DMSans_18pt-Medium.ttf") format("truetype");
+	font-style: normal;
+	font-weight: normal;
 }

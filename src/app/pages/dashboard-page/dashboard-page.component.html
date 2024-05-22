@@ -1,0 +1,13 @@
+<router-outlet> </router-outlet>
+<div class="dashboard-page">
+	<app-header-navigation></app-header-navigation>
+	<dashboard-menu class="dashboard-page__element"></dashboard-menu>
+	<div class="dashboard-page__element">
+		<h1 class="dashboard-page__element__title">{{ title }}</h1>
+	</div>
+	<dashboard-header class="dashboard-page__element"></dashboard-header>
+	<div class="charts">
+		<pie-chart class="dashboard-page__element"></pie-chart>
+		<line-chart class="dashboard-page__element"></line-chart>
+	</div>
+</div>

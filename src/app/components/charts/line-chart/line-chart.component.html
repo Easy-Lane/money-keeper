@@ -1,0 +1,34 @@
+<div class="line-chart">
+	<p class="line-chart__title">{{ title }}</p>
+	<div class="line-chart__block">
+		<div class="line-chart__block__chart">
+			<tui-axes
+				class="axes"
+				[horizontalLines]="2"
+				[tuiLineChartHint]="hint"
+				[verticalLines]="4"
+			>
+				<tui-line-chart
+					*ngFor="let value of values"
+					class="chart"
+					[height]="400"
+					[value]="value"
+					[width]="600"
+					[x]="0"
+					[y]="0"
+				></tui-line-chart>
+			</tui-axes>
+		</div>
+		<div class="line-chart__block__list">
+			<ul>
+				<li style="color: #34b53a">
+					<p>{{ encomes }}</p>
+				</li>
+				<li style="color: #ff3a29">
+					<p>{{ expences }}</p>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<charts-button [title]="'line-chart'"></charts-button>
+</div>

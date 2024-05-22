@@ -1,0 +1,20 @@
+@media (max-width: 1270px) {
+  .header {
+    flex-direction: column;
+
+    &__money {
+      flex-direction: column;
+    }
+
+    &__image {
+      width: 120px;
+      height: 120px;
+      border-radius: 60px;
+    }
+
+    &__username {
+      font-size: 36px;
+      line-height: 1.2;
+    }
+  }
+}

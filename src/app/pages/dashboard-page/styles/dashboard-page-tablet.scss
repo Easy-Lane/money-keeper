@@ -1,0 +1,14 @@
+@media (max-width: 900px) {
+  .charts {
+    flex-direction: column;
+  }
+
+  .dashboard-page {
+    &__element {
+      justify-content: center;
+      &__title {
+        justify-content: start !important;
+      }
+    }
+  }
+}

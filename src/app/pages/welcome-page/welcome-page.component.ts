@@ -6,11 +6,11 @@ import {AuthorizationButtonsComponent} from "../../components/authorization/auth
 import { IUserToken } from '../../interfaces/IUserInterface';
 
 @Component({
-  selector: 'welcome-page',
-  standalone: true,
-  imports: [RouterOutlet, HeaderNavigationComponent, AuthorizationButtonsComponent, NgIf],
-  templateUrl: 'welcome-page.component.html',
-  styleUrl: './styles/welcome-page.master.scss'
+    selector: 'app-welcome-page',
+    standalone: true,
+    imports: [RouterOutlet, HeaderNavigationComponent, AuthorizationButtonsComponent, NgIf],
+    templateUrl: 'welcome-page.component.html',
+    styleUrl: './styles/welcome-page.master.scss'
 })
 export class WelcomePageComponent {
 
