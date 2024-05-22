@@ -5,7 +5,7 @@
 	(mouseenter)="openHeader()"
 	(mouseleave)="closeHeader()"
 >
-	<a class="header-navigation__li" routerLink="/">
+	<a class="header-navigation__li" routerLink="/welcome">
 		<img class="header-navigation__icon" src="{{ logoIcon }}" alt="logo"/>
 		<div
 			class="header-navigation__logo-name hidden-text"
@@ -23,10 +23,8 @@
 			<a
 				class="header-navigation__li"
 				*ngFor="let item of navigationItems"
-				routerLink = ""
 				routerLink = {{item.path}}
 				[queryParams]="item.querry">
-			>
 				<img
 					class="header-navigation__icon"
 					src="{{ item.icon }}"
@@ -41,7 +39,7 @@
 			<a
 				class="header-navigation__li"
 				*ngFor="let elem of accountInteraction"
-				routerLink="/{{ elem.path }}"
+				routerLink="elem.path"
 			>
 				<img
 					class="header-navigation__icon"

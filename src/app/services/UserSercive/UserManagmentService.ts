@@ -14,11 +14,11 @@ export class UserManagmentService implements  IUserInterface{
   constructor(
     private router: Router
   ) {
-    
+
     if(this.isAuthorized())
       this._isAuthorized$.next(true);
   }
-  private Auth = inject(Auth);
+  private Auth: Auth = inject(Auth);
   private firestore = inject(Firestore);
   private _isAuthorized$ = new BehaviorSubject<boolean>(false);
   public isAuthorized$ = this._isAuthorized$.asObservable();

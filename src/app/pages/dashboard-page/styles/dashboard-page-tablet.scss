@@ -1,14 +1,21 @@
 @media (max-width: 900px) {
-  .charts {
-    flex-direction: column;
-  }
-
-  .dashboard-page {
-    &__element {
-      justify-content: center;
-      &__title {
-        justify-content: start !important;
-      }
+    .charts {
+        flex-direction: column;
+        justify-content: center;
+        margin: 0;
+        width: 100%;
     }
-  }
+
+    .dashboard-page {
+        justify-content: center;
+
+        &__element {
+            justify-content: center;
+
+            &__title {
+                justify-content: start;
+                text-align: center;
+            }
+        }
+    }
 }

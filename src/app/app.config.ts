@@ -15,7 +15,6 @@ import {provideAnimations} from "@angular/platform-browser/animations";
 import { UserManagmentService } from './services/UserSercive/UserManagmentService';
 import { Observable } from 'rxjs';
 import { IUserInfo } from './interfaces/IUserInfo';
-
 import { en_US, provideNzI18n } from 'ng-zorro-antd/i18n';
 import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
@@ -30,8 +29,8 @@ const User: InjectionToken<Observable<IUserInfo>> = new InjectionToken<Observabl
 registerLocaleData(en);
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideRouter(routes), 
-    provideClientHydration(), 
+  providers: [provideRouter(routes),
+    provideClientHydration(),
     provideAnimations(),
     importProvidersFrom([
       provideFirebaseApp(() => initializeApp(firebaseConfig)),
@@ -40,7 +39,7 @@ export const appConfig: ApplicationConfig = {
       provideStorage(() => getStorage())
     ]),
     { provide: IUserToken, useClass: UserManagmentService },
-    { provide: User, useFactory: () => { 
+    { provide: User, useFactory: () => {
       const UserService = inject(IUserToken);
       return UserService.CreateDocs
     }
