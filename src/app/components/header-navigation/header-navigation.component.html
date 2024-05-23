@@ -40,7 +40,7 @@
 				class="header-navigation__li"
 				*ngFor="let elem of accountInteraction"
 				routerLink="/{{ elem.path }}"
-				(click)="elem.func"
+				(click)="elem.func!()"
 			>
 				<img
 					class="header-navigation__icon"

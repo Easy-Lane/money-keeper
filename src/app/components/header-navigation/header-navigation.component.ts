@@ -16,7 +16,7 @@ export interface HeaderNavigationList {
 	text: string;
 	path: string;
 	querry?: Params;
-	func?: void;
+	func?: () => void;
 }
 
 @Component({
@@ -68,7 +68,7 @@ export class HeaderNavigationComponent {
 			alt: 'logOut',
 			text: 'Log Out',
 			path: '/welcome',
-			func: this.userService.LogOut(),
+			func: this.userService.LogOut,
 		},
 		{
 			icon: '/assets/images/deleteAcc.svg',

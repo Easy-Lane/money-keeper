@@ -1,11 +1,10 @@
 import { Injectable, inject } from '@angular/core';
 import {IUserInfo} from "../../interfaces/IUserInfo";
-import {Auth, signInWithEmailAndPassword, createUserWithEmailAndPassword, UserCredential, updateProfile, updatePassword} from "@angular/fire/auth";
-import { Firestore, doc, collection, getDoc, getDocs, query, where, and, addDoc, updateDoc, setDoc,QueryFilterConstraint, DocumentReference } from "@angular/fire/firestore";
+import {Auth, signInWithEmailAndPassword, createUserWithEmailAndPassword, UserCredential, updatePassword} from "@angular/fire/auth";
+import { Firestore, doc, collection, getDoc, getDocs, query, and, addDoc, updateDoc, setDoc,QueryFilterConstraint} from "@angular/fire/firestore";
 import {IUserInterface} from "../../interfaces/IUserInterface";
-import {BehaviorSubject,Observable,from, tap, map, delay} from "rxjs";
+import {BehaviorSubject,Observable,from, tap, map, switchMap, forkJoin, of} from "rxjs";
 import { IDayExpenses } from '../../interfaces/calendar/IDayExpenses';
-import { IExpensesInfo } from '../../interfaces/calendar/IExpenses';
 import { Router } from '@angular/router';
 
 @Injectable()
@@ -26,13 +25,18 @@ export class UserManagmentService implements  IUserInterface{
   public Login(credentials: IUserInfo): Observable<UserCredential>{
     return from(signInWithEmailAndPassword(this.Auth,credentials.email, credentials.password))
             .pipe(
-              tap((obj) => {
-                this.LoadUserInfo(obj.user.uid).subscribe((user: IUserInfo) => {
-                  this.SaveSessionInfo(user, obj.user.uid)
-                  this.router.navigate(["/home/calendar"], { queryParams: { "uid" : obj.user.uid}});
-                })
+              switchMap((obj) => {
+                  return forkJoin({ obj: of(obj), user: this.LoadUserInfo(obj.user.uid)})
+
+              }),
+              tap((data) => {
+                  this.SaveSessionInfo(data.user, data.obj.user.uid);
+                  this.router.navigate(["/home/calendar"], { queryParams: { "uid" : data.obj.user.uid}});
+                }),
+              map((data) => {
+                return data.obj
               })
-            )
+              )
   }
 
   public LogOut(){
