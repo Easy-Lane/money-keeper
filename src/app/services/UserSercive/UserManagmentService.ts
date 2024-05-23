@@ -41,6 +41,7 @@ export class UserManagmentService implements  IUserInterface{
 
   public LogOut(){
     localStorage.removeItem("session");
+    this.Auth.signOut();
   }
 
   public Register(credentials: IUserInfo): Observable<UserCredential>{
@@ -64,7 +65,7 @@ export class UserManagmentService implements  IUserInterface{
 
   public ChangePassword(newPassword: string) {
     if (this.Auth.currentUser != null)
-      updatePassword(this.Auth.currentUser, newPassword)
+        updatePassword(this.Auth.currentUser, newPassword)
 
   }
 
@@ -92,7 +93,6 @@ export class UserManagmentService implements  IUserInterface{
     return from(addDoc(collection(this.firestore, `users/${uid}/DayExpenses/`),data))
               .pipe(
                 map((doc) => {
-                    console.log(doc);
                     return doc.id
                 }
               )
@@ -123,19 +123,18 @@ export class UserManagmentService implements  IUserInterface{
   )
   }
 
-  public UpgradeUserInfo(uid: string, newData: IUserInfo):Observable<void> {
+  public UpdateUserInfo(uid: string, newData: IUserInfo):Observable<void> {
     return from(updateDoc(doc(this.firestore, `users/${uid}`), {"username" : newData.username, "email" : newData.email, "password" : newData.password}))
             .pipe(
               map((user) => {
+                  this.SaveSessionInfo(newData, uid);
                   return user
               }
             )
           )
   }
-  public GetUserInfo(): IUserInfo | null {
-    const storageUser = localStorage.getItem("session");
-    if (!storageUser)
-      return null
+  public GetUserInfo(): IUserInfo {
+    const storageUser = localStorage.getItem("session")!;
     return JSON.parse(storageUser)[1] as IUserInfo;
 
    }

@@ -1,8 +1,8 @@
 import {IUserInfo} from "./IUserInfo";
 import {InjectionToken} from "@angular/core";
-import {BehaviorSubject, Observable} from "rxjs";
+import { Observable} from "rxjs";
 import { IDayExpenses } from "./calendar/IDayExpenses";
-import {Auth, signInWithEmailAndPassword, createUserWithEmailAndPassword,UserCredential } from "@angular/fire/auth";
+import {UserCredential } from "@angular/fire/auth";
 import { QueryFilterConstraint } from "@angular/fire/firestore";
 export const IUserToken = new InjectionToken<IUserInterface>("Authorization error");
 
@@ -14,9 +14,10 @@ export interface IUserInterface {
   isAuthorized: () => boolean;
   CreateUserInfo: (uid: string, user: IUserInfo) => Observable<void>;
   LoadUserInfo: (uid: string) =>  Observable<IUserInfo>;
-  UpgradeUserInfo: (uid: string, newData: IUserInfo) =>  Observable<void>;
+  UpdateUserInfo: (uid: string, newData: IUserInfo) =>  Observable<void>;
   GetDocsBy: (uid: string, ...queryConstraints: QueryFilterConstraint[]) => Observable<[string, IDayExpenses][]>;
   CreateDocs: (uid: string, data: IDayExpenses) => Observable<string> ;
   UpdateDocs: (uid: string,eid: string, data: IDayExpenses) => Observable<void>;
-  GetUserInfo: () => IUserInfo | null;
+  GetUserInfo: () => IUserInfo;
+  ChangePassword: (newPassword: string) => void;
 }

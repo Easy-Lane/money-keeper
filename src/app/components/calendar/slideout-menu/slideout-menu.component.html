@@ -6,13 +6,13 @@
   >
     <div class="menu-container__content"[@showContent]="isChanged ? 'changed' : 'default'">
       <div class="menu-container__date">
-        <a class="menu-container__closeButton" (click)="isChanged = !isChanged; isCreate = false"> 
+        <a class="menu-container__closeButton" (click)="closeMenu()"> 
           <img src="assets/images/CloseRight.svg">
         </a>
         <span class="menu-container__date__text"> {{date.day + " " + date.month + " " + date.year}} </span>
       </div>
       <div class="menu-container__content__expenses-container"> 
-        <expense-card *ngFor="let item of date.expenses" [info]="item"> </expense-card>
+        <app-expense-card *ngFor="let item of date.expenses" [info]="item"> </app-expense-card>
         <div class="create-card" (click)="isCreate=true"> 
           <img src="assets/images/Plus.svg">
         </div>

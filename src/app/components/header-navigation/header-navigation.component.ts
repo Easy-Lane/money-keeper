@@ -46,6 +46,7 @@ export class HeaderNavigationComponent {
 			alt: 'profileIcon',
 			text: 'Profile',
 			path: '/home/user-profile',
+            querry:  {uid: JSON.parse(this.ls)[0]}
 		},
 		{
 			icon: '/assets/images/calendar.svg',

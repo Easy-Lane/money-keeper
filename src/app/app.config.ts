@@ -24,7 +24,7 @@ import { provideHttpClient } from '@angular/common/http';
 import { GlobalErrorHandlerService } from './services/global-error-handler/global-error-handler.service';
 import { NzModalService } from 'ng-zorro-antd/modal';
 
-const User: InjectionToken<Observable<IUserInfo>> = new InjectionToken<Observable<IUserInfo>>('Token');
+export const User: InjectionToken<Observable<IUserInfo>> = new InjectionToken<Observable<IUserInfo>>('Token');
 
 registerLocaleData(en);
 
@@ -41,7 +41,7 @@ export const appConfig: ApplicationConfig = {
     { provide: IUserToken, useClass: UserManagmentService },
     { provide: User, useFactory: () => {
       const UserService = inject(IUserToken);
-      return UserService.CreateDocs
+      return UserService.GetUserInfo();
     }
   },
   provideNzI18n(en_US),

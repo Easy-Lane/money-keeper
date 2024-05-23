@@ -1,10 +1,14 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, OnInit, inject} from "@angular/core";
 import {HeaderNavigationComponent} from "../../components/header-navigation/header-navigation.component";
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {CustomValidators} from "../../services/custom-valiodators/CustomValidators";
 import {AsyncPipe, NgIf} from "@angular/common";
 import {SkeletonComponent} from "../../components/skeleton/skeleton.component";
 import {InputControlComponent} from "../../components/input-control/input-control.component";
+import { IUserToken } from "../../interfaces/IUserInterface";
+import { IUserInfo } from "../../interfaces/IUserInfo";
+import { ActivatedRoute } from "@angular/router";
+import { take } from "rxjs";
 
 export interface User {
     name: string,
@@ -29,12 +33,10 @@ export interface User {
 })
 export class UserProfileComponent implements OnInit {
     //userа надо получать с fb
-    public user: User = {
-        name: 'Lol-Govno',
-        email: 'lol-govno@mail.ru',
-        password: 'luchsheVdotu',
-        img: ''
-    };
+
+    public userService = inject(IUserToken);
+    public uid: string = "";
+    public user: IUserInfo = this.userService.GetUserInfo();
 
     public title: string = 'User Profile';
     public contentLoaded: boolean = false;
@@ -42,13 +44,16 @@ export class UserProfileComponent implements OnInit {
     public userInfoForm!: FormGroup;
     public passwordChangeForm!: FormGroup;
 
-    constructor(private formBuilder: FormBuilder) {
+    constructor(
+        private formBuilder: FormBuilder,
+        private route: ActivatedRoute
+    ) {
+        route.queryParams.subscribe((params) => (this.uid = params['uid']));
         this.userInfoForm = this.formBuilder.group({
-            name: [this.user.name, Validators.required],
+            name: [this.user.username, Validators.required],
             email: [this.user.email, [Validators.required, CustomValidators.emailValidator]],
-            img: [this.user.img]
+            img: [this.user.photoUrl]
         })
-
         this.passwordChangeForm = this.formBuilder.group({
             oldPassword: ['', [Validators.required]],
             newPassword: ['', [Validators.required]],
@@ -64,9 +69,9 @@ export class UserProfileComponent implements OnInit {
         }, 2000);
 
         this.userInfoForm.patchValue({
-            name: this.user.name,
+            name: this.user.username,
             email: this.user.email,
-            img: this.user.img
+            img: this.user.photoUrl
         });
 
         this.userInfoForm.controls['name'].disable();
@@ -74,7 +79,7 @@ export class UserProfileComponent implements OnInit {
         this.userInfoForm.controls['img'].disable();
     }
 
-    public userImg: string = this.user.img ? this.user.img : 'assets/images/default-avatar.png';
+    public userImg: string = this.user.photoUrl ? this.user.photoUrl : 'assets/images/default-avatar.png';
 
     public toggleEditMode(): void {
         this.userInfoForm.controls['name'].enable();
@@ -85,19 +90,23 @@ export class UserProfileComponent implements OnInit {
         const oldPassword = this.passwordChangeForm.controls['oldPassword'].value;
         const newPassword = this.passwordChangeForm.controls['newPassword'].value;
         const repeatNewPassword = this.passwordChangeForm.controls['repeatNewPassword'].value;
-
+    
         if (oldPassword !== this.user.password) {
             return alert('Неверный пароль пользователя!');
         } else if (newPassword !== repeatNewPassword) {
             return alert('Пароли не совпадают!');
         } else {
+            this.userService.ChangePassword(newPassword);
             this.user.password = newPassword;//надо изменять его в fb
+            this.userService.UpdateUserInfo(this.uid,this.user).pipe(take(1)).subscribe();
             return alert('Вы успешно сменили пароль!');
         }
     }
 
     public onSubmitUserInfo(): void {
-
+        this.user.email = this.userInfoForm.controls["email"].value;
+        this.user.username = this.userInfoForm.controls["name"].value;
+        this.userService.UpdateUserInfo(this.uid,this.user).pipe(take(1)).subscribe();
         console.log(this.userInfoForm.value);
         return alert('Вы успешно изменили данные!');
     }

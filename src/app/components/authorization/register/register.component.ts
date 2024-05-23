@@ -1,42 +1,42 @@
-import {Component, OnInit, Inject} from '@angular/core';
-import {RouterOutlet} from '@angular/router';
-import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
-import {CustomValidators} from "../../../services/custom-valiodators/CustomValidators";
-import {NgIf, NgTemplateOutlet} from "@angular/common";
-import {ModalService} from "../../../services/modal-services/modal.service";
+import { Component, OnInit, Inject, DestroyRef, inject } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
+import { CustomValidators } from "../../../services/custom-valiodators/CustomValidators";
+import { NgIf, NgTemplateOutlet } from "@angular/common";
+import { ModalService } from "../../../services/modal-services/modal.service";
 import { IUserInterface, IUserToken } from '../../../interfaces/IUserInterface';
 import { IUserInfo } from '../../../interfaces/IUserInfo';
 import { InputControlComponent } from '../../input-control/input-control.component';
 import { ValidatorsHandlerComponent } from '../../validators-handler/validators-handler.component';
+import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 
 @Component({
-	selector: 'app-register',
-	standalone: true,
-	imports: [
-		RouterOutlet,
-		ReactiveFormsModule,
-		NgTemplateOutlet,
-		NgIf,
-		ValidatorsHandlerComponent,
-		InputControlComponent,
-	],
-	templateUrl: 'register.component.html',
-	styleUrl: '../styles/authorization.master.scss',
+  selector: 'app-register',
+  standalone: true,
+  imports: [
+    RouterOutlet,
+    ReactiveFormsModule,
+    NgTemplateOutlet,
+    NgIf,
+    ValidatorsHandlerComponent,
+    InputControlComponent,
+  ],
+  templateUrl: 'register.component.html',
+  styleUrl: '../styles/authorization.master.scss',
 })
 export class RegisterComponent implements OnInit {
-	public registrationForm!: FormGroup;
+  public registrationForm!: FormGroup;
 
-  //public auth = inject(Auth)
-  
+  private _destroyRef: DestroyRef = inject(DestroyRef)
   constructor(
     @Inject(IUserToken) private User: IUserInterface,
     private formBuilder: FormBuilder,
     private modalService: ModalService,
-) {}
+  ) { }
 
 
 
-              
+
   public closeRegisterModal(): void {
     this.modalService.destroyComponent();
   }
@@ -58,7 +58,7 @@ export class RegisterComponent implements OnInit {
       password: this.registrationForm.value["password"],
       username: this.registrationForm.value["username"]
     }
-    this.User.Register(userInfo).subscribe();
-  
+    this.User.Register(userInfo).pipe(takeUntilDestroyed(this._destroyRef)).subscribe();
+    
   }
 }
