@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Params, Router, RouterLink, RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import {
@@ -8,6 +8,7 @@ import {
 	transition,
 	trigger,
 } from '@angular/animations';
+import { IUserInterface, IUserToken } from '../../interfaces/IUserInterface';
 
 export interface HeaderNavigationList {
 	icon: string;
@@ -15,6 +16,7 @@ export interface HeaderNavigationList {
 	text: string;
 	path: string;
 	querry?: Params;
+	func?: void;
 }
 
 @Component({
@@ -35,6 +37,7 @@ export interface HeaderNavigationList {
 export class HeaderNavigationComponent {
 
 	constructor (public router: Router) {}
+	public userService: IUserInterface = inject(IUserToken);
 	public logoIcon: string = '/assets/images/logo.svg';
 	private ls: string = localStorage.getItem("session") || "";
 	public navigationItems: HeaderNavigationList[] = [
@@ -64,7 +67,8 @@ export class HeaderNavigationComponent {
 			icon: '/assets/images/logOut.svg',
 			alt: 'logOut',
 			text: 'Log Out',
-			path: '',
+			path: '/welcome',
+			func: this.userService.LogOut(),
 		},
 		{
 			icon: '/assets/images/deleteAcc.svg',

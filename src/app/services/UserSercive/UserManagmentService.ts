@@ -27,7 +27,10 @@ export class UserManagmentService implements  IUserInterface{
     return from(signInWithEmailAndPassword(this.Auth,credentials.email, credentials.password))
             .pipe(
               tap((obj) => {
-                this.LoadUserInfo(obj.user.uid)
+                this.LoadUserInfo(obj.user.uid).subscribe((user: IUserInfo) => {
+                  this.SaveSessionInfo(user, obj.user.uid)
+                  this.router.navigate(["/home/calendar"], { queryParams: { "uid" : obj.user.uid}});
+                })
               })
             )
   }

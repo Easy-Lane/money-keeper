@@ -23,7 +23,6 @@
 			<a
 				class="header-navigation__li"
 				*ngFor="let item of navigationItems"
-				routerLink = ""
 				routerLink = {{item.path}}
 				[queryParams]="item.querry">
 			>
@@ -42,6 +41,7 @@
 				class="header-navigation__li"
 				*ngFor="let elem of accountInteraction"
 				routerLink="/{{ elem.path }}"
+				(click)="elem.func"
 			>
 				<img
 					class="header-navigation__icon"
