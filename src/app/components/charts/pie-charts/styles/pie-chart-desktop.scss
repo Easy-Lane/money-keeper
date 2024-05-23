@@ -11,10 +11,6 @@
             width: 40%;
             min-width: 256px;
         }
-
-        &__list {
-            width: 50%;
-        }
     }
 
     &__title {
@@ -35,5 +31,11 @@ p {
     color: black;
     font-size: 16px;
     font-family: "DM Sans", sans-serif;
-    padding-top: 2%;
+}
+
+@media (max-width: 1200px) {
+    .pie-chart__block {
+        align-items: center;
+        justify-content: center;
+    }
 }

@@ -1,10 +1,15 @@
 .header {
-    margin-left: 10%;
     display: flex;
     justify-content: space-between;
     flex-direction: row;
     align-items: center;
     width: 85%;
+
+    &__title-container {
+        display: flex;
+        align-items: center;
+        column-gap: 20px;
+    }
 
     &__image {
         width: 150px;
@@ -17,15 +22,13 @@
         font-size: 40px;
         line-height: 1.2;
         text-align: center;
+        margin: 0;
     }
 
     &__money {
         display: flex;
-        flex-direction: row;
-        justify-content: space-between;
+        flex-direction: column;
         align-items: center;
-        width: 50%;
-        min-width: 800px;
         font-family: "DM Sans", sans-serif;
         font-size: 40px;
 
@@ -82,13 +85,11 @@
             }
 
             &__text-long {
-                padding: 12px;
-                padding-right: 35px;
                 line-height: 1.2;
                 background-image: url("../../../../assets/images/expenses.svg");
                 background-size: cover;
                 margin-left: -30px;
-                padding-left: 35px;
+                padding: 12px 35px;
                 font-size: 24px;
             }
         }

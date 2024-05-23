@@ -1,13 +1,17 @@
 @media (max-width: 900px) {
-    .charts {
-        flex-direction: column;
-        justify-content: center;
-        margin: 0;
-        width: 100%;
-    }
-
     .dashboard-page {
-        justify-content: center;
+
+        &__main-container {
+            margin: 0;
+            padding: 20px;
+        }
+
+        &__charts-container {
+            flex-direction: column;
+            justify-content: center;
+            margin: 0;
+            width: 100%;
+        }
 
         &__element {
             justify-content: center;

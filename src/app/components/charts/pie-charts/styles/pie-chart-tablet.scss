@@ -1,19 +1,23 @@
 @media (max-width: 900px) {
     .pie-chart {
-        justify-content: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
 
         &__block {
             align-items: center;
-            flex-direction: column;
+            justify-content: center;
 
             &__chart {
                 width: 40%;
                 min-width: 256px;
             }
-
-            &__list {
-                width: 50%;
-            }
         }
+    }
+}
+
+@media (max-width: 550px) {
+    .pie-chart__block {
+        flex-direction: column;
     }
 }

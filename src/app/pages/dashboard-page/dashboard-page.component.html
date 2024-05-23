@@ -1,13 +1,15 @@
 <router-outlet> </router-outlet>
-<app-header-navigation></app-header-navigation>
 <div class="dashboard-page">
-	<dashboard-menu class="dashboard-page__element"></dashboard-menu>
-	<div class="dashboard-page__element">
-		<h1 class="dashboard-page__element__title">{{ title }}</h1>
-	</div>
-	<dashboard-header class="dashboard-page__element"></dashboard-header>
-	<div class="charts">
-		<pie-chart class="dashboard-page__element"></pie-chart>
-		<line-chart class="dashboard-page__element"></line-chart>
-	</div>
+    <app-header-navigation></app-header-navigation>
+    <div class="dashboard-page__main-container">
+        <dashboard-menu class="dashboard-page__element"></dashboard-menu>
+        <div class="dashboard-page__element">
+            <h1 class="dashboard-page__element__title">{{ title }}</h1>
+        </div>
+        <dashboard-header class="dashboard-page__element"></dashboard-header>
+        <div class="dashboard-page__charts-container">
+            <pie-chart class="dashboard-page__element"></pie-chart>
+            <line-chart class="dashboard-page__element"></line-chart>
+        </div>
+    </div>
 </div>
