@@ -5,7 +5,7 @@
 	(mouseenter)="openHeader()"
 	(mouseleave)="closeHeader()"
 >
-	<a class="header-navigation__li" routerLink="/">
+	<a class="header-navigation__li" routerLink="/welcome">
 		<img class="header-navigation__icon" src="{{ logoIcon }}" alt="logo"/>
 		<div
 			class="header-navigation__logo-name hidden-text"
@@ -25,7 +25,6 @@
 				*ngFor="let item of navigationItems"
 				routerLink = {{item.path}}
 				[queryParams]="item.querry">
-			>
 				<img
 					class="header-navigation__icon"
 					src="{{ item.icon }}"
