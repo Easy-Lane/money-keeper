@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { UserService } from '../../services/user-services/user.service';
 import { CommonModule } from '@angular/common';
@@ -7,6 +7,9 @@ import {
     CurrencyServiceToken,
 } from '../../services/currency-services/currency.service';
 import { CurrencyPipe } from '../../pipes/currency-pipe/currency.pipe';
+import { Observable, take } from 'rxjs';
+import { IUserInfo } from '../../interfaces/IUserInfo';
+import { User } from '../../app.config';
 
 @Component({
     selector: 'dashboard-header',
@@ -18,6 +21,14 @@ import { CurrencyPipe } from '../../pipes/currency-pipe/currency.pipe';
 })
 export class DashboardHeaderComponent implements OnInit {
     public currencySymbol: string = '₽';
+    public user: IUserInfo = inject(User);
+
+    public username: string = this.user.username!;
+    public lastName: string = '';
+    public incomes: number = this.userService.getIncomes();
+    public expenses: number = this.userService.getExpenses();
+    public image: string = this.userService.getImage();
+
     constructor(
         public currencyService: CurrencyService,
         private userService: UserService
@@ -27,11 +38,6 @@ export class DashboardHeaderComponent implements OnInit {
             (currency) => (this.currencySymbol = currency)
         );
     }
-    public username: string = this.userService.getFirstName();
-    public lastName: string = this.userService.getLastName();
-    public incomes: number = this.userService.getIncomes();
-    public expenses: number = this.userService.getExpenses();
-    public image: string = this.userService.getImage();
 
     public isIncomesLong: boolean = this.incomes.toString().length > 10;
     public isExpensesLong: boolean = this.expenses.toString().length > 10;

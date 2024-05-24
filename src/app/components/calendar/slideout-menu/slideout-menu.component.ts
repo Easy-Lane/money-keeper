@@ -53,7 +53,6 @@ export class SlideoutMenuComponent implements OnInit {
         private clickEmitter: slideoutControllService,
         private route: ActivatedRoute
     ) {
-        //route.params.subscribe(params=>this.uid=params["uid"]);
         route.queryParams.subscribe((params) => (this.uid = params['uid']));
     }
 
@@ -67,7 +66,7 @@ export class SlideoutMenuComponent implements OnInit {
         );
     }
 
-    public createNewExpense() {
+    public createNewExpense(): void {
         if (this.date.expenses?.length == 0) {
             this.date.expenses?.push({
                 name: 'first kekw',

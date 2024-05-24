@@ -33,7 +33,7 @@ export class UICalendarComponent implements OnInit {
         'November',
         'December',
     ];
-    currentMonth = this.todayDate.getMonth();
+    currentMonth: number = this.todayDate.getMonth();
     currentYear: number = this.todayDate.getFullYear();
     lastDays: number[] = [];
     days: number[] = [];
@@ -44,18 +44,17 @@ export class UICalendarComponent implements OnInit {
         private slideoutControll: slideoutControllService,
         private route: ActivatedRoute
     ) {
-        //route.params.subscribe(params=>this.id=params["uid"]);
         route.queryParams.subscribe((params) => (this.id = params['uid']));
     }
 
-    ngOnInit() {
+    ngOnInit(): void {
         this.UpdateData();
         this.slideoutControll.closeEvent$.subscribe((flag: boolean) => {
             if (flag) this.UpdateData();
         });
     }
 
-    private UpdateData() {
+    private UpdateData(): void {
         this.UserService.GetDocsBy(
             this.id,
             where('month', '==', this.months[this.currentMonth]),
@@ -91,7 +90,7 @@ export class UICalendarComponent implements OnInit {
         }
         this.UpdateData();
     }
-    public onDayClick(num: number) {
+    public onDayClick(num: number): void {
         let currentData: [string, IDayExpenses] | undefined =
             this.monthExpenses.find((item) => item[1].day == num);
         if (!currentData)

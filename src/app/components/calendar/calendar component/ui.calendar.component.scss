@@ -26,3 +26,18 @@
 .month-nav-arrow {
     cursor: pointer;
 }
+
+@media (max-width: 1200px) { 
+    .columns {
+        display: grid;
+        grid-template-columns: repeat(7,100px);
+    }
+}
+
+
+@media (max-width: 800px) { 
+    .columns {
+        display: grid;
+        grid-template-columns: repeat(7,70px);
+    }
+}

@@ -4,12 +4,15 @@ import { HeaderNavigationComponent } from '../../components/header-navigation/he
 import { SlideoutMenuComponent } from '../../components/calendar/slideout-menu/slideout-menu.component';
 import { DashboardMenuComponent } from '../../components/dashboard-menu/dashboard-menu.component';
 @Component({
-  selector: 'app-calendar',
-  standalone: true,
-  imports: [UICalendarComponent, HeaderNavigationComponent, SlideoutMenuComponent, DashboardMenuComponent],
-  templateUrl: './calendar.component.html',
-  styleUrl: './calendar.component.scss'
+    selector: 'app-calendar',
+    standalone: true,
+    imports: [
+        UICalendarComponent,
+        HeaderNavigationComponent,
+        SlideoutMenuComponent,
+        DashboardMenuComponent,
+    ],
+    templateUrl: './calendar.component.html',
+    styleUrl: './calendar.component.scss',
 })
-export class CalendarComponent {
-
-}
+export class CalendarComponent {}
