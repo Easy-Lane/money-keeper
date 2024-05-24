@@ -10,6 +10,7 @@ import { CurrencyPipe } from '../../pipes/currency-pipe/currency.pipe';
 import { Observable, take } from 'rxjs';
 import { IUserInfo } from '../../interfaces/IUserInfo';
 import { User } from '../../app.config';
+import {SkeletonComponent} from "../skeleton/skeleton.component";
 
 @Component({
     selector: 'dashboard-header',
@@ -17,7 +18,7 @@ import { User } from '../../app.config';
     providers: [UserService],
     templateUrl: './dashboard-header.component.html',
     styleUrl: './styles/dashboard-header.master.scss',
-    imports: [RouterOutlet, CommonModule, CurrencyPipe],
+    imports: [RouterOutlet, CommonModule, CurrencyPipe, SkeletonComponent],
 })
 export class DashboardHeaderComponent implements OnInit {
     public currencySymbol: string = '₽';
@@ -28,12 +29,17 @@ export class DashboardHeaderComponent implements OnInit {
     public incomes: number = this.userService.getIncomes();
     public expenses: number = this.userService.getExpenses();
     public image: string = this.userService.getImage();
+    public contentLoaded: boolean = false;
 
     constructor(
         public currencyService: CurrencyService,
         private userService: UserService
     ) {}
     ngOnInit(): void {
+        setTimeout((): void => {
+            this.contentLoaded = true;
+        }, 2000);
+
         this.currencyService.currentCurrency.subscribe(
             (currency) => (this.currencySymbol = currency)
         );

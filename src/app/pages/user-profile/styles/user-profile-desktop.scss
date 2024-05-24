@@ -34,6 +34,11 @@
         column-gap: 20px;
     }
 
+    &__error-container {
+        display: flex;
+        flex-direction: column;
+    }
+
     &__label {
         font-family: "DM Sans", sans-serif;
         font-size: 25px;
@@ -144,6 +149,13 @@
             background-color: #F8F8F8;
             color: #3a3a3a;
             border: 2px solid #3a3a3a;
+        }
+
+        &:disabled {
+            border: 3px dashed #3a3a3a;
+            background-color: #6c6c6c;
+            color: #F8F8F8;
+            cursor: not-allowed;
         }
     }
 

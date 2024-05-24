@@ -9,6 +9,7 @@ import { IUserToken } from "../../interfaces/IUserInterface";
 import { IUserInfo } from "../../interfaces/IUserInfo";
 import { ActivatedRoute } from "@angular/router";
 import { take } from "rxjs";
+import {ValidatorsHandlerComponent} from "../../components/validators-handler/validators-handler.component";
 
 export interface User {
     name: string,
@@ -26,7 +27,8 @@ export interface User {
         AsyncPipe,
         NgIf,
         SkeletonComponent,
-        InputControlComponent
+        InputControlComponent,
+        ValidatorsHandlerComponent
     ],
     templateUrl: 'user-profile.component.html',
     styleUrl: './styles/user-profile.master.scss'
@@ -56,8 +58,8 @@ export class UserProfileComponent implements OnInit {
         })
         this.passwordChangeForm = this.formBuilder.group({
             oldPassword: ['', [Validators.required]],
-            newPassword: ['', [Validators.required]],
-            repeatNewPassword: ['', [Validators.required]]
+            newPassword: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(15)]],
+            repeatNewPassword: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(15)]]
         }, {
             validators: []
         });
@@ -90,7 +92,7 @@ export class UserProfileComponent implements OnInit {
         const oldPassword = this.passwordChangeForm.controls['oldPassword'].value;
         const newPassword = this.passwordChangeForm.controls['newPassword'].value;
         const repeatNewPassword = this.passwordChangeForm.controls['repeatNewPassword'].value;
-    
+
         if (oldPassword !== this.user.password) {
             return alert('Неверный пароль пользователя!');
         } else if (newPassword !== repeatNewPassword) {

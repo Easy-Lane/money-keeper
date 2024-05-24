@@ -21,9 +21,9 @@
         }
 
         &__buttons-container {
-            flex-direction: column;
+            flex-direction: row;
             align-items: center;
-            row-gap: 50px;
+            justify-content: space-between;
         }
 
         &__button-change,

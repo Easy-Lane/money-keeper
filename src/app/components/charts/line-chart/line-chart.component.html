@@ -1,7 +1,7 @@
 <div class="line-chart">
 	<p class="line-chart__title">{{ title }}</p>
 	<div class="line-chart__block">
-		<div class="line-chart__block__chart">
+		<ng-container *ngIf="contentLoaded; else skeletonChart" class="line-chart__block__chart">
 			<tui-axes
 				class="axes"
 				[horizontalLines]="2"
@@ -18,7 +18,7 @@
 					[y]="0"
 				></tui-line-chart>
 			</tui-axes>
-		</div>
+		</ng-container>
 		<div class="line-chart__block__list">
 			<ul>
 				<li style="color: #34b53a">
@@ -32,3 +32,8 @@
 	</div>
 	<charts-button [title]="'line-chart'"></charts-button>
 </div>
+
+
+<ng-template #skeletonChart>
+    <app-skeleton type="chart"></app-skeleton>
+</ng-template>
