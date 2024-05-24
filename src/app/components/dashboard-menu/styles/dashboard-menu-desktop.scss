@@ -1,38 +1,38 @@
 button {
-  background: none;
-  color: inherit;
-  border: none;
-  padding: 0;
-  font: inherit;
-  cursor: pointer;
-  outline: inherit;
+	background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
 }
 
 .dashboard-menu {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: end;
-  margin-top: 20px;
-  margin-left: -24px;
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	justify-content: end;
+	margin-top: 20px;
+	margin-left: -24px;
 
-  &__account-icon {
-    height: 55px;
-    width: 55px;
-    border-radius: 30px;
-    &:hover {
-      outline: 2px solid black;
-    }
-  }
+	&__account-icon {
+		height: 55px;
+		width: 55px;
+		border-radius: 30px;
+		&:hover {
+			outline: 2px solid black;
+		}
+	}
 
-  &__currency-icon {
-    height: 52px;
-    width: 52px;
-    flex: 0 0 auto;
-    margin: 0 15px;
-    &:hover {
-      border-radius: 30px;
-      outline: 2px double black;
-    }
-  }
+	&__currency-icon {
+		height: 52px;
+		width: 52px;
+		flex: 0 0 auto;
+		margin: 0 15px;
+		&:hover {
+			border-radius: 30px;
+			outline: 2px double black;
+		}
+	}
 }
