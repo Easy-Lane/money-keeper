@@ -11,31 +11,47 @@
                 <div class="user-profile__input-container">
                     <label class="user-profile__label" for="name">Username:</label>
                     <ng-container *ngIf="contentLoaded; else skeletonInputText">
-                        <input *ngIf="contentLoaded" type="text" id="name"
-                               class="user-profile__input-text"
-                               autocomplete="name"
-                               formControlName="name"/>
+                        <div class="user-profile__error-container">
+                            <input *ngIf="contentLoaded" type="text" id="name"
+                                   class="user-profile__input-text"
+                                   autocomplete="name"
+                                   formControlName="name"/>
+                            <ng-container *ngIf="userInfoForm.controls['name'].invalid &&
+                                            userInfoForm.controls['name'].value.length > 0">
+                                <app-validators-handler
+                                    [errors]="userInfoForm.controls['name'].errors">
+                                </app-validators-handler>
+                            </ng-container>
+                        </div>
                     </ng-container>
                 </div>
                 <div class="user-profile__input-container">
                     <label class="user-profile__label" for="email">Email:</label>
                     <ng-container *ngIf="contentLoaded; else skeletonInputText">
-                        <input *ngIf="contentLoaded" type="email" id="email"
-                               class="user-profile__input-text"
-                               autocomplete="email"
-                               formControlName="email"/>
+                        <div class="user-profile__error-container">
+                            <input *ngIf="contentLoaded" type="email" id="email"
+                                   class="user-profile__input-text"
+                                   autocomplete="email"
+                                   formControlName="email"/>
+                            <ng-container *ngIf="userInfoForm.controls['email'].invalid &&
+                                            userInfoForm.controls['email'].value.length > 0">
+                                <app-validators-handler
+                                    [errors]="userInfoForm.controls['email'].errors">
+                                </app-validators-handler>
+                            </ng-container>
+                        </div>
                     </ng-container>
                 </div>
                 <div class="user-profile__buttons-container">
                     <button class="user-profile__button-change" type="button" (click)="toggleEditMode()">Change</button>
-                    <button class="user-profile__button-save" type="submit">Save</button>
+                    <button class="user-profile__button-save" [disabled]="userInfoForm.invalid" type="submit">Save</button>
                 </div>
             </div>
             <div class="user-profile__input-container__file">
                 <label class="user-profile__label" for="fileInput">
                     Avatar:
                     <button class="user-profile__input-file-btn" (click)="fileInput.click()"
-                            [attr.disabled]="true">Upload file
+                            [attr.disabled]="true" title="try again later">Upload file
                     </button>
                 </label>
                 <input type="file" id="fileInput" #fileInput
@@ -63,15 +79,31 @@
             </div>
             <div class="user-profile__input-container">
                 <label class="user-profile__label" for="newPassword">New Password:</label>
-                <input type="password" id="newPassword"
-                       class="user-profile__input-text"
-                       formControlName="newPassword"/>
+                <div class="user-profile__error-container">
+                    <input type="password" id="newPassword"
+                           class="user-profile__input-text"
+                           formControlName="newPassword"/>
+                    <ng-container *ngIf="passwordChangeForm.controls['newPassword'].invalid &&
+                                     passwordChangeForm.controls['newPassword'].value.length > 0">
+                        <app-validators-handler
+                            [errors]="passwordChangeForm.controls['newPassword'].errors"
+                        ></app-validators-handler>
+                    </ng-container>
+                </div>
             </div>
             <div class="user-profile__input-container">
                 <label class="user-profile__label" for="repeatNewPassword">Repeat new Password:</label>
-                <input type="password" id="repeatNewPassword"
-                       class="user-profile__input-text"
-                       formControlName="repeatNewPassword"/>
+                <div class="user-profile__error-container">
+                    <input type="password" id="repeatNewPassword"
+                           class="user-profile__input-text"
+                           formControlName="repeatNewPassword"/>
+                    <ng-container *ngIf="passwordChangeForm.controls['repeatNewPassword'].invalid &&
+                                    passwordChangeForm.controls['repeatNewPassword'].value.length > 0">
+                        <app-validators-handler
+                            [errors]="passwordChangeForm.controls['repeatNewPassword'].errors"
+                        ></app-validators-handler>
+                    </ng-container>
+                </div>
             </div>
             <button class="user-profile__change-pass-btn" type="submit">Change</button>
         </form>
