@@ -12,8 +12,10 @@ export class GlobalErrorHandlerService implements ErrorHandler {
 
         this.dialog.create({
             nzTitle: 'Error',
-            nzContent: 'Try again later!',
-            nzClosable: true
+            nzContent: error.message,
+            nzClosable: true,
+            nzOnOk: () => {},
+            nzNoAnimation: true,
         })
     }
 }

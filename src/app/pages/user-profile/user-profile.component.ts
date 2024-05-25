@@ -106,9 +106,14 @@ export class UserProfileComponent implements OnInit {
     }
 
     public onSubmitUserInfo(): void {
+
+        if (this.user.email == this.userInfoForm.controls["email"].value) 
+            this.userService.ChangeEmail(this.user.email);
+
         this.user.email = this.userInfoForm.controls["email"].value;
         this.user.username = this.userInfoForm.controls["name"].value;
         this.userService.UpdateUserInfo(this.uid,this.user).pipe(take(1)).subscribe();
+
         console.log(this.userInfoForm.value);
         return alert('Вы успешно изменили данные!');
     }

@@ -29,4 +29,5 @@ export interface IUserInterface {
     ) => Observable<void>;
     GetUserInfo: () => IUserInfo;
     ChangePassword: (newPassword: string) => void;
+    ChangeEmail: (newPassword: string) => void;
 }
