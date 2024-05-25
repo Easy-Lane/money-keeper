@@ -5,7 +5,7 @@ import {
     signInWithEmailAndPassword,
     createUserWithEmailAndPassword,
     UserCredential,
-    updatePassword,
+    updatePassword, signOut,
 } from '@angular/fire/auth';
 import {
     Firestore,
@@ -53,8 +53,6 @@ export class UserManagmentService implements IUserInterface {
             )
         ).pipe(
 
-
-
             switchMap((obj) => {
                 return forkJoin({
                     obj: of(obj),
@@ -76,7 +74,11 @@ export class UserManagmentService implements IUserInterface {
 
     public LogOut(): void {
         localStorage.removeItem('session');
-        this.Auth.signOut();
+        signOut(this.Auth).then((): void => {
+            console.log(this.Auth.currentUser);
+        }).catch((error): void => {
+            console.log(error);
+        });
     }
 
     public Register(credentials: IUserInfo): Observable<UserCredential> {

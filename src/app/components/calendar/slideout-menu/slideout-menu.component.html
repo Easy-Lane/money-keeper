@@ -1,46 +1,44 @@
-<div class="background" [@showBackground]="isChanged ? 'changed' : 'default'"> </div>
+<div class="background" [@showBackground]="isChanged ? 'changed' : 'default'"></div>
 
-
-<div class="menu-container"
-  [@slideAnimation]="isChanged ? 'changed' : 'default'"
-  >
-    <div class="menu-container__content"[@showContent]="isChanged ? 'changed' : 'default'">
-      <div class="menu-container__date">
-        <a class="menu-container__closeButton" (click)="closeMenu()"> 
-          <img src="assets/images/CloseRight.svg">
-        </a>
-        <span class="menu-container__date__text"> {{date.day + " " + date.month + " " + date.year}} </span>
-      </div>
-      <div class="menu-container__content__expenses-container"> 
-        <app-expense-card *ngFor="let item of date.expenses" [info]="item"> </app-expense-card>
-        <div class="create-card" (click)="isCreate=true"> 
-          <img src="assets/images/Plus.svg">
+<div
+    class="menu-container"
+    [@slideAnimation]="isChanged ? 'changed' : 'default'">
+    <div class="menu-container__content" [@showContent]="isChanged ? 'changed' : 'default'">
+        <div class="menu-container__date">
+            <a class="menu-container__closeButton" (click)="closeMenu()">
+                <img src="assets/images/CloseRight.svg">
+            </a>
+            <span class="menu-container__date__text"> {{date.day + " " + date.month + " " + date.year}} </span>
         </div>
-      </div>
+        <div class="menu-container__content__expenses-container">
+            <app-expense-card *ngFor="let item of date.expenses" [info]="item"></app-expense-card>
+            <div class="create-card" (click)="isCreate=true">
+                <img src="/assets/images/Plus.svg">
+            </div>
+        </div>
     </div>
-  </div>
+</div>
 
-  <div class="menu-container creation-container"
-  [@slideAnimation]="isCreate ? 'changed' : 'default'"
-  >
+<div class="menu-container creation-container"
+     [@slideAnimation]="isCreate ? 'changed' : 'default'">
     <div class="creation-container__content">
-      <div class="creation-container__content__category">
-        <label>Category:</label>
-        <select>
-          <option value="">Type</option>
-          <option value="">GitHub</option>
-          <option value="">Instagram</option>
-          <option value="">Facebook</option>
-          <option value="">LinkedIn</option>
-          <option value="">Twitter</option>
-          <option value="">Reddit</option>
-        </select>
-      </div>
-      <input/>
+        <div class="creation-container__content__category">
+            <label>Category:</label>
+            <select>
+                <option value="">Type</option>
+                <option value="">GitHub</option>
+                <option value="">Instagram</option>
+                <option value="">Facebook</option>
+                <option value="">LinkedIn</option>
+                <option value="">Twitter</option>
+                <option value="">Reddit</option>
+            </select>
+        </div>
+        <input type="number" placeholder="Value" class="creation-container__input"/>
     </div>
-    <textarea class="creation-container__desc"></textarea>
+    <textarea class="creation-container__description"></textarea>
     <div class="creation-container__buttons">
-      <button (click)="isCreate=false">Cencel</button>
-      <button (click)="createNewExpense()">Save</button>
+        <button (click)="isCreate=false">Cancel</button>
+        <button (click)="createNewExpense()">Save</button>
     </div>
-  </div>
+</div>

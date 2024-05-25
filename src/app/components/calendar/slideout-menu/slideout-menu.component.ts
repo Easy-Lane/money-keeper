@@ -18,10 +18,10 @@ import { take } from 'rxjs';
     standalone: true,
     imports: [ExpenseCardComponent, CommonModule],
     templateUrl: './slideout-menu.component.html',
-    styleUrls: ['./slideout-menu.component.scss'],
+    styleUrls: ['./styles/slideout-menu.master.scss'],
     animations: [
         trigger('slideAnimation', [
-            state('default', style({ right: '-700px' })),
+            state('default', style({ right: '-100%' })),
             state('changed', style({ right: '0' })),
             transition('default => changed', animate('200ms ease-in')),
             transition('changed => default', animate('200ms ease-out')),

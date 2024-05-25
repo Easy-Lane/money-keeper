@@ -12,7 +12,7 @@ import { DashboardMenuComponent } from '../../components/dashboard-menu/dashboar
         SlideoutMenuComponent,
         DashboardMenuComponent,
     ],
-    templateUrl: './calendar.component.html',
-    styleUrl: './calendar.component.scss',
+    templateUrl: 'calendar.component.html',
+    styleUrl: './styles/calendar.master.scss',
 })
 export class CalendarComponent {}
