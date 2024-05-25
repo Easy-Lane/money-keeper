@@ -52,7 +52,7 @@
 <hr>
 
 * Страница с возможностью изменить данные профиля<br>
-![User Profile](https://github.com/Easy-Lane/money-keeper/blob/d57715ebc81a6f66626f13c404c0636589e80fce/src/assets/readme-images/readme-user-profile.png)
+![User Profile](https://github.com/Easy-Lane/money-keeper/blob/cb44075e46ac480c987fb2725e0527c079ae8aa6/src/assets/readme-images/readme-user-profile.png)
 
 <hr>
 
