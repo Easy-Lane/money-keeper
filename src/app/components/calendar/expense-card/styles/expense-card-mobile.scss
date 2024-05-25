@@ -1,0 +1,29 @@
+@media (max-width: 450px) {
+    .card {
+        width: 300px;
+        height: 150px;
+        padding: 10px;
+
+        &__content {
+
+            &__title {
+                flex-direction: column;
+                row-gap: 10px;
+                margin-bottom: 20px;
+
+                p {
+                    font-size: 22px;
+                }
+            }
+
+            &__description {
+                font-size: 16px;
+            }
+
+            &__icon {
+                width: 80px;
+                height: 80px;
+            }
+        }
+    }
+}

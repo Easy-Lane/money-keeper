@@ -52,12 +52,12 @@
 <hr>
 
 * Страница с возможностью изменить данные профиля<br>
-![User Profile](https://github.com/Easy-Lane/money-keeper/blob/user-profile/src/assets/readme-images/readme-user-profile.png)
+![User Profile](https://github.com/Easy-Lane/money-keeper/blob/d57715ebc81a6f66626f13c404c0636589e80fce/src/assets/readme-images/readme-user-profile.png)
 
 <hr>
 
 * Страница с графиками анализа расходов и доходов<br>
-![DashBoard](https://github.com/Easy-Lane/money-keeper/blob/user-profile/src/assets/readme-images/readme-dashboard.jpg)
+![DashBoard](https://github.com/Easy-Lane/money-keeper/blob/fd8bb34ade99edd2c7842a1d363123a9a48fcff4/src/assets/readme-images/readme-dashboard.png)
 
 <hr>
 
@@ -79,17 +79,17 @@
 | Паттерн фабрика                                 |                                                                                                                                                                                        |
 | Reusable компоненты                             | src/app/components/header-navigation/header-navigation.component.ts<br/>src/app/components/skeleton/skeleton.component.ts                                                              |
 | Передача параметров в роутах                    |                                                                                                                                                                                        |
-| Guard's / Guarded routing                       |                                                                                                                                                                                        |
+| Guard's / Guarded routing                       | src/app/guards/auth.guard.ts                                                                                                                                                           |
 | 1-2 кастомная атрибутивная директива            |                                                                                                                                                                                        |
 | 1-2 кастомных пайпа                             |                                                                                                                                                                                        |
 | Использование @ViewChild @ViewChildren          | src/app/components/authorization/authorization-buttons/authorization-buttons.component.ts                                                                                              |
-| Запросы на сервер                               |                                                                                                                                                                                        |
+| Запросы на сервер                               | Firebase                                                                                                                                                                               |
 | Форматирование кода в соответствии с code-style | использование .eslint.json                                                                                                                                                             |
 | MVVM                                            | src/app/components/input-control/input-control.component.ts                                                                                                                            |
 | Сложное внедрение зависимостей                  |                                                                                                                                                                                        |
 | Global Error Handler                            | src/app/services/global-error-handler/global-error-handler.service.ts                                                                                                                  |
 | Хлебные крошки / Breadcrumbs                    |                                                                                                                                                                                        |
-| Использование @HostListner                      |                                                                                                                                                                                        |
+| Использование @HostListener                     | src/app/components/calendar/slideout-menu/slideout-menu.component.ts<br/>src/app/components/header-navigation/header-navigation.component.ts                                           |
 | Динамический рендер компоненты                  | src/app/pages/user-profile/user-profile.component.html (с 81 строчки)                                                                                                                  |
 | Скелетоны                                       | src/app/components/skeleton/skeleton.component.ts                                                                                                                                      |
 | Адаптивность                                    | Адаптив есть на всём проекте                                                                                                                                                           |
