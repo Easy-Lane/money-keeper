@@ -4,6 +4,7 @@ import { NgIf } from '@angular/common';
 import { HeaderNavigationComponent } from '../../components/header-navigation/header-navigation.component';
 import { AuthorizationButtonsComponent } from '../../components/authorization/authorization-buttons/authorization-buttons.component';
 import { IUserToken } from '../../interfaces/IUserInterface';
+import {ErrorModalComponent} from "../../components/error-modal/error-modal.component";
 
 @Component({
     selector: 'app-welcome-page',
@@ -12,7 +13,7 @@ import { IUserToken } from '../../interfaces/IUserInterface';
         RouterOutlet,
         HeaderNavigationComponent,
         AuthorizationButtonsComponent,
-        NgIf,
+        NgIf
     ],
     templateUrl: 'welcome-page.component.html',
     styleUrl: './styles/welcome-page.master.scss',

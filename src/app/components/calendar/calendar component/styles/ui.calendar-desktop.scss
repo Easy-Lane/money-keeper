@@ -1,0 +1,28 @@
+.ui-calendar {
+    width: 80vw;
+    display: flex;
+    flex-direction: column;
+    row-gap: 30px;
+
+    &__month-navigation {
+        display: flex;
+        align-self: center;
+        align-items: center;
+        column-gap: 15px;
+        justify-content: space-between;
+
+        label {
+            font-size: 22px;
+            font-family: "DM Sans", sans-serif;
+        }
+
+        &__arrow {
+            cursor: pointer;
+        }
+    }
+
+    &__grid-container {
+        display: grid;
+        grid-template-columns: repeat(7,1fr);
+    }
+}

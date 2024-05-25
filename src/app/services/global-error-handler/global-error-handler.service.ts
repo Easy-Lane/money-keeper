@@ -1,21 +1,18 @@
 import {ErrorHandler, Injectable} from '@angular/core';
-import {NzModalService} from "ng-zorro-antd/modal";
+import {MatDialog} from "@angular/material/dialog";
+import {ErrorModalComponent} from "../../components/error-modal/error-modal.component";
+
 
 @Injectable()
 export class GlobalErrorHandlerService implements ErrorHandler {
 
-    constructor(private dialog: NzModalService) {
+    constructor(private dialog: MatDialog ) {
     }
 
     handleError(error: Error): void {
-        console.log(error.stack);
-
-        this.dialog.create({
-            nzTitle: 'Error',
-            nzContent: error.message,
-            nzClosable: true,
-            nzOnOk: () => {},
-            nzNoAnimation: true,
+        this.dialog.open(ErrorModalComponent, {
+            width: '250px',
+            data: { message: error.message }
         })
     }
 }

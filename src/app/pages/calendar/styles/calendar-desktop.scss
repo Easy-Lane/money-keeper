@@ -1,0 +1,17 @@
+.calendar{
+    width: 100%;
+
+    &__main-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        row-gap: 30px;
+        margin-left: 100px;
+        padding: 20px;
+    }
+
+    &__dashboard-menu{
+        align-self: end;
+    }
+}

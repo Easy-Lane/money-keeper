@@ -12,7 +12,7 @@ import { ActivatedRoute } from '@angular/router';
     standalone: true,
     imports: [DayComponent, CommonModule],
     templateUrl: './ui.calendar.component.html',
-    styleUrl: './ui.calendar.component.scss',
+    styleUrl: './styles/ui.calendar.master.scss',
 })
 export class UICalendarComponent implements OnInit {
     public UserService = inject(IUserToken);

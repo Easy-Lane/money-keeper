@@ -1,5 +1,4 @@
 .background {
-
     top:0;
     bottom: 0;
     right: 0;
@@ -7,6 +6,10 @@
     z-index: 1000;
     background: rgba(0,0,0);
     position: absolute;
+}
+
+:root {
+    --menu-container-width: 700px;
 }
 
 .menu-container {
@@ -22,9 +25,9 @@
     &__content {
 
         &__expenses-container{
-
             display: flex;
             flex-direction: column;
+            row-gap: 50px;
             align-items: center;
             height: calc(100vh - 170px);
             overflow-y: auto;
@@ -35,25 +38,25 @@
     &__date{
         display: flex;
         margin-bottom: 30px;
-         &__text{
+        z-index: 2500;
+        &__text{
             font-size: 26px;
             font-weight: bold;
             align-self: center;
             margin-right: calc(50% - 73px);
             margin-left: auto;
-        
-         }
+
+        }
 
     }
-    
-    
+
+
     &__closeButton{
         cursor: pointer;
     }
 }
 
 .create-card {
-
     width: 600px;
     height: 200px;
     outline: gray solid 2px;
@@ -73,20 +76,40 @@
 }
 
 .creation-container {
-    top: 80px; 
+    margin-top: 80px;
     z-index: 2000;
     display: flex;
     flex-direction: column;
+    row-gap: 50px;
+    padding: 20px;
+    font-size: 24px;
+    font-family: "DM Sans", sans-serif;
+    line-height: 120%;
+
     &__content {
         display: flex;
+        column-gap: 80px;
         align-self: center;
+
+        &__category {
+            display: flex;
+            align-items: center;
+            column-gap: 10px;
+        }
+
+        input {
+            padding-inline: 10px;
+        }
     }
 
-    &__desc {
+    &__description {
         max-width: 550px;
         min-width: 400px;
-
+        height: 200px;
         align-self: center;
+        padding: 10px;
+        outline: 1.5px solid #000;
+        border-radius: 10px;
     }
 
     &__buttons {
@@ -94,11 +117,3 @@
         justify-content: space-around;
     }
 }
-
-// @media (max-width: 900px) { 
-//     .menu-container {
-//         left: 0;
-//         right: 0;
-//         top: -80px;
-//     }
-// }

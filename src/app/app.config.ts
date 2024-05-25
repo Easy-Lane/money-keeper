@@ -59,6 +59,6 @@ export const appConfig: ApplicationConfig = {
         provideHttpClient(),
         { provide: ErrorHandler, useClass: GlobalErrorHandlerService },
         { provide: NzModalService },
-        AuthGuard,
+        AuthGuard, provideAnimationsAsync(),
     ],
 };

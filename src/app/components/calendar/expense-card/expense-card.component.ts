@@ -8,7 +8,7 @@ import { CurrencyService } from '../../../services/currency-services/currency.se
     standalone: true,
     imports: [CommonModule, CurrencyPipe],
     templateUrl: './expense-card.component.html',
-    styleUrl: './expense-card.component.scss',
+    styleUrl: './styles/expense-card.master.scss',
 })
 export class ExpenseCardComponent implements OnInit {
     @Input() public info!: IExpensesInfo;

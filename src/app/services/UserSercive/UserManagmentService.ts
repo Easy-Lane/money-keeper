@@ -5,11 +5,15 @@ import {
     signInWithEmailAndPassword,
     createUserWithEmailAndPassword,
     UserCredential,
+<<<<<<< HEAD
     updatePassword,
     updateEmail,
     reauthenticateWithCredential,
     AuthCredential,
     signOut,
+=======
+    updatePassword, signOut,
+>>>>>>> 7eb56581f3b1faa0abd8457f2a1f65adc23e5d0b
 } from '@angular/fire/auth';
 import {
     Firestore,
@@ -57,6 +61,7 @@ export class UserManagmentService implements IUserInterface {
                 credentials.password
             )
         ).pipe(
+<<<<<<< HEAD
             catchError((err) => {
                 switch (err.code) {
                     case 'auth/weak-password': {
@@ -79,6 +84,9 @@ export class UserManagmentService implements IUserInterface {
                         );
                 }
             }),
+=======
+
+>>>>>>> 7eb56581f3b1faa0abd8457f2a1f65adc23e5d0b
             switchMap((obj) => {
                 return forkJoin({
                     obj: of(obj),
@@ -98,6 +106,18 @@ export class UserManagmentService implements IUserInterface {
         );
     }
 
+<<<<<<< HEAD
+=======
+    public LogOut(): void {
+        localStorage.removeItem('session');
+        signOut(this.Auth).then((): void => {
+            console.log(this.Auth.currentUser);
+        }).catch((error): void => {
+            console.log(error);
+        });
+    }
+
+>>>>>>> 7eb56581f3b1faa0abd8457f2a1f65adc23e5d0b
     public Register(credentials: IUserInfo): Observable<UserCredential> {
         return from(
             createUserWithEmailAndPassword(

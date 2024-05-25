@@ -1,25 +1,32 @@
 .day {
     border-right: 2px solid;
     border-bottom: 2px solid;
-    text-align: center;
-    line-height: 30px;
-    border-color: rgba(0,0,0,0.1);
-    background-repeat: no-repeat;
+    border-color: rgba(0, 0, 0, 0.1);
     user-select: none;
     height: 100px;
+    position: relative;
 
     &:hover {
-      background-color: lightgray;
-      cursor: pointer;
+        background-color: lightgray;
+        cursor: pointer;
     }
+
     &__date {
-      font-family: "DM Sans", sans-serif;
-      font-weight: lighter;
-      font-size: 20px;
-      margin: 0;
-      padding-right: 30px;
-      padding-top: 20px;
-      text-align: right;
+        font-family: "DM Sans", sans-serif;
+        font-size: 20px;
+        position: absolute;
+        top: 5px;
+        right: 10px;
+        margin: 0;
     }
-  }
-  
+}
+
+@media (max-width: 900px) {
+    .day {
+        height: 60px;
+
+        &__date {
+            font-size: 16px;
+        }
+    }
+}
