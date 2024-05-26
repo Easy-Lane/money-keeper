@@ -2,8 +2,6 @@
 	class="header-navigation"
 	[@headerAnimation]="isChanged ? 'changed' : 'default'"
 	[@.disabled]="isDisabledAnimation"
-	(mouseenter)="openHeader()"
-	(mouseleave)="closeHeader()"
 >
 	<a class="header-navigation__li" routerLink="/welcome">
 		<img class="header-navigation__icon" src="{{ logoIcon }}" alt="logo"/>

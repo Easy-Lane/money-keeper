@@ -1,10 +1,10 @@
 <div class="card">
     <div class="card__content">
         <div class="card__content__title">
-            <h2> {{info.name}} </h2>
-            <h2> {{info.value | currencyPipe: currencySymbol }} </h2>
+            <p class="card__content__title__p"> {{info.name}} </p>
+            <p class="card__content__title__p"> {{info.value | currencyPipe: currencySymbol }} </p>
         </div>
-    <p> {{info?.desc}} </p>
+        <p class="card__content__description"> {{info?.desc}} </p>
     </div>
     <img class="card__content__icon" src="assets/images/card-icon.png" alt="card icon">
 </div>

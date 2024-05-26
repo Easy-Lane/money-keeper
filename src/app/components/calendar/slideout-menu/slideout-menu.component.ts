@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import {Component, OnInit, inject, HostListener} from '@angular/core';
 import {
     animate,
     state,
@@ -21,8 +21,8 @@ import { take } from 'rxjs';
     styleUrls: ['./styles/slideout-menu.master.scss'],
     animations: [
         trigger('slideAnimation', [
-            state('default', style({ right: '-100%' })),
-            state('changed', style({ right: '0' })),
+            state('default', style({ transform: 'translateX(100%)' })),
+            state('changed', style({ transform: 'translateX(0)' })),
             transition('default => changed', animate('200ms ease-in')),
             transition('changed => default', animate('200ms ease-out')),
         ]),
@@ -98,5 +98,13 @@ export class SlideoutMenuComponent implements OnInit {
         this.isCreate = false;
         this.clickEmitter.emitCloseEvent(this.wasCreated);
         this.wasCreated = false;
+    }
+
+    @HostListener('window:scroll', ['$event'])
+    onWindowScroll(event: { preventDefault: () => void; }): void {
+        if (this.isChanged) {
+            event.preventDefault();
+            window.scrollTo(0, 0);
+        }
     }
 }

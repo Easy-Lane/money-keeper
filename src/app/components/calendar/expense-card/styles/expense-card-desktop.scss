@@ -1,3 +1,7 @@
+p {
+    margin: 0;
+}
+
 .card{
     width: 600px;
     height: 200px;
@@ -8,6 +12,7 @@
     font-family: "DM Sans", sans-serif;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding: 20px;
 
     &__content{
@@ -16,11 +21,18 @@
             display: flex;
             column-gap: 20px;
             font-size: 20px;
-            padding-inline: 25px;
+
+            p {
+                font-size: 26px;
+                overflow: hidden;
+            }
         }
 
-        p{
+        &__description {
             text-align: center;
+            max-height: 50%;
+            overflow: hidden;
+            font-size: 18px;
         }
 
         &__icon {

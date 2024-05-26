@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import {Component, HostListener, inject} from '@angular/core';
 import { Params, Router, RouterLink, RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import {
@@ -81,12 +81,14 @@ export class HeaderNavigationComponent {
 
 	public isChanged: boolean = window.innerWidth <= 450;
 
+    @HostListener('mouseover')
 	public openHeader(): void {
 		if (!this.isDisabledAnimation) {
 			this.isChanged = true;
 		}
 	}
 
+    @HostListener('mouseout')
 	public closeHeader(): void {
 		if (!this.isDisabledAnimation) {
 			this.isChanged = false;
