@@ -30,4 +30,5 @@ export interface IUserInterface {
     GetUserInfo: () => IUserInfo;
     ChangePassword: (newPassword: string) => void;
     ChangeEmail: (newPassword: string) => void;
+    Reauthenticate: (userData: IUserInfo) => Observable<UserCredential>;
 }

@@ -5,15 +5,11 @@ import {
     signInWithEmailAndPassword,
     createUserWithEmailAndPassword,
     UserCredential,
-<<<<<<< HEAD
     updatePassword,
     updateEmail,
     reauthenticateWithCredential,
-    AuthCredential,
     signOut,
-=======
-    updatePassword, signOut,
->>>>>>> 7eb56581f3b1faa0abd8457f2a1f65adc23e5d0b
+    EmailAuthProvider
 } from '@angular/fire/auth';
 import {
     Firestore,
@@ -61,7 +57,6 @@ export class UserManagmentService implements IUserInterface {
                 credentials.password
             )
         ).pipe(
-<<<<<<< HEAD
             catchError((err) => {
                 switch (err.code) {
                     case 'auth/weak-password': {
@@ -84,9 +79,6 @@ export class UserManagmentService implements IUserInterface {
                         );
                 }
             }),
-=======
-
->>>>>>> 7eb56581f3b1faa0abd8457f2a1f65adc23e5d0b
             switchMap((obj) => {
                 return forkJoin({
                     obj: of(obj),
@@ -106,18 +98,6 @@ export class UserManagmentService implements IUserInterface {
         );
     }
 
-<<<<<<< HEAD
-=======
-    public LogOut(): void {
-        localStorage.removeItem('session');
-        signOut(this.Auth).then((): void => {
-            console.log(this.Auth.currentUser);
-        }).catch((error): void => {
-            console.log(error);
-        });
-    }
-
->>>>>>> 7eb56581f3b1faa0abd8457f2a1f65adc23e5d0b
     public Register(credentials: IUserInfo): Observable<UserCredential> {
         return from(
             createUserWithEmailAndPassword(
@@ -145,15 +125,13 @@ export class UserManagmentService implements IUserInterface {
     }
 
     public LogOut(): void {
-        // console.log(this.Auth);
-        // signOut(this.Auth).then(()=> {
-        //     console.log(this.Auth.currentUser);
         localStorage.removeItem('session');
-        // });
+        signOut(this.Auth).then(()=> {
+            console.log(this.Auth.currentUser);
+        });
     }
 
     public ChangePassword(newPassword: string): void {
-        //console.log(this.Auth);
         updatePassword(this.Auth.currentUser!, newPassword);
     }
 
@@ -161,10 +139,10 @@ export class UserManagmentService implements IUserInterface {
         updateEmail(this.Auth.currentUser!, newEmail);
     }
 
-    // public Reauthenticate(credentials: IUserInfo): void {
-    //     const credent: AuthCredential = { s:, };
-    //     reauthenticateWithCredential(this.Auth.currentUser!, : AuthCredential)
-    // }
+    public Reauthenticate(userData: IUserInfo): Observable<UserCredential> {
+        const credential = EmailAuthProvider.credential(userData.email, userData.password);
+        return from(reauthenticateWithCredential(this.Auth.currentUser!, credential))
+    }
 
     public CreateUserInfo(uid: string, user: IUserInfo): Observable<void> {
         return from(setDoc(doc(this.firestore, 'users', uid), user)).pipe(

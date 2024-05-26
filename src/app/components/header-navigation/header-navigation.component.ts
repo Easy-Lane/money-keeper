@@ -39,7 +39,7 @@ export class HeaderNavigationComponent {
 	constructor (public router: Router) {}
 	public userService: IUserInterface = inject(IUserToken);
 	public logoIcon: string = '/assets/images/logo.svg';
-	private ls: string = localStorage.getItem("session") || "";
+	private ls: string = localStorage.getItem("session")!;
 	public navigationItems: HeaderNavigationList[] = [
 		{
 			icon: '/assets/images/profile.svg',
@@ -69,7 +69,7 @@ export class HeaderNavigationComponent {
 			alt: 'logOut',
 			text: 'Log Out',
 			path: '/welcome',
-			func: this.userService.LogOut,
+			func: this.userService.LogOut.bind(this.userService),
 		},
 		{
 			icon: '/assets/images/deleteAcc.svg',
