@@ -19,7 +19,7 @@
     </div>
 </div>
 
-<div class="menu-container creation-container"
+<form [formGroup]="expenseData" class="menu-container creation-container"
      [@slideAnimation]="isCreate ? 'changed' : 'default'">
     <input type="text" placeholder="Name" class="creation-container__input" formControlName="name"/>
     <div class="creation-container__content">
@@ -42,4 +42,4 @@
         <button (click)="isCreate=false">Cancel</button>
         <button (click)="createNewExpense()">Save</button>
     </div>
-</div>
+</form>

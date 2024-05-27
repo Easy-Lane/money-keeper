@@ -13,11 +13,11 @@ import { ActivatedRoute } from '@angular/router';
 import { IDayExpenses } from '../../../interfaces/calendar/IDayExpenses';
 import { IUserToken } from '../../../interfaces/IUserInterface';
 import { take } from 'rxjs';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 @Component({
     selector: 'app-slide-out',
     standalone: true,
-    imports: [ExpenseCardComponent, CommonModule],
+    imports: [ExpenseCardComponent, CommonModule, ReactiveFormsModule],
     templateUrl: './slideout-menu.component.html',
     styleUrls: ['./styles/slideout-menu.master.scss'],
     animations: [
@@ -57,11 +57,11 @@ export class SlideoutMenuComponent implements OnInit {
         private route: ActivatedRoute
     ) {
         route.queryParams.subscribe((params) => (this.uid = params['uid']));
-        this.expenseData = new FormGroup({
-            name: new FormControl("", [Validators.required]),
-            type: new FormControl("", [Validators.required]),
-            value: new FormControl("", [Validators.required]),
-            description: new FormControl("", [Validators.required]),
+        this.expenseData = this.formBuilder.group({
+            name: ["", [Validators.required]],
+            type: ["", [Validators.required]],
+            value: ["", [Validators.required]],
+            description: ["", [Validators.required]],
         });
     }
 
