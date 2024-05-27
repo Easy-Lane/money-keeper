@@ -86,7 +86,6 @@ export class UserManagmentService implements IUserInterface {
                 });
             }),
             tap((data) => {
-                console.log('flag');
                 this.SaveSessionInfo(data.user, data.obj.user.uid);
                 this.router.navigate(['/home/calendar'], {
                     queryParams: { uid: data.obj.user.uid },

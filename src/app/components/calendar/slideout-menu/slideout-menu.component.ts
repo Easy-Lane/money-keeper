@@ -1,4 +1,4 @@
-import {Component, OnInit, inject, HostListener} from '@angular/core';
+import { Component, OnInit, inject, HostListener } from '@angular/core';
 import {
     animate,
     state,
@@ -13,6 +13,7 @@ import { ActivatedRoute } from '@angular/router';
 import { IDayExpenses } from '../../../interfaces/calendar/IDayExpenses';
 import { IUserToken } from '../../../interfaces/IUserInterface';
 import { take } from 'rxjs';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 @Component({
     selector: 'app-slide-out',
     standalone: true,
@@ -49,11 +50,19 @@ export class SlideoutMenuComponent implements OnInit {
     public wasCreated: boolean = false;
     private uid: string = '';
     private eid: string = '';
+    public expenseData!: FormGroup;
     constructor(
+        private formBuilder: FormBuilder,
         private clickEmitter: slideoutControllService,
         private route: ActivatedRoute
     ) {
         route.queryParams.subscribe((params) => (this.uid = params['uid']));
+        this.expenseData = new FormGroup({
+            name: new FormControl("", [Validators.required]),
+            type: new FormControl("", [Validators.required]),
+            value: new FormControl("", [Validators.required]),
+            description: new FormControl("", [Validators.required]),
+        });
     }
 
     ngOnInit() {
@@ -67,25 +76,20 @@ export class SlideoutMenuComponent implements OnInit {
     }
 
     public createNewExpense(): void {
+        console.log(this.expenseData.controls['name'].value);
+        this.date.expenses?.push({
+            name: this.expenseData.controls['name'].value,
+            value: this.expenseData.controls['value'].value,
+            desc: this.expenseData.controls['description'].value,
+            type: this.expenseData.controls['type'].value,
+        });
         if (this.date.expenses?.length == 0) {
-            this.date.expenses?.push({
-                name: 'first kekw',
-                value: 70,
-                desc: "nicen't",
-                type: 'non',
-            });
             this.UserService.CreateDocs(this.uid, this.date)
                 .pipe(take(1))
                 .subscribe((id) => {
                     this.eid = id;
                 });
         } else {
-            this.date.expenses?.push({
-                name: 'second kekw',
-                value: 70,
-                desc: "nicen't",
-                type: 'non',
-            });
             this.UserService.UpdateDocs(this.uid, this.eid, this.date)
                 .pipe(take(1))
                 .subscribe();
@@ -101,7 +105,7 @@ export class SlideoutMenuComponent implements OnInit {
     }
 
     @HostListener('window:scroll', ['$event'])
-    onWindowScroll(event: { preventDefault: () => void; }): void {
+    onWindowScroll(event: { preventDefault: () => void }): void {
         if (this.isChanged) {
             event.preventDefault();
             window.scrollTo(0, 0);
