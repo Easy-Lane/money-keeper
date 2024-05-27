@@ -13,7 +13,7 @@ import { ActivatedRoute } from '@angular/router';
 import { IDayExpenses } from '../../../interfaces/calendar/IDayExpenses';
 import { IUserToken } from '../../../interfaces/IUserInterface';
 import { take } from 'rxjs';
-import {FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 @Component({
     selector: 'app-slide-out',
     standalone: true,
@@ -83,7 +83,7 @@ export class SlideoutMenuComponent implements OnInit {
             desc: this.expenseData.controls['description'].value,
             type: this.expenseData.controls['type'].value,
         });
-        if (this.date.expenses?.length == 0) {
+        if (this.eid == "") {
             this.UserService.CreateDocs(this.uid, this.date)
                 .pipe(take(1))
                 .subscribe((id) => {

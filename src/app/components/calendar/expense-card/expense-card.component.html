@@ -2,9 +2,9 @@
     <div class="card__content">
         <div class="card__content__title">
             <p class="card__content__title__p"> {{info.name}} </p>
-            <p class="card__content__title__p"> {{info.value | currencyPipe: currencySymbol }} </p>
+            <p class="card__content__title__p"> {{info.value| currencyPipe: currencySymbol }} </p>
         </div>
-        <p class="card__content__description"> {{info?.desc}} </p>
+        <p class="card__content__description"> {{info!.desc}} </p>
     </div>
-    <img class="card__content__icon" src="assets/images/card-icon.png" alt="card icon">
+    <img class="card__content__icon" [src]="info.type | expensesTypePipe" alt="card icon">
 </div>

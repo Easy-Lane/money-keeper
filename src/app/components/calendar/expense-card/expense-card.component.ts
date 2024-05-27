@@ -3,10 +3,11 @@ import { IExpensesInfo } from '../../../interfaces/calendar/IExpenses';
 import { CommonModule } from '@angular/common';
 import { CurrencyPipe } from '../../../pipes/currency-pipe/currency.pipe';
 import { CurrencyService } from '../../../services/currency-services/currency.service';
+import { ExpensesTypePipe } from '../../../pipes/expenes-type-pipe/expenses-type.pipe';
 @Component({
     selector: 'app-expense-card',
     standalone: true,
-    imports: [CommonModule, CurrencyPipe],
+    imports: [CommonModule, CurrencyPipe, ExpensesTypePipe],
     templateUrl: './expense-card.component.html',
     styleUrl: './styles/expense-card.master.scss',
 })
