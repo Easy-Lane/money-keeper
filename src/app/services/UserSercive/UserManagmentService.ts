@@ -5,7 +5,11 @@ import {
     signInWithEmailAndPassword,
     createUserWithEmailAndPassword,
     UserCredential,
-    updatePassword, signOut,
+    updatePassword,
+    updateEmail,
+    reauthenticateWithCredential,
+    signOut,
+    EmailAuthProvider
 } from '@angular/fire/auth';
 import {
     Firestore,
@@ -30,6 +34,7 @@ import {
     switchMap,
     forkJoin,
     of,
+    catchError,
 } from 'rxjs';
 import { IDayExpenses } from '../../interfaces/calendar/IDayExpenses';
 import { Router } from '@angular/router';
@@ -52,7 +57,28 @@ export class UserManagmentService implements IUserInterface {
                 credentials.password
             )
         ).pipe(
-
+            catchError((err) => {
+                switch (err.code) {
+                    case 'auth/weak-password': {
+                        throw new Error('Новый пароль ненадежный.');
+                    }
+                    case 'auth/wrong-password': {
+                        throw new Error('Введен неверный пароль');
+                    }
+                    case 'auth/invalid-credential': {
+                        throw new Error('Неверно указаны почта или пароль');
+                    }
+                    case '"auth/too-many-requests"': {
+                        throw new Error(
+                            'Доступ временно заблокирован. Повторите попытку позже'
+                        );
+                    }
+                    default:
+                        throw new Error(
+                            'Возникла непредвиденная ошибка. Повторите попытку'
+                        );
+                }
+            }),
             switchMap((obj) => {
                 return forkJoin({
                     obj: of(obj),
@@ -60,7 +86,6 @@ export class UserManagmentService implements IUserInterface {
                 });
             }),
             tap((data) => {
-                console.log(data.obj);
                 this.SaveSessionInfo(data.user, data.obj.user.uid);
                 this.router.navigate(['/home/calendar'], {
                     queryParams: { uid: data.obj.user.uid },
@@ -70,15 +95,6 @@ export class UserManagmentService implements IUserInterface {
                 return data.obj;
             })
         );
-    }
-
-    public LogOut(): void {
-        localStorage.removeItem('session');
-        signOut(this.Auth).then((): void => {
-            console.log(this.Auth.currentUser);
-        }).catch((error): void => {
-            console.log(error);
-        });
     }
 
     public Register(credentials: IUserInfo): Observable<UserCredential> {
@@ -107,9 +123,24 @@ export class UserManagmentService implements IUserInterface {
         return localStorage.getItem('session') !== null;
     }
 
-    public ChangePassword(newPassword: string) {
-        if (this.Auth.currentUser != null)
-            updatePassword(this.Auth.currentUser, newPassword);
+    public LogOut(): void {
+        localStorage.removeItem('session');
+        signOut(this.Auth).then(()=> {
+            console.log(this.Auth.currentUser);
+        });
+    }
+
+    public ChangePassword(newPassword: string): void {
+        updatePassword(this.Auth.currentUser!, newPassword);
+    }
+
+    public ChangeEmail(newEmail: string): void {
+        updateEmail(this.Auth.currentUser!, newEmail);
+    }
+
+    public Reauthenticate(userData: IUserInfo): Observable<UserCredential> {
+        const credential = EmailAuthProvider.credential(userData.email, userData.password);
+        return from(reauthenticateWithCredential(this.Auth.currentUser!, credential))
     }
 
     public CreateUserInfo(uid: string, user: IUserInfo): Observable<void> {

@@ -21,10 +21,11 @@
 
 <div class="menu-container creation-container"
      [@slideAnimation]="isCreate ? 'changed' : 'default'">
+    <input type="text" placeholder="Name" class="creation-container__input" formControlName="name"/>
     <div class="creation-container__content">
         <div class="creation-container__content__category">
             <label>Category:</label>
-            <select>
+            <select formControlName="type">
                 <option value="">Type</option>
                 <option value="">GitHub</option>
                 <option value="">Instagram</option>
@@ -34,9 +35,9 @@
                 <option value="">Reddit</option>
             </select>
         </div>
-        <input type="number" placeholder="Value" class="creation-container__input"/>
+        <input type="number" placeholder="Value" class="creation-container__input" formControlName="value"/>
     </div>
-    <textarea class="creation-container__description"></textarea>
+    <textarea class="creation-container__description" formControlName="description"></textarea>
     <div class="creation-container__buttons">
         <button (click)="isCreate=false">Cancel</button>
         <button (click)="createNewExpense()">Save</button>
