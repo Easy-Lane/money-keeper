@@ -60,6 +60,7 @@ export class HeaderNavigationComponent {
 			alt: 'graphIcon',
 			text: 'DashBoard',
 			path: '/home/dashboard',
+            querry:  {uid: JSON.parse(this.ls)[0]}
 		},
 	];
 
