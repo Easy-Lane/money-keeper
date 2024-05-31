@@ -17,11 +17,7 @@ import { BreadcrumbComponent } from '../breadcrumbs/breadcrumbs.component';
 export class DashboardMenuComponent {
     public currencySymbol: string = '₽';
     public num = 1000;
-    constructor(
-        public currencyService: CurrencyService,
-        private userService: UserService
-    ) {}
-    public userImage: string = this.userService.getImage();
+    constructor(public currencyService: CurrencyService) {}
     public currency: string = '/assets/images/rub.svg';
 
     public async changeCurrency() {

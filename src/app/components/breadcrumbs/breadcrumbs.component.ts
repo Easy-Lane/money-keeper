@@ -1,21 +1,29 @@
 import { Component, OnInit } from '@angular/core';
+
 import { BreadcrumbService } from '../../services/breadcrumb-service/breadcrumb.service';
+import { Breadcrumb } from './breadcrumb';
+import { RouterLink, RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
 
 @Component({
-	selector: 'app-breadcrumb',
-	standalone: true,
-	templateUrl: './breadcrumbs.component.html',
-	styleUrls: ['./styles/breadcrumbs.main.scss'],
-	imports: [CommonModule, RouterLink],
+    selector: 'app-breadcrumb',
+    standalone: true,
+    imports: [RouterLink, CommonModule],
+    templateUrl: './breadcrumbs.component.html',
+    styleUrl: './styles/breadcrumbs.main.scss',
 })
-export class BreadcrumbComponent implements OnInit {
-	breadcrumbs: Array<{ label: string; url: string }> = [];
+export class BreadcrumbComponent {
+    protected breadcrumbs!: Breadcrumb[];
 
-	constructor(private breadcrumbService: BreadcrumbService) {}
+    constructor(private breadcrumbService: BreadcrumbService) {
+        breadcrumbService.breadcrumbChanged.subscribe(
+            (crumbs: Breadcrumb[]) => {
+                this.onBreadcrumbChange(crumbs);
+            }
+        );
+    }
 
-	ngOnInit(): void {
-		this.breadcrumbs = this.breadcrumbService.breadcrumbs;
-	}
+    private onBreadcrumbChange(crumbs: Breadcrumb[]) {
+        this.breadcrumbs = crumbs;
+    }
 }

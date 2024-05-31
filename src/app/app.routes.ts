@@ -31,18 +31,25 @@ export const routes: Routes = [
             {
                 path: 'dashboard',
                 loadComponent: () =>
-                    import(
-                        './pages/dashboard-page/dashboard-page.component'
-                    ).then((m) => m.DashboardPageComponent),
+                    import('./pages/dashboard/dashboard.component').then(
+                        (m) => m.DashboardComponent
+                    ),
                 data: {
                     breadcrumb: 'Dashboard',
                 },
                 children: [
                     {
+                        path: '',
+                        loadComponent: () =>
+                            import(
+                                './pages/dashboard/childs/dashboard-page/dashboard-page.component'
+                            ).then((m) => m.DashboardPageComponent),
+                    },
+                    {
                         path: 'pie-chart',
                         loadComponent: () =>
                             import(
-                                './pages/pie-chart-page/pie-chart-page.component'
+                                './pages/dashboard/childs/pie-chart-page/pie-chart-page.component'
                             ).then((m) => m.PieChartPageComponent),
                         data: {
                             breadcrumb: 'Pie-Chart',
@@ -52,7 +59,7 @@ export const routes: Routes = [
                         path: 'line-chart',
                         loadComponent: () =>
                             import(
-                                './pages/line-chart-page/line-chart-page.component'
+                                './pages/dashboard/childs/line-chart-page/line-chart-page.component'
                             ).then((m) => m.LineChartPageComponent),
                         data: {
                             breadcrumb: 'Line-Chart',

@@ -1,44 +1,132 @@
-import { Injectable } from '@angular/core';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { filter } from 'rxjs/operators';
+import { Injectable, EventEmitter } from '@angular/core';
+import {
+    Router,
+    ActivatedRouteSnapshot,
+    Event,
+    NavigationEnd,
+} from '@angular/router';
+import { Breadcrumb } from '../../components/breadcrumbs/breadcrumb';
 
-@Injectable({
-	providedIn: 'root',
-})
+@Injectable()
 export class BreadcrumbService {
-	breadcrumbs: Array<{ label: string; url: string }> = [];
+    breadcrumbChanged = new EventEmitter<Breadcrumb[]>(false);
 
-	constructor(private router: Router, private activatedRoute: ActivatedRoute) {
-		this.router.events
-			.pipe(filter((event) => event instanceof NavigationEnd))
-			.subscribe(() => {
-				this.breadcrumbs = this.createBreadcrumbs(this.activatedRoute.root);
-			});
-	}
+    private breadcrumbs = new Array<Breadcrumb>();
 
-	private createBreadcrumbs(
-		route: ActivatedRoute,
-		url: string = '',
-		breadcrumbs: Array<{ label: string; url: string }> = []
-	): Array<{ label: string; url: string }> {
-		const children: ActivatedRoute[] = route.children;
+    constructor(private router: Router) {
+        this.router.events.subscribe((routeEvent) => {
+            this.onRouteEvent(routeEvent);
+        });
+    }
 
-		if (children.length === 0) {
-			return breadcrumbs;
-		}
+    public changeBreadcrumb(route: ActivatedRouteSnapshot, name: string) {
+        const rootUrl = this.createRootUrl(route);
+        const breadcrumb = this.breadcrumbs.find(function (bc) {
+            return bc.url === rootUrl;
+        });
 
-		for (const child of children) {
-			const routeURL: string = child.snapshot.url
-				.map((segment) => segment.path)
-				.join('/');
-			if (routeURL !== '') {
-				url += `/${routeURL}`;
-			}
+        if (!breadcrumb) {
+            return;
+        }
 
-			breadcrumbs.push({ label: child.snapshot.data['breadcrumb'], url: url });
-			return this.createBreadcrumbs(child, url, breadcrumbs);
-		}
+        breadcrumb.displayName = name;
 
-		return breadcrumbs;
-	}
+        this.breadcrumbChanged.emit(this.breadcrumbs);
+    }
+
+    private onRouteEvent(routeEvent: Event) {
+        if (!(routeEvent instanceof NavigationEnd)) {
+            return;
+        }
+
+        let route = this.router.routerState.root.snapshot;
+        let url = '';
+
+        var breadCrumbIndex = 0;
+        var newCrumbs = [];
+
+        while (route.firstChild != null) {
+            route = route.firstChild;
+
+            if (route.routeConfig === null) {
+                continue;
+            }
+            if (!route.routeConfig.path) {
+                continue;
+            }
+
+            url += `/${this.createUrl(route)}`;
+
+            if (!route.data['breadcrumb']) {
+                continue;
+            }
+
+            var newCrumb = this.createBreadcrumb(route, url);
+
+            if (breadCrumbIndex < this.breadcrumbs.length) {
+                var existing = this.breadcrumbs[breadCrumbIndex++];
+
+                if (existing && existing.route == route.routeConfig) {
+                    newCrumb.displayName = existing.displayName;
+                }
+            }
+
+            newCrumbs.push(newCrumb);
+        }
+
+        this.breadcrumbs = newCrumbs;
+        this.breadcrumbChanged.emit(this.breadcrumbs);
+    }
+
+    private createBreadcrumb(
+        route: ActivatedRouteSnapshot,
+        url: string
+    ): Breadcrumb {
+        return {
+            displayName: route.data['breadcrumb'],
+            terminal: this.isTerminal(route),
+            url: url,
+            route: route.routeConfig,
+        };
+    }
+
+    private isTerminal(route: ActivatedRouteSnapshot) {
+        return (
+            route.firstChild === null ||
+            route.firstChild.routeConfig === null ||
+            !route.firstChild.routeConfig.path
+        );
+    }
+
+    private createUrl(route: ActivatedRouteSnapshot) {
+        return route.url
+            .map(function (s) {
+                return s.toString();
+            })
+            .join('/');
+    }
+
+    private createRootUrl(route: ActivatedRouteSnapshot) {
+        let url = '';
+        let next = route.root;
+
+        while (next.firstChild !== null) {
+            next = next.firstChild;
+
+            if (next.routeConfig === null) {
+                continue;
+            }
+            if (!next.routeConfig.path) {
+                continue;
+            }
+
+            url += `/${this.createUrl(next)}`;
+
+            if (next === route) {
+                break;
+            }
+        }
+
+        return url;
+    }
 }
