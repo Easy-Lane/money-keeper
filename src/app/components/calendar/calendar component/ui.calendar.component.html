@@ -1,0 +1,18 @@
+<div class="ui-calendar">
+    <div class="ui-calendar__month-navigation">
+        <a class="ui-calendar__month-navigation__arrow" (click)="changeMonth(-1)">
+            <img src="/assets/images/Left.svg">
+        </a>
+        <label>{{months[currentMonth] + " " +currentYear}}</label>
+        <a class="ui-calendar__month-navigation__arrow" (click)="changeMonth(1)">
+            <img src="/assets/images/Right.svg">
+        </a>
+    </div>
+    <li class="ui-calendar__grid-container">
+        <label class="name" *ngFor="let item of names"> {{item}}</label>
+    </li>
+    <div class="ui-calendar__grid-container" >
+        <app-day *ngFor="let item of lastDays"></app-day>
+        <app-day *ngFor="let item of days" [day]="item" (click)="onDayClick(item)"></app-day>
+    </div>
+</div>

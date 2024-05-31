@@ -1,13 +1,13 @@
 <div class="pie-chart">
 	<p class="pie-chart__title">{{ title }}</p>
 	<div class="pie-chart__block">
-		<div class="pie-chart__block__chart">
+		<ng-container *ngIf="contentLoaded; else skeletonChart" class="pie-chart__block__chart">
 			<tui-pie-chart
 				[size]="size"
 				class="tui-space__left-4 tui-space__top-3"
 				[value]="values"
 			></tui-pie-chart>
-		</div>
+		</ng-container>
 		<div class="pie-chart__block__list">
 			<ul *forChart="let label of labels; index as i">
 				<li [style.color]="getColor(i)">
@@ -18,3 +18,7 @@
 	</div>
 	<charts-button [title]="'pie-chart'"></charts-button>
 </div>
+
+<ng-template #skeletonChart>
+    <app-skeleton type="chart"></app-skeleton>
+</ng-template>

@@ -1,0 +1,42 @@
+<div class="background" [@showBackground]="isChanged ? 'changed' : 'default'"></div>
+
+<div
+    class="menu-container"
+    [@slideAnimation]="isChanged ? 'changed' : 'default'">
+    <div class="menu-container__content" [@showContent]="isChanged ? 'changed' : 'default'">
+        <div class="menu-container__date">
+            <a class="menu-container__closeButton" (click)="closeMenu()">
+                <img src="assets/images/CloseRight.svg">
+            </a>
+            <span class="menu-container__date__text"> {{date.day + " " + date.month + " " + date.year}} </span>
+        </div>
+        <div class="menu-container__content__expenses-container">
+            <app-expense-card *ngFor="let item of date.expenses" [info]="item"></app-expense-card>
+            <div class="create-card" (click)="isCreate=true">
+                <img src="/assets/images/Plus.svg">
+            </div>
+        </div>
+    </div>
+</div>
+
+<form [formGroup]="expenseData" class="menu-container creation-container"
+     [@slideAnimation]="isCreate ? 'changed' : 'default'">
+    <input type="text" placeholder="Name" class="creation-container__input" formControlName="name"/>
+    <div class="creation-container__content">
+        <div class="creation-container__content__category">
+            <label>Category:</label>
+            <select formControlName="type">
+                <option value="Transport">Transport</option>
+                <option value="Gym">Gym</option>
+                <option value="Grocery">Grocery</option>
+               
+            </select>
+        </div>
+        <input type="number" placeholder="Value" class="creation-container__input" formControlName="value"/>
+    </div>
+    <textarea class="creation-container__description" formControlName="description"></textarea>
+    <div class="creation-container__buttons">
+        <button (click)="isCreate=false">Cancel</button>
+        <button (click)="createNewExpense()">Save</button>
+    </div>
+</form>

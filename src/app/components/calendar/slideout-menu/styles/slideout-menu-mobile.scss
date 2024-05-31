@@ -1,0 +1,20 @@
+@media (max-width: 450px) {
+
+    .create-card {
+        width: 300px;
+        height: 150px;
+
+        & img {
+            padding: 30px 0;
+        }
+    }
+
+    .creation-container {
+        padding: 10px 20px 20px;
+
+        &__description {
+            min-width: 250px;
+            max-width: 350px;
+        }
+    }
+}

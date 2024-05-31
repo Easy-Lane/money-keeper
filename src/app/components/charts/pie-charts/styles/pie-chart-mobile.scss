@@ -1,0 +1,7 @@
+@media (max-width: 450px) {
+    .pie-chart {
+        &__block {
+            flex-direction: column;
+        }
+    }
+}

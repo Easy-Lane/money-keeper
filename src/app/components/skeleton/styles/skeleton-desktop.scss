@@ -12,19 +12,39 @@
         background-color: #c0c0c0;
     }
 }
+.skeleton {
+    &__avatar {
+        width: 300px;
+        height: 300px;
+        border-radius: 50%;
+        animation: pulse-background 2s ease-in-out infinite;
+    }
 
-.skeleton__avatar {
-    background-color: gray;
-    width: 300px;
-    height: 300px;
-    border-radius: 50%;
-    animation: pulse-background 2s ease-in-out infinite;
+    &__input-text {
+        min-width: 200px;
+        height: 40px;
+        border-radius: 10px;
+        animation: pulse-background 2s ease-in-out infinite;
+    }
+
+    &__chart {
+        animation: pulse-background 2s ease-in-out infinite;
+        width: 250px;
+        height: 250px;
+        border-radius: 25px;
+    }
+
+    &__dashboard-header {
+        animation: pulse-background 2s ease-in-out infinite;
+        width: 100vh;
+        height: 150px;
+        border-radius: 50px;
+    }
 }
 
-.skeleton__input-text {
-    background-color: gray;
-    min-width: 200px;
-    height: 40px;
-    border-radius: 10px;
-    animation: pulse-background 2s ease-in-out infinite;
+@media (max-width: 1200px) {
+    .skeleton__dashboard-header {
+        width: 70vh;
+        height: 250px;
+    }
 }

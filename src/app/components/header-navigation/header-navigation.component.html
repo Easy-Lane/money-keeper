@@ -2,11 +2,9 @@
 	class="header-navigation"
 	[@headerAnimation]="isChanged ? 'changed' : 'default'"
 	[@.disabled]="isDisabledAnimation"
-	(mouseenter)="openHeader()"
-	(mouseleave)="closeHeader()"
 >
-	<a class="header-navigation__li" routerLink="/">
-		<img class="header-navigation__icon" src="{{ logoIcon }}" alt="logo" />
+	<a class="header-navigation__li" routerLink="/welcome">
+		<img class="header-navigation__icon" src="{{ logoIcon }}" alt="logo"/>
 		<div
 			class="header-navigation__logo-name hidden-text"
 			[style.display]="isChanged ? 'block' : 'none'"
@@ -23,8 +21,8 @@
 			<a
 				class="header-navigation__li"
 				*ngFor="let item of navigationItems"
-				[routerLink]="item.path"
-			>
+				routerLink = {{item.path}}
+				[queryParams]="item.querry">
 				<img
 					class="header-navigation__icon"
 					src="{{ item.icon }}"
@@ -39,7 +37,8 @@
 			<a
 				class="header-navigation__li"
 				*ngFor="let elem of accountInteraction"
-				routerLink="/{{ elem.path }}"
+				routerLink="/welcome"
+				(click)="elem.func!()"
 			>
 				<img
 					class="header-navigation__icon"

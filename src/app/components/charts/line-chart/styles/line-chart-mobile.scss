@@ -1,0 +1,12 @@
+@media (max-width: 450px) {
+    .line-chart__block__chart {
+        width: 40%;
+        min-width: 320px;
+        margin-left: 45px;
+    }
+
+    .axes {
+        width: 16rem;
+        height: 200px;
+    }
+}

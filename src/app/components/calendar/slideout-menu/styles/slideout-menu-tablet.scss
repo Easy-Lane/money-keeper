@@ -1,0 +1,20 @@
+@media (max-width: 900px) {
+    .menu-container {
+        width: 100vw;
+        padding-top: 80px;
+    }
+
+    .create-card {
+        width: 400px;
+        height: 160px;
+    }
+
+    .creation-container {
+        margin-top: 160px;
+
+        &__content {
+            flex-direction: column;
+            row-gap: 30px;
+        }
+    }
+}

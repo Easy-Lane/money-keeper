@@ -1,5 +1,25 @@
-/* You can add global styles to this file, and also import other styles files */
-@import "normalize.css";
+@use '@angular/material' as mat;
+
+@include mat.core();
+
+$money-keeper-primary: mat.define-palette(mat.$indigo-palette);
+$money-keeper-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+
+$money-keeper-warn: mat.define-palette(mat.$red-palette);
+
+$money-keeper-theme: mat.define-light-theme((
+  color: (
+    primary: $money-keeper-primary,
+    accent: $money-keeper-accent,
+    warn: $money-keeper-warn,
+  ),
+  typography: mat.define-typography-config(),
+  density: 0
+));
+
+@include mat.all-component-themes($money-keeper-theme);
+
+@import 'normalize.css';
 
 body {
 	background-color: #f8f8f8;
@@ -31,14 +51,17 @@ a {
 
 @font-face {
 	font-family: "AnekLatin";
-	src: url("/assets/fonts/AnekLatin-Bold.ttf") format("truetype");
+	src: url("./assets/fonts/AnekLatin-Bold.ttf") format("truetype");
 	font-style: normal;
 	font-weight: normal;
 }
 
 @font-face {
 	font-family: "DM Sans";
-	src: url("/assets/fonts/DMSans_18pt-Medium.ttf") format("truetype");
+	src: url("./assets/fonts/DMSans_18pt-Medium.ttf") format("truetype");
 	font-style: normal;
 	font-weight: normal;
 }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

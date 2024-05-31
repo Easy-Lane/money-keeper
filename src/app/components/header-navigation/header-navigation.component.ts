@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import {Component, HostListener, inject} from '@angular/core';
+import { Params, Router, RouterLink, RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import {
 	animate,
@@ -8,12 +8,15 @@ import {
 	transition,
 	trigger,
 } from '@angular/animations';
+import { IUserInterface, IUserToken } from '../../interfaces/IUserInterface';
 
 export interface HeaderNavigationList {
 	icon: string;
 	alt: string;
 	text: string;
 	path: string;
+	querry?: Params;
+	func?: () => void;
 }
 
 @Component({
@@ -32,26 +35,32 @@ export interface HeaderNavigationList {
 	],
 })
 export class HeaderNavigationComponent {
-	public logoIcon: string = '/assets/images/logo.svg';
 
+	constructor (public router: Router) {}
+	public userService: IUserInterface = inject(IUserToken);
+	public logoIcon: string = '/assets/images/logo.svg';
+	private ls: string = localStorage.getItem("session")!;
 	public navigationItems: HeaderNavigationList[] = [
 		{
 			icon: '/assets/images/profile.svg',
 			alt: 'profileIcon',
 			text: 'Profile',
-			path: 'user-profile',
+			path: '/home/user-profile',
+            querry:  {uid: JSON.parse(this.ls)[0]}
 		},
 		{
 			icon: '/assets/images/calendar.svg',
 			alt: 'calendarIcon',
 			text: 'Calendar',
-			path: '',
+			path: '/home/calendar',
+			querry:  {uid: JSON.parse(this.ls)[0]}
 		},
 		{
 			icon: '/assets/images/graph.svg',
 			alt: 'graphIcon',
 			text: 'DashBoard',
-			path: 'dashboard',
+			path: '/home/dashboard',
+            querry:  {uid: JSON.parse(this.ls)[0]}
 		},
 	];
 
@@ -60,7 +69,8 @@ export class HeaderNavigationComponent {
 			icon: '/assets/images/logOut.svg',
 			alt: 'logOut',
 			text: 'Log Out',
-			path: '',
+			path: '/welcome',
+			func: this.userService.LogOut.bind(this.userService),
 		},
 		{
 			icon: '/assets/images/deleteAcc.svg',
@@ -72,12 +82,14 @@ export class HeaderNavigationComponent {
 
 	public isChanged: boolean = window.innerWidth <= 450;
 
+    @HostListener('mouseover')
 	public openHeader(): void {
 		if (!this.isDisabledAnimation) {
 			this.isChanged = true;
 		}
 	}
 
+    @HostListener('mouseout')
 	public closeHeader(): void {
 		if (!this.isDisabledAnimation) {
 			this.isChanged = false;

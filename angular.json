@@ -113,10 +113,66 @@
                     }
                 }
             }
-        }
-    },
-    "cli": {
-        "analytics": false,
-        "schematicCollections": ["@angular-eslint/schematics"]
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "buildTarget": "money-keeper:build:production"
+            },
+            "development": {
+              "buildTarget": "money-keeper:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "buildTarget": "money-keeper:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ],
+            "tsConfig": "tsconfig.spec.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ],
+            "styles": [
+              "src/styles.scss"
+            ],
+            "scripts": []
+          }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "version": 2
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "money-keeper:build:production",
+              "serveTarget": "money-keeper:serve:production"
+            },
+            "development": {
+              "buildTarget": "money-keeper:build:development",
+              "serveTarget": "money-keeper:serve:development"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "cli": {
+          "analytics": false,
+          "schematicCollections": ["@angular-eslint/schematics"]
+      }
     }
-}
+    
