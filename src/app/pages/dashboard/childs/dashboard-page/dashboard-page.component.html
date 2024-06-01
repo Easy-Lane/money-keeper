@@ -1,8 +1,8 @@
 <div class="dashboard-page">
     <div class="dashboard-page__main-container">
-        <dashboard-header class="dashboard-page__element"></dashboard-header>
+        <app-dashboard-header [expenses]="ExpensesData.monthTotal" [incomes]="ExpensesData.monthIncome" class="dashboard-page__element"></app-dashboard-header>
         <div class="dashboard-page__charts-container">
-            <pie-chart class="dashboard-page__element"></pie-chart>
+            <app-pie-chart [values]="ExpensesData.typesValues" [labels]="ExpensesData.expensesTypes" class="dashboard-page__element"></app-pie-chart>
             <line-chart class="dashboard-page__element"></line-chart>
         </div>
     </div>

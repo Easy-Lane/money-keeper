@@ -1,19 +1,17 @@
-import { Component, Inject, OnInit, inject } from '@angular/core';
+import { Component, Input, OnInit, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { UserService } from '../../services/user-services/user.service';
 import { CommonModule } from '@angular/common';
 import {
     CurrencyService,
-    CurrencyServiceToken,
 } from '../../services/currency-services/currency.service';
 import { CurrencyPipe } from '../../pipes/currency-pipe/currency.pipe';
-import { Observable, take } from 'rxjs';
 import { IUserInfo } from '../../interfaces/IUserInfo';
 import { User } from '../../app.config';
 import {SkeletonComponent} from "../skeleton/skeleton.component";
 
 @Component({
-    selector: 'dashboard-header',
+    selector: 'app-dashboard-header',
     standalone: true,
     providers: [UserService],
     templateUrl: './dashboard-header.component.html',
@@ -26,8 +24,8 @@ export class DashboardHeaderComponent implements OnInit {
 
     public username: string = this.user.username!;
     public lastName: string = '';
-    public incomes: number = this.userService.getIncomes();
-    public expenses: number = this.userService.getExpenses();
+    @Input() public incomes: number = 0;
+    @Input() public expenses: number = 0;
     public image: string = this.userService.getImage();
     public contentLoaded: boolean = false;
 
