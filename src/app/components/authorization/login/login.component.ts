@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, DestroyRef, inject } from '@angular/core';
+import {Component, OnInit, Inject, DestroyRef, inject, ComponentRef, ViewContainerRef, Injector} from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import {
     FormBuilder,
@@ -14,6 +14,7 @@ import { IUserInterface, IUserToken } from '../../../interfaces/IUserInterface';
 import { InputControlComponent } from '../../input-control/input-control.component';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { IUserInfo } from '../../../interfaces/IUserInfo';
+import {RegisterComponent} from "../register/register.component";
 @Component({
     selector: 'app-login',
     standalone: true,
@@ -31,6 +32,9 @@ import { IUserInfo } from '../../../interfaces/IUserInfo';
 export class LoginComponent implements OnInit {
     public loginForm!: FormGroup;
     private _destroyRef: DestroyRef = inject(DestroyRef);
+    public registerTemplate!: ViewContainerRef;
+    public injector: Injector = inject(Injector);
+
     constructor(
         @Inject(IUserToken) private User: IUserInterface,
         private formBuilder: FormBuilder,
@@ -55,7 +59,7 @@ export class LoginComponent implements OnInit {
         });
     }
 
-    onSubmit(): void {
+    protected onSubmit(): void {
         const userInfo: IUserInfo = {
             email: this.loginForm.value['email'],
             password: this.loginForm.value['password'],
