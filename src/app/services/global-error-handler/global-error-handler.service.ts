@@ -3,7 +3,9 @@ import {MatDialog} from "@angular/material/dialog";
 import {ErrorModalComponent} from "../../components/error-modal/error-modal.component";
 
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 export class GlobalErrorHandlerService implements ErrorHandler {
 
     constructor(private dialog: MatDialog ) {

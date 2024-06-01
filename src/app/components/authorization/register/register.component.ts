@@ -44,7 +44,7 @@ export class RegisterComponent implements OnInit {
         this.modalService.destroyComponent();
     }
 
-    ngOnInit(): void {
+    public ngOnInit(): void {
         this.registrationForm = this.formBuilder.group({
             username: ['', Validators.required],
             email: ['', [Validators.required, CustomValidators.emailValidator]],
@@ -59,7 +59,7 @@ export class RegisterComponent implements OnInit {
         });
     }
 
-    onSubmit(): void {
+    protected onSubmit(): void {
         if (this.registrationForm.invalid) {
             return;
         }

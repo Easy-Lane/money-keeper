@@ -1,9 +1,10 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { IExpensesInfo } from '../../../interfaces/calendar/IExpenses';
-import { CommonModule } from '@angular/common';
-import { CurrencyPipe } from '../../../pipes/currency-pipe/currency.pipe';
-import { CurrencyService } from '../../../services/currency-services/currency.service';
-import { ExpensesTypePipe } from '../../../pipes/expenes-type-pipe/expenses-type.pipe';
+import {Component, Input, OnInit} from '@angular/core';
+import {IExpensesInfo} from '../../../interfaces/calendar/IExpenses';
+import {CommonModule} from '@angular/common';
+import {CurrencyPipe} from '../../../pipes/currency-pipe/currency.pipe';
+import {CurrencyService} from '../../../services/currency-services/currency.service';
+import {ExpensesTypePipe} from '../../../pipes/expenes-type-pipe/expenses-type.pipe';
+
 @Component({
     selector: 'app-expense-card',
     standalone: true,
@@ -14,10 +15,13 @@ import { ExpensesTypePipe } from '../../../pipes/expenes-type-pipe/expenses-type
 export class ExpenseCardComponent implements OnInit {
     @Input() public info!: IExpensesInfo;
     public currencySymbol: string = '₽';
-    constructor(public currencyService: CurrencyService) {}
-    ngOnInit(): void {
+
+    constructor(public currencyService: CurrencyService) {
+    }
+
+    public ngOnInit(): void {
         this.currencyService.currentCurrency.subscribe(
-            (currency) => (this.currencySymbol = currency)
+            (currency: string) => (this.currencySymbol = currency)
         );
     }
 }

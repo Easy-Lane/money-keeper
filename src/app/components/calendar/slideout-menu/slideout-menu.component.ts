@@ -1,4 +1,4 @@
-import { Component, OnInit, inject, HostListener } from '@angular/core';
+import {Component, OnInit, inject, HostListener} from '@angular/core';
 import {
     animate,
     state,
@@ -6,14 +6,15 @@ import {
     transition,
     trigger,
 } from '@angular/animations';
-import { slideoutControllService } from '../../../services/open-slideout-service/slideout-controll-service';
-import { ExpenseCardComponent } from '../expense-card/expense-card.component';
-import { CommonModule } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
-import { IDayExpenses } from '../../../interfaces/calendar/IDayExpenses';
-import { IUserToken } from '../../../interfaces/IUserInterface';
-import { take } from 'rxjs';
+import {slideoutControllService} from '../../../services/open-slideout-service/slideout-controll-service';
+import {ExpenseCardComponent} from '../expense-card/expense-card.component';
+import {CommonModule} from '@angular/common';
+import {ActivatedRoute} from '@angular/router';
+import {IDayExpenses} from '../../../interfaces/calendar/IDayExpenses';
+import {IUserInterface, IUserToken} from '../../../interfaces/IUserInterface';
+import {take} from 'rxjs';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
+
 @Component({
     selector: 'app-slide-out',
     standalone: true,
@@ -22,35 +23,36 @@ import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/
     styleUrls: ['./styles/slideout-menu.master.scss'],
     animations: [
         trigger('slideAnimation', [
-            state('default', style({ transform: 'translateX(100%)' })),
-            state('changed', style({ transform: 'translateX(0)' })),
+            state('default', style({transform: 'translateX(100%)'})),
+            state('changed', style({transform: 'translateX(0)'})),
             transition('default => changed', animate('200ms ease-in')),
             transition('changed => default', animate('200ms ease-out')),
         ]),
         trigger('showContent', [
-            state('default', style({ display: 'none' })),
-            state('changed', style({ display: 'block' })),
+            state('default', style({display: 'none'})),
+            state('changed', style({display: 'block'})),
             transition('default => changed', animate('200ms ease-in')),
             transition('changed => default', animate('200ms ease-out')),
         ]),
         trigger('showBackground', [
-            state('default', style({ opacity: '0', 'z-index': '-1' })),
-            state('changed', style({ opacity: '0.4', 'z-index': '1000' })),
+            state('default', style({opacity: '0', 'z-index': '-1'})),
+            state('changed', style({opacity: '0.4', 'z-index': '1000'})),
             transition('default => changed', animate('200ms ease-in')),
             transition('changed => default', animate('200ms ease-out')),
         ]),
     ],
 })
 export class SlideoutMenuComponent implements OnInit {
-    public UserService = inject(IUserToken);
+    public UserService: IUserInterface = inject(IUserToken);
 
-    public date: IDayExpenses = { day: 0, month: '', year: 0, expenses: [] };
+    public date: IDayExpenses = {day: 0, month: '', year: 0, expenses: []};
     public isChanged: boolean = false;
     public isCreate: boolean = false;
     public wasCreated: boolean = false;
     private uid: string = '';
     private eid: string = '';
     public expenseData!: FormGroup;
+
     constructor(
         private formBuilder: FormBuilder,
         private clickEmitter: slideoutControllService,
@@ -65,7 +67,7 @@ export class SlideoutMenuComponent implements OnInit {
         });
     }
 
-    ngOnInit() {
+    public ngOnInit() {
         this.clickEmitter.openEvent$.subscribe(
             (data: [string, IDayExpenses]) => {
                 this.date = data[1];
