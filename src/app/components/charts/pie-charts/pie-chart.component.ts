@@ -1,7 +1,8 @@
 import {
     CUSTOM_ELEMENTS_SCHEMA,
     Component,
-    NO_ERRORS_SCHEMA, OnInit,
+    NO_ERRORS_SCHEMA,
+    OnInit,
     inject,
 } from '@angular/core';
 import { ChartsButtonComponent } from '../charts-button/charts-button.component';
@@ -9,7 +10,7 @@ import { TuiPieChartModule } from '@taiga-ui/addon-charts';
 import { CommonModule, NgTemplateOutlet } from '@angular/common';
 import { TuiSizeXL } from '@taiga-ui/core';
 import { ForChartsDirective } from '../../../directives/for-charts.directive';
-import {SkeletonComponent} from "../../skeleton/skeleton.component";
+import { SkeletonComponent } from '../../skeleton/skeleton.component';
 import { IUserInterface, IUserToken } from '../../../interfaces/IUserInterface';
 import { ActivatedRoute } from '@angular/router';
 import { where } from '@angular/fire/firestore';
@@ -26,13 +27,13 @@ import { MonthExpensesPipe } from '../../../pipes/month-expenses-pipe/month-expe
         CommonModule,
         NgTemplateOutlet,
         ForChartsDirective,
-        SkeletonComponent
+        SkeletonComponent,
     ],
     templateUrl: './pie-chart.component.html',
     styleUrl: './styles/pie-chart.master.scss',
-    providers: [MonthExpensesPipe]
+    providers: [MonthExpensesPipe],
 })
-export class PieChartComponent implements OnInit{
+export class PieChartComponent implements OnInit {
     public contentLoaded: boolean = false;
     public size: TuiSizeXL = 'xl';
     public title: string = 'Expenses category';
@@ -41,7 +42,7 @@ export class PieChartComponent implements OnInit{
     private id!: string;
     private userService: IUserInterface = inject(IUserToken);
 
-    constructor ( 
+    constructor(
         private route: ActivatedRoute,
         private monthPipe: MonthExpensesPipe
     ) {
@@ -52,16 +53,17 @@ export class PieChartComponent implements OnInit{
         setTimeout((): void => {
             this.contentLoaded = true;
         }, 2000);
-        this.userService.GetDocsBy(
-            this.id,
-            where('month', '==', "May"),
-            where('year', '==', 2024)
-        )
+        this.userService
+            .GetDocsBy(
+                this.id,
+                where('month', '==', 'May'),
+                where('year', '==', 2024)
+            )
             .pipe(take(1))
             .subscribe((expenses: [string, IDayExpenses][]) => {
-               const temp = this.monthPipe.transform(expenses)
-               this.labels = temp[0];
-               this.values = temp[1];
+                const temp = this.monthPipe.transform(expenses);
+                this.labels = temp[0];
+                this.values = temp[1];
             });
     }
 

@@ -52,7 +52,7 @@ export const routes: Routes = [
                                 './pages/dashboard/childs/pie-chart-page/pie-chart-page.component'
                             ).then((m) => m.PieChartPageComponent),
                         data: {
-                            breadcrumb: 'Pie-Chart',
+                            breadcrumb: 'Expenses category',
                         },
                     },
                     {

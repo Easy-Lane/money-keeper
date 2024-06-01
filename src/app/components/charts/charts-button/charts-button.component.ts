@@ -1,18 +1,19 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
-import { Router, RouterOutlet } from '@angular/router';
+import { Router, RouterLink, RouterOutlet } from '@angular/router';
 
 @Component({
     selector: 'charts-button',
     standalone: true,
-    imports: [RouterOutlet, CommonModule],
+    imports: [RouterOutlet, CommonModule, RouterLink],
     templateUrl: './charts-button.component.html',
     styleUrl: './styles/charts-button.master.scss',
 })
 export class ChartsButtonComponent {
     @Input() title!: string;
     public label: string = 'Изучить';
-
+    private ls: string = localStorage.getItem('session')!;
+    protected query = { uid: JSON.parse(this.ls)[0] };
     constructor(private router: Router) {}
 
     public async goToChart() {

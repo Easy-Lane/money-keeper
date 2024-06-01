@@ -7,7 +7,11 @@
         *ngFor="let route of breadcrumbs"
         [ngClass]="{ last: route.terminal }"
     >
-        <a href="" *ngIf="!route.terminal" [routerLink]="[route.url]"
+        <a
+            href=""
+            *ngIf="!route.terminal"
+            [routerLink]="[route.url]"
+            [queryParams]="query"
             >{{ route.displayName }}/</a
         >
         <span *ngIf="route.terminal">{{ route.displayName }}</span>

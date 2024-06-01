@@ -1,5 +1,9 @@
 <div class="button-container">
-	<button class="button" (click)="goToChart()">
-		{{ label }}
-	</button>
+    <button
+        class="button"
+        [queryParams]="query"
+        routerLink="/home/dashboard/{{ title }}"
+    >
+        {{ label }}
+    </button>
 </div>

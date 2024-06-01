@@ -14,7 +14,8 @@ import { CommonModule } from '@angular/common';
 })
 export class BreadcrumbComponent {
     protected breadcrumbs!: Breadcrumb[];
-
+    private ls: string = localStorage.getItem('session')!;
+    protected query = { uid: JSON.parse(this.ls)[0] };
     constructor(private breadcrumbService: BreadcrumbService) {
         breadcrumbService.breadcrumbChanged.subscribe(
             (crumbs: Breadcrumb[]) => {

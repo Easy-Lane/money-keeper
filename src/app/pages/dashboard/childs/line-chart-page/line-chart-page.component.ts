@@ -4,6 +4,7 @@ import { HeaderNavigationComponent } from '../../../../components/header-navigat
 import { DashboardMenuComponent } from '../../../../components/dashboard-menu/dashboard-menu.component';
 import { PieChartComponent } from '../../../../components/charts/pie-charts/pie-chart.component';
 import { ChartsButtonComponent } from '../../../../components/charts/charts-button/charts-button.component';
+import { LineChartComponent } from '../../../../components/charts/line-chart/line-chart.component';
 
 @Component({
     selector: 'line-chart-page',
@@ -12,25 +13,9 @@ import { ChartsButtonComponent } from '../../../../components/charts/charts-butt
         RouterOutlet,
         HeaderNavigationComponent,
         DashboardMenuComponent,
-        ChartsButtonComponent,
-        PieChartComponent,
+        LineChartComponent,
     ],
     templateUrl: './line-chart-page.component.html',
     styleUrl: './styles/line-chart-page.master.scss',
 })
-export class LineChartPageComponent {
-    public title: string = 'PieChart';
-
-    public value: number[] = [1, 2, 3, 4, 5, 6];
-    public labels: string[] = [
-        'Еда',
-        'Супермаркеты',
-        'Развлечения',
-        'Здоровье',
-        'XD',
-    ];
-
-    getColor(index: number): string {
-        return `var(--tui-chart-${index})`;
-    }
-}
+export class LineChartPageComponent {}
