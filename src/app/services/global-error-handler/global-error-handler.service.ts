@@ -1,4 +1,4 @@
-import {ErrorHandler, Injectable} from '@angular/core';
+import {ErrorHandler, Injectable, NgZone} from '@angular/core';
 import {MatDialog} from "@angular/material/dialog";
 import {ErrorModalComponent} from "../../components/error-modal/error-modal.component";
 
@@ -8,13 +8,18 @@ import {ErrorModalComponent} from "../../components/error-modal/error-modal.comp
 })
 export class GlobalErrorHandlerService implements ErrorHandler {
 
-    constructor(private dialog: MatDialog ) {
+    constructor(
+        private dialog: MatDialog,
+        private ngZone: NgZone
+     ) {
     }
 
     handleError(error: Error): void {
-        this.dialog.open(ErrorModalComponent, {
-            width: '250px',
-            data: { message: error.message }
-        })
+        this.ngZone.run((): void => {
+            this.dialog.open(ErrorModalComponent, {
+                width: '250px',
+                data: {message: error.message}
+            })
+        });
     }
 }
