@@ -2,13 +2,12 @@ import { Component, Input, OnInit, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { UserService } from '../../services/user-services/user.service';
 import { CommonModule } from '@angular/common';
-import {
-    CurrencyService,
-} from '../../services/currency-services/currency.service';
+import { CurrencyService } from '../../services/currency-services/currency.service';
 import { CurrencyPipe } from '../../pipes/currency-pipe/currency.pipe';
 import { IUserInfo } from '../../interfaces/IUserInfo';
 import { User } from '../../app.config';
-import {SkeletonComponent} from "../skeleton/skeleton.component";
+import { SkeletonComponent } from '../skeleton/skeleton.component';
+import { MoneyClassDirective } from '../../directives/money-class.directive';
 
 @Component({
     selector: 'app-dashboard-header',
@@ -16,7 +15,13 @@ import {SkeletonComponent} from "../skeleton/skeleton.component";
     providers: [UserService],
     templateUrl: './dashboard-header.component.html',
     styleUrl: './styles/dashboard-header.master.scss',
-    imports: [RouterOutlet, CommonModule, CurrencyPipe, SkeletonComponent],
+    imports: [
+        RouterOutlet,
+        CommonModule,
+        CurrencyPipe,
+        SkeletonComponent,
+        MoneyClassDirective,
+    ],
 })
 export class DashboardHeaderComponent implements OnInit {
     public currencySymbol: string = '₽';
@@ -42,7 +47,4 @@ export class DashboardHeaderComponent implements OnInit {
             (currency) => (this.currencySymbol = currency)
         );
     }
-
-    public isIncomesLong: boolean = this.incomes.toString().length > 10;
-    public isExpensesLong: boolean = this.expenses.toString().length > 10;
 }
