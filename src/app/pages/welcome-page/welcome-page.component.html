@@ -1,17 +1,17 @@
 <div class="welcome-page__container">
-  <h1 class="welcome-page__title">{{title}}</h1>
-  <div class="welcome-page__description">
-    {{description}}
-  </div>
-  <button (click)="goCalendar()" class="welcome-page__button" *ngIf="isAuthorized">
-    Go Calendar
-  </button>
-  <app-authorization-buttons *ngIf="!isAuthorized"
-    (loginEvent)="openLoginModal()"
-    (signupEvent)="openRegisterModal()"
-  ></app-authorization-buttons>
+    <h1 class="welcome-page__title">{{title}}</h1>
+    <div class="welcome-page__description">
+        {{description}}
+    </div>
+    <button (click)="goCalendar()" class="welcome-page__button" *ngIf="isAuthorized">
+        Go Calendar
+    </button>
+    <app-authorization-buttons *ngIf="!isAuthorized"
+                               (loginEvent)="openLoginModal()"
+                               (signupEvent)="openRegisterModal()"
+    ></app-authorization-buttons>
 
-  <ng-container #register #login></ng-container>
+    <ng-container #register #login></ng-container>
 </div>
 
 

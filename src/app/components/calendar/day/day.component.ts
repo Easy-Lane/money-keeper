@@ -9,7 +9,7 @@ import { CommonModule } from '@angular/common';
 	styleUrl: './day.component.scss',
 })
 export class DayComponent {
-	@Input() day?: number;
-	@Input() img?: string;
-	@Input() value?: number;
+	@Input() public day?: number;
+	@Input() public img?: string;
+	@Input() public value?: number;
 }
