@@ -11,7 +11,6 @@ import { Router, RouterLink, RouterOutlet } from '@angular/router';
 })
 export class ChartsButtonComponent {
     @Input() title!: string;
-    public label: string = 'Изучить';
     private ls: string = localStorage.getItem('session')!;
     protected query = { uid: JSON.parse(this.ls)[0] };
     constructor(private router: Router) {}

@@ -25,7 +25,6 @@ import { IDayExpenses } from '../../../../interfaces/calendar/IDayExpenses';
     styleUrl: './styles/pie-chart-page.master.scss',
 })
 export class PieChartPageComponent {
-
     private id!: string;
     private userService = inject(IUserToken);
     private months: string[] = [
@@ -43,26 +42,27 @@ export class PieChartPageComponent {
         'December',
     ];
 
-    protected ExpensesData: ITotalData = { monthTotal: 0, monthIncome: 0, typesValues: [], expensesTypes: []};
+    protected ExpensesData: ITotalData = {
+        monthTotal: 0,
+        monthIncome: 0,
+        typesValues: [],
+        expensesTypes: [],
+    };
 
-    constructor (
+    constructor(
         private route: ActivatedRoute,
         private monthPipe: MonthExpensesPipe
     ) {
         route.queryParams.subscribe((params) => (this.id = params['uid']));
         this.userService
-        .GetDocsBy(
-            this.id,
-            where('month', '==', this.months[new Date().getMonth()]),
-            where('year', '==', new Date().getFullYear())
-        )
-        .pipe(take(1))
-        .subscribe((expenses: [string, IDayExpenses][]) => {
-           this.ExpensesData = this.monthPipe.transform(expenses);
-        });
-    }
-
-    getColor(index: number): string {
-        return `var(--tui-chart-${index})`;
+            .GetDocsBy(
+                this.id,
+                where('month', '==', this.months[new Date().getMonth()]),
+                where('year', '==', new Date().getFullYear())
+            )
+            .pipe(take(1))
+            .subscribe((expenses: [string, IDayExpenses][]) => {
+                this.ExpensesData = this.monthPipe.transform(expenses);
+            });
     }
 }

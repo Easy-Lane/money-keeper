@@ -1,6 +1,5 @@
 import { Component, Input, OnInit, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { UserService } from '../../services/user-services/user.service';
 import { CommonModule } from '@angular/common';
 import { CurrencyService } from '../../services/currency-services/currency.service';
 import { CurrencyPipe } from '../../pipes/currency-pipe/currency.pipe';
@@ -12,7 +11,6 @@ import { MoneyClassDirective } from '../../directives/money-class.directive';
 @Component({
     selector: 'app-dashboard-header',
     standalone: true,
-    providers: [UserService],
     templateUrl: './dashboard-header.component.html',
     styleUrl: './styles/dashboard-header.master.scss',
     imports: [
@@ -25,19 +23,15 @@ import { MoneyClassDirective } from '../../directives/money-class.directive';
 })
 export class DashboardHeaderComponent implements OnInit {
     public currencySymbol: string = '₽';
-    public user: IUserInfo = inject(User);
+    private user: IUserInfo = inject(User);
 
-    public username: string = this.user.username!;
-    public lastName: string = '';
+    readonly username: string = this.user.username!;
     @Input() public incomes: number = 0;
     @Input() public expenses: number = 0;
-    public image: string = this.userService.getImage();
+    readonly image: string = '../assets/images/default-avatar.png';
     public contentLoaded: boolean = false;
 
-    constructor(
-        public currencyService: CurrencyService,
-        private userService: UserService
-    ) {}
+    constructor(public currencyService: CurrencyService) {}
     ngOnInit(): void {
         setTimeout((): void => {
             this.contentLoaded = true;

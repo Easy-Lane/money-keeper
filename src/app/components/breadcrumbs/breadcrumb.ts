@@ -1,8 +1,8 @@
 import { Route } from '@angular/router';
 
 export class Breadcrumb {
-    displayName!: string;
-    terminal!: boolean;
-    url!: string;
-    route!: Route | null;
+    public displayName!: string;
+    public terminal!: boolean;
+    public url!: string;
+    public route!: Route | null;
 }

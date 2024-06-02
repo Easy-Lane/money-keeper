@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, DestroyRef, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { UserService } from '../../services/user-services/user.service';
 import { CurrencyService } from '../../services/currency-services/currency.service';
 import { CurrencyPipe } from '../../pipes/currency-pipe/currency.pipe';
 import { BreadcrumbComponent } from '../breadcrumbs/breadcrumbs.component';
@@ -9,14 +8,12 @@ import { BreadcrumbComponent } from '../breadcrumbs/breadcrumbs.component';
 @Component({
     selector: 'dashboard-menu',
     standalone: true,
-    providers: [UserService],
     templateUrl: './dashboard-menu.component.html',
     styleUrl: './styles/dashboard-menu.master.scss',
     imports: [RouterOutlet, CommonModule, CurrencyPipe, BreadcrumbComponent],
 })
 export class DashboardMenuComponent {
-    public currencySymbol: string = '₽';
-    public num = 1000;
+    readonly currencySymbol: string = '₽';
     constructor(public currencyService: CurrencyService) {}
     public currency: string = '/assets/images/rub.svg';
 

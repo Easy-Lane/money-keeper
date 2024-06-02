@@ -1,8 +1,4 @@
-import {
-    Component,
-    Input,
-    OnInit,
-} from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ChartsButtonComponent } from '../charts-button/charts-button.component';
 import { TuiPieChartModule } from '@taiga-ui/addon-charts';
 import { CommonModule, NgTemplateOutlet } from '@angular/common';
@@ -28,14 +24,12 @@ import { MonthExpensesPipe } from '../../../pipes/month-expenses-pipe/month-expe
 })
 export class PieChartComponent implements OnInit {
     public contentLoaded: boolean = false;
-    public size: TuiSizeXL = 'xl';
-    public title: string = 'Expenses category';
+    readonly size: TuiSizeXL = 'xl';
+    readonly title: string = 'Expenses category';
     @Input() public values: number[] = [];
     @Input() public labels: string[] = [];
 
-    constructor(
-    ) {
-    }
+    constructor() {}
 
     public ngOnInit(): void {
         setTimeout((): void => {

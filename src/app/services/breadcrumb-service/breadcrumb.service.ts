@@ -9,7 +9,7 @@ import { Breadcrumb } from '../../components/breadcrumbs/breadcrumb';
 
 @Injectable()
 export class BreadcrumbService {
-    breadcrumbChanged = new EventEmitter<Breadcrumb[]>(false);
+    readonly breadcrumbChanged = new EventEmitter<Breadcrumb[]>(false);
 
     private breadcrumbs = new Array<Breadcrumb>();
 
