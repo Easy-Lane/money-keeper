@@ -5,7 +5,7 @@ import { DashboardMenuComponent } from '../../../../components/dashboard-menu/da
 import { LineChartComponent } from '../../../../components/charts/line-chart/line-chart.component';
 
 @Component({
-    selector: 'line-chart-page',
+    selector: 'app-line-chart-page',
     standalone: true,
     imports: [
         RouterOutlet,

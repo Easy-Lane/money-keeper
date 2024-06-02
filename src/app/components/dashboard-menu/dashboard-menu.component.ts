@@ -1,12 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { Component, DestroyRef, inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { CurrencyService } from '../../services/currency-services/currency.service';
 import { CurrencyPipe } from '../../pipes/currency-pipe/currency.pipe';
 import { BreadcrumbComponent } from '../breadcrumbs/breadcrumbs.component';
 
 @Component({
-    selector: 'dashboard-menu',
+    selector: 'app-dashboard-menu',
     standalone: true,
     templateUrl: './dashboard-menu.component.html',
     styleUrl: './styles/dashboard-menu.master.scss',

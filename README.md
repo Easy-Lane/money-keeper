@@ -20,9 +20,7 @@
 
 <hr>
 
-#### Это простое приложение, которое предоставляет альтернативу сложным бюджетным приложениям. Вы можете использовать [<u>***MoneyKeeper***</u>] [1] даже если раньше не работали с подобными приложениями. Оно поможет вам эффективно управлять своими финансами и достичь ваших финансовых целей.
-
-[1]: https://google.com "Cайт выложен на хостинг"
+#### Это простое приложение, которое предоставляет альтернативу сложным бюджетным приложениям. Вы можете использовать [<u>***MoneyKeeper***</u>] даже если раньше не работали с подобными приложениями. Оно поможет вам эффективно управлять своими финансами и достичь ваших финансовых целей.
 
 <hr>
 
@@ -35,12 +33,6 @@
 -   [Команда разработчиков](#команда-разработчиков)
 
 ## Как запустить проект
-
-1-й способ:
-
-1. перейти по [ссылке](https://google.com) (сайт выложен на хостинг).
-
-2-й способ:
 
 1. Скачать Angular (прописать `npm install -g @angular/cli` в терминале).
 2. Загрузить проект к себе.
@@ -77,34 +69,34 @@
 
 ## Отчет по выполненному ТЗ
 
-| Пункт ТЗ                                        | Путь в проекте                                                                                                                                                                         |
-| ----------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 3-4 реактивные формы                            | src/app/components/authorization/login/login.component.ts<br/>src/app/components/authorization/register/register.component.ts<br/>src/app/pages/user-profile/user-profile.component.ts |
-| 2-3 функциональных модуля                       | любой компонент                                                                                                                                                                        |
-| Простое внедрение зависимостей                  | любой компонент                                                                                                                                                                        |
-| 3 lazy-модуля для роутинга                      | src/app/app.routes.ts                                                                                                                                                                  |
-| Компоненты используют @Input @Output            | src/app/components/skeleton/skeleton.component.ts<br/>Ещё надо Output                                                                                                                  |
-| Базовый rxjs                                    | src/app/services/UserSercive/UserManagmentService.ts                                                                                                                                   |
-| Паттерн фабрика                                 | src/app/app.config.ts                                                                                                                                                                  |
-| Reusable компоненты                             | src/app/components/header-navigation/header-navigation.component.ts<br/>src/app/components/skeleton/skeleton.component.ts                                                              |
-| Передача параметров в роутах                    | src/app/components/header-navigation/header-navigation.component.ts                                                                                                                    |
-| Guard's / Guarded routing                       | src/app/guards/auth.guard.ts                                                                                                                                                           |
-| 1-2 кастомная атрибутивная директива            | src/app/directives/money-class.directive.ts                                                                                                                                            |
-| 1-2 кастомная структырная директива             | src/app/directives/for-charts.directive.ts                                                                                                                                             |
-| 1-2 кастомных пайпа                             | src/currency-pipe/currency.pipe.ts                                                                                                                                                     |
-| Использование @ViewChild @ViewChildren          | src/app/components/authorization/authorization-buttons/authorization-buttons.component.ts                                                                                              |
-| Запросы на сервер                               | Firebase                                                                                                                                                                               |
-| Форматирование кода в соответствии с code-style | использование .eslint.json                                                                                                                                                             |
-| MVVM                                            | src/app/components/input-control/input-control.component.ts                                                                                                                            |
-| Сложное внедрение зависимостей                  | src/app/interfaces/IUserInterface.ts                                                                                                                                                   |
-| Global Error Handler                            | src/app/services/global-error-handler/global-error-handler.service.ts                                                                                                                  |
-| Хлебные крошки / Breadcrumbs                    |                                                                                                                                                                                        |
-| Использование @HostListener                     | src/app/components/calendar/slideout-menu/slideout-menu.component.ts<br/>src/app/components/header-navigation/header-navigation.component.ts                                           |
-| Динамический рендер компоненты                  | src/app/pages/user-profile/user-profile.component.html (с 81 строчки)                                                                                                                  |
-| Скелетоны                                       | src/app/components/skeleton/skeleton.component.ts                                                                                                                                      |
-| Адаптивность                                    | Адаптив есть на всём проекте                                                                                                                                                           |
-| Angular animations                              | src/app/components/header-navigation/header-navigation.component.ts                                                                                                                    |
-| Глобальный сервис события                       | src/app/services/open-slideout-service/slideout-controll-service.ts                                                                                                                    |
+| Пункт ТЗ                                                | Путь в проекте                                                                                                                                                                     |
+|---------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 3-4 реактивные формы                                    | src/app/components/authorization/login/login.component.ts<br/>src/app/components/authorization/register/register.component.ts<br/>src/app/pages/user-profile/user-profile.component.ts |
+| 2-3 функциональных модуля                               | любой компонент                                                                                                                                                                    |
+| Простое внедрение зависимостей                          | любой компонент                                                                                                                                                                    |
+| 3 lazy-модуля для роутинга                              | src/app/app.routes.ts                                                                                                                                                              |
+| Компоненты используют @Input @Output                    | src/app/components/skeleton/skeleton.component.ts<br/>Ещё надо Output                                                                                                              |
+| Базовый rxjs                                            | src/app/services/UserSercive/UserManagmentService.ts                                                                                                                               |
+| Паттерн фабрика                                         | src/app/app.config.ts                                                                                                                                                              |
+| Reusable компоненты                                     | src/app/components/header-navigation/header-navigation.component.ts<br/>src/app/components/skeleton/skeleton.component.ts                                                          |
+| Передача параметров в роутах                            | src/app/components/header-navigation/header-navigation.component.ts                                                                                                                |
+| Guard's / Guarded routing                               | src/app/guards/auth.guard.ts                                                                                                                                                       |
+| 1-2 кастомная атрибутивная директива                    | src/app/directives/money-class.directive.ts                                                                                                                                        |
+| 1-2 кастомная структырная директива                     | src/app/directives/for-charts.directive.ts                                                                                                                                         |
+| 1-2 кастомных пайпа                                     | src/currency-pipe/currency.pipe.ts                                                                                                                                                 |
+| Использование @ViewChild @ViewChildren                  | src/app/components/authorization/authorization-buttons/authorization-buttons.component.ts                                                                                          |
+| Запросы на сервер                                       | Firebase                                                                                                                                                                           |
+| Форматирование кода в соответствии с code-style         | использование .eslint.json                                                                                                                                                         |
+| MVVM                                                    | src/app/components/input-control/input-control.component.ts                                                                                                                        |
+| Сложное внедрение зависимостей                          | src/app/interfaces/IUserInterface.ts                                                                                                                                               |
+| Global Error Handler                                    | src/app/services/global-error-handler/global-error-handler.service.ts                                                                                                              |
+| Хлебные крошки / Breadcrumbs                            | src\app\services\breadcrumb-service\breadcrumb.service.ts<br/>src\app\components\breadcrumbs\breadcrumbs.component.ts                                                                                                                          |
+| Использование @HostListener                             | src/app/components/calendar/slideout-menu/slideout-menu.component.ts<br/>src/app/components/header-navigation/header-navigation.component.ts                                       |
+| Динамический рендер компоненты                          | src/app/pages/user-profile/user-profile.component.html (с 81 строчки)                                                                                                              |
+| Скелетоны                                               | src/app/components/skeleton/skeleton.component.ts                                                                                                                                  |
+| Адаптивность                                            | Адаптив есть на всём проекте                                                                                                                                                       |
+| Angular animations                                      | src/app/components/header-navigation/header-navigation.component.ts                                                                                                                |
+| Глобальный сервис события                               | src/app/services/open-slideout-service/slideout-controll-service.ts                                                                                                                |
 
 <hr>
 

@@ -6,8 +6,13 @@ import {
 	ViewContainerRef,
 } from '@angular/core';
 
+interface ForChartContext {
+    $implicit: string;
+    index: number;
+}
+
 @Directive({
-	selector: '[forChart]',
+	selector: '[appForChart]',
 	standalone: true,
 })
 export class ForChartsDirective implements OnChanges {
@@ -15,12 +20,12 @@ export class ForChartsDirective implements OnChanges {
 
 	constructor(
 		private container: ViewContainerRef,
-		private template: TemplateRef<any>
+		private template: TemplateRef<ForChartContext>
 	) {}
 
-	ngOnChanges() {
+	public ngOnChanges(): void {
 		this.container.clear();
-		let result: Array<string> = new Array<string>();
+		const result: Array<string> = new Array<string>();
 		if (this.forChartOf.length > 5) {
 			for (let i = 0; i < 4; i++) {
 				result.push(this.forChartOf[i]);

@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-
+import { Component } from '@angular/core';
 import { BreadcrumbService } from '../../services/breadcrumb-service/breadcrumb.service';
 import { Breadcrumb } from './breadcrumb';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 

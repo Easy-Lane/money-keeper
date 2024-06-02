@@ -7,7 +7,7 @@ import { ChartsButtonComponent } from '../charts-button/charts-button.component'
 import { SkeletonComponent } from '../../skeleton/skeleton.component';
 
 @Component({
-    selector: 'line-chart',
+    selector: 'app-line-chart',
     standalone: true,
     imports: [
         TuiLineChartModule,
@@ -49,6 +49,6 @@ export class LineChartComponent implements OnInit {
         TuiContextWithImplicit<readonly TuiPoint[]>
     > = ({ $implicit }) =>
         `${$implicit[0][0]} items:\n\n${$implicit
-            .map(([_, y]) => y)
+            .map(([y]) => y)//_ нельзя убрать
             .join('$\n')}$`;
 }

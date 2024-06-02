@@ -5,16 +5,26 @@
     [@slideAnimation]="isChanged ? 'changed' : 'default'">
     <div class="menu-container__content" [@showContent]="isChanged ? 'changed' : 'default'">
         <div class="menu-container__date">
-            <a class="menu-container__closeButton" (click)="closeMenu()">
-                <img src="assets/images/CloseRight.svg">
+            <a
+                class="menu-container__closeButton"
+                (click)="closeMenu()"
+                (keyup.enter)="closeMenu()"
+                role="button"
+                tabindex="0">
+                <img src="assets/images/CloseRight.svg" alt="close right image">
             </a>
             <span class="menu-container__date__text"> {{date.day + " " + date.month + " " + date.year}} </span>
         </div>
         <div class="menu-container__content__expenses-container">
             <app-expense-card *ngFor="let item of date.expenses" [info]="item"></app-expense-card>
-            <div class="create-card" (click)="isCreate=true">
-                <img src="/assets/images/Plus.svg">
-            </div>
+            <a
+                class="create-card"
+                (click)="isCreate=true"
+                (keyup.enter)="isCreate=true"
+                role="button"
+                tabindex="0">
+                <img src="/assets/images/Plus.svg" alt="plus svg">
+            </a>
         </div>
     </div>
 </div>
@@ -24,8 +34,8 @@
     <input type="text" placeholder="Name" class="creation-container__input" formControlName="name"/>
     <div class="creation-container__content">
         <div class="creation-container__content__category">
-            <label>Category:</label>
-            <select formControlName="type">
+            <label [htmlFor]="select">Category:</label>
+            <select formControlName="type" #select>
                 <option value="Transport">Transport</option>
                 <option value="Gym">Gym</option>
                 <option value="Grocery">Grocery</option>

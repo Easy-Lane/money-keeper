@@ -1,7 +1,6 @@
-import {Component, Inject, Input} from "@angular/core";
+import {Component, Inject} from "@angular/core";
 import {MAT_DIALOG_DATA, MatDialogClose, MatDialogContent, MatDialogTitle} from "@angular/material/dialog";
 import {MatCardImage} from "@angular/material/card";
-import {DIALOG_DATA} from "@angular/cdk/dialog";
 
 @Component({
     selector: 'app-error-modal',
