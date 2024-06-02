@@ -1,25 +1,25 @@
 <ng-container *ngIf="contentLoaded; else skeletonDashboardHeader">
     <div class="header">
         <div class="header__title-container">
-            <img class="header__image" src="{{ image }}" />
+            <img class="header__image" src="{{ image }}" alt="header image" />
             <p class="header__username">{{ username }}</p>
         </div>
         <div class="header__money">
             <div class="header__money__box-incomes">
-                <img
+                <img alt="green polygon"
                     style="z-index: 1"
                     src="/assets/images/green-polygon.svg"
                 />
                 <div style="z-index: 0" class="header__money__incomes">
-                    <p [moneyClass]="incomes.toString() + 'i'">
+                    <p [appMoneyClass]="incomes.toString() + 'i'">
                         {{ incomes | currencyPipe : currencySymbol }}
                     </p>
                 </div>
             </div>
             <div class="header__money__box-expenses">
-                <img style="z-index: 1" src="/assets/images/red-polygon.svg" />
+                <img style="z-index: 1" src="/assets/images/red-polygon.svg" alt="red polygon" />
                 <div style="z-index: 0" class="header__money__expenses">
-                    <p [moneyClass]="expenses.toString() + 'e'">
+                    <p [appMoneyClass]="expenses.toString() + 'e'">
                         {{ expenses | currencyPipe : currencySymbol }}
                     </p>
                 </div>

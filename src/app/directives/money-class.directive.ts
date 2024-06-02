@@ -1,13 +1,13 @@
 import { Directive, ElementRef, Input, Renderer2 } from '@angular/core';
 
 @Directive({
-    selector: '[moneyClass]',
+    selector: '[appMoneyClass]',
     standalone: true,
 })
 export class MoneyClassDirective {
     constructor(private el: ElementRef, private renderer: Renderer2) {}
 
-    @Input('moneyClass') set moneyClass(value: string) {
+    @Input('appMoneyClass') set moneyClass(value: string) {
         if (value.charAt(value.length - 1) == 'i') {
             if (value.length > 11) {
                 this.renderer.addClass(

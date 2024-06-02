@@ -11,7 +11,7 @@ import { MoneyClassDirective } from '../../directives/money-class.directive';
 @Component({
     selector: 'app-dashboard-header',
     standalone: true,
-    templateUrl: './dashboard-header.component.html',
+    templateUrl: 'dashboard-header.component.html',
     styleUrl: './styles/dashboard-header.master.scss',
     imports: [
         RouterOutlet,

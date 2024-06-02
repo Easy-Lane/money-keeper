@@ -3,7 +3,7 @@
         <app-dashboard-header [expenses]="ExpensesData.monthTotal" [incomes]="ExpensesData.monthIncome" class="dashboard-page__element"></app-dashboard-header>
         <div class="dashboard-page__charts-container">
             <app-pie-chart [values]="ExpensesData.typesValues" [labels]="ExpensesData.expensesTypes" class="dashboard-page__element"></app-pie-chart>
-            <line-chart class="dashboard-page__element"></line-chart>
+            <app-line-chart class="dashboard-page__element"></app-line-chart>
         </div>
     </div>
 </div>

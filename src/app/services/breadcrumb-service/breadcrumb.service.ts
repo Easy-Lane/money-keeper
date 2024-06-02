@@ -39,11 +39,11 @@ export class BreadcrumbService {
             return;
         }
 
-        let route = this.router.routerState.root.snapshot;
-        let url = '';
+        let route: ActivatedRouteSnapshot = this.router.routerState.root.snapshot;
+        let url: string = '';
 
-        var breadCrumbIndex = 0;
-        var newCrumbs = [];
+        let breadCrumbIndex: number = 0;
+        const newCrumbs = [];
 
         while (route.firstChild != null) {
             route = route.firstChild;
@@ -61,10 +61,10 @@ export class BreadcrumbService {
                 continue;
             }
 
-            var newCrumb = this.createBreadcrumb(route, url);
+            const newCrumb: Breadcrumb = this.createBreadcrumb(route, url);
 
             if (breadCrumbIndex < this.breadcrumbs.length) {
-                var existing = this.breadcrumbs[breadCrumbIndex++];
+                const existing: Breadcrumb = this.breadcrumbs[breadCrumbIndex++];
 
                 if (existing && existing.route == route.routeConfig) {
                     newCrumb.displayName = existing.displayName;

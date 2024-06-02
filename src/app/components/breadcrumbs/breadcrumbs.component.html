@@ -1,7 +1,7 @@
 <div #template>
     <ng-content></ng-content>
 </div>
-<div class="container" *ngIf="template.children.length == 0">
+<div class="container" *ngIf="template.children.length === 0">
     <div *ngFor="let route of breadcrumbs" [ngClass]="{ last: route.terminal }">
         <a
             href=""

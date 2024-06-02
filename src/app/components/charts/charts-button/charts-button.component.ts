@@ -3,7 +3,7 @@ import { Component, Input } from '@angular/core';
 import { Router, RouterLink, RouterOutlet } from '@angular/router';
 
 @Component({
-    selector: 'charts-button',
+    selector: 'app-charts-button',
     standalone: true,
     imports: [RouterOutlet, CommonModule, RouterLink],
     templateUrl: './charts-button.component.html',
