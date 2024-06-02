@@ -156,7 +156,7 @@ export class UserProfileComponent implements OnInit {
                 })
             );
         if (this.user.email != this.userInfoForm.controls['email'].value)
-            this.userService.ChangeEmail(this.user.email);
+            this.userService.ChangeEmail(this.userInfoForm.controls['email'].value);
 
         this.user.email = this.userInfoForm.controls['email'].value;
         this.user.username = this.userInfoForm.controls['name'].value;
