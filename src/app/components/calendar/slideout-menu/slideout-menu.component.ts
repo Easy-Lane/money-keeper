@@ -43,12 +43,12 @@ import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/
     ],
 })
 export class SlideoutMenuComponent implements OnInit {
-    public UserService: IUserInterface = inject(IUserToken);
+    private UserService: IUserInterface = inject(IUserToken);
 
-    public date: IDayExpenses = {day: 0, month: '', year: 0, expenses: []};
-    public isChanged: boolean = false;
-    public isCreate: boolean = false;
-    public wasCreated: boolean = false;
+    protected date: IDayExpenses = {day: 0, month: '', year: 0, expenses: []};
+    protected isChanged: boolean = false;
+    protected isCreate: boolean = false;
+    protected wasCreated: boolean = false;
     private uid: string = '';
     private eid: string = '';
     public expenseData!: FormGroup;
@@ -77,7 +77,7 @@ export class SlideoutMenuComponent implements OnInit {
         );
     }
 
-    public createNewExpense(): void {
+    protected createNewExpense(): void {
         console.log(this.expenseData.controls['name'].value);
         this.date.expenses?.push({
             name: this.expenseData.controls['name'].value,
@@ -99,7 +99,7 @@ export class SlideoutMenuComponent implements OnInit {
         this.wasCreated = true;
     }
 
-    public closeMenu(): void {
+    protected closeMenu(): void {
         this.isChanged = !this.isChanged;
         this.isCreate = false;
         this.clickEmitter.emitCloseEvent(this.wasCreated);

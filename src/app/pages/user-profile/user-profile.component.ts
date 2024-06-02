@@ -155,7 +155,7 @@ export class UserProfileComponent implements OnInit {
                     throw new Error('Ошибка сервиса, данные не были изменены');
                 })
             );
-        if (this.user.email == this.userInfoForm.controls['email'].value)
+        if (this.user.email != this.userInfoForm.controls['email'].value)
             this.userService.ChangeEmail(this.user.email);
 
         this.user.email = this.userInfoForm.controls['email'].value;

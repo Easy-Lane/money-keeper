@@ -17,9 +17,9 @@ import { ActivatedRoute } from '@angular/router';
 export class UICalendarComponent implements OnInit {
     public UserService = inject(IUserToken);
 
-    todayDate = new Date();
-    names: string[] = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
-    months: string[] = [
+    private todayDate = new Date();
+    protected names: string[] = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+    protected months: string[] = [
         'January',
         'February',
         'March',
@@ -33,10 +33,10 @@ export class UICalendarComponent implements OnInit {
         'November',
         'December',
     ];
-    currentMonth: number = this.todayDate.getMonth();
-    currentYear: number = this.todayDate.getFullYear();
-    lastDays: number[] = [];
-    days: number[] = [];
+    protected currentMonth: number = this.todayDate.getMonth();
+    protected currentYear: number = this.todayDate.getFullYear();
+    protected lastDays: number[] = [];
+    protected days: number[] = [];
     private id: string = '';
     private monthExpenses: [string, IDayExpenses][] = [];
 
@@ -79,7 +79,7 @@ export class UICalendarComponent implements OnInit {
         });
     }
 
-    public changeMonth(diff: number): void {
+    protected changeMonth(diff: number): void {
         this.currentMonth += diff;
         if (this.currentMonth < 0) {
             this.currentMonth = 11;
@@ -90,7 +90,7 @@ export class UICalendarComponent implements OnInit {
         }
         this.UpdateData();
     }
-    public onDayClick(num: number): void {
+    protected onDayClick(num: number): void {
         let currentData: [string, IDayExpenses] | undefined =
             this.monthExpenses.find((item) => item[1].day == num);
         if (!currentData)
