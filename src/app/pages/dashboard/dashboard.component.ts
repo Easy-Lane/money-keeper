@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router, RouterOutlet } from '@angular/router';
+import { RouterOutlet } from '@angular/router';
 import { HeaderNavigationComponent } from '../../components/header-navigation/header-navigation.component';
 import { DashboardMenuComponent } from '../../components/dashboard-menu/dashboard-menu.component';
 import { DashboardHeaderComponent } from '../../components/dashboard-header/dashboard-header.component';
@@ -8,9 +8,11 @@ import { PieChartComponent } from '../../components/charts/pie-charts/pie-chart.
 import { LineChartComponent } from '../../components/charts/line-chart/line-chart.component';
 import { BreadcrumbComponent } from '../../components/breadcrumbs/breadcrumbs.component';
 import { BreadcrumbService } from '../../services/breadcrumb-service/breadcrumb.service';
+import { MonthExpensesPipe } from '../../pipes/month-expenses-pipe/month-expenses.pipe';
+
 
 @Component({
-    selector: 'dashboard-page',
+    selector: 'app-dashboard-page',
     standalone: true,
     imports: [
         RouterOutlet,
@@ -22,10 +24,10 @@ import { BreadcrumbService } from '../../services/breadcrumb-service/breadcrumb.
         LineChartComponent,
         BreadcrumbComponent,
     ],
-    providers: [BreadcrumbService],
+    providers: [BreadcrumbService, MonthExpensesPipe],
     templateUrl: './dashboard.component.html',
     styleUrl: './childs/dashboard-page/styles/dashboard-page.master.scss',
 })
-export class DashboardComponent {
-    public title: string = 'Dashboard';
-}
+export class DashboardComponent {}
+
+

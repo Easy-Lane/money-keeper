@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit, inject } from '@angular/core';
+import { Component, Input, OnInit, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { UserService } from '../../services/user-services/user.service';
 import { CommonModule } from '@angular/common';
@@ -10,7 +10,7 @@ import { SkeletonComponent } from '../skeleton/skeleton.component';
 import { MoneyClassDirective } from '../../directives/money-class.directive';
 
 @Component({
-    selector: 'dashboard-header',
+    selector: 'app-dashboard-header',
     standalone: true,
     providers: [UserService],
     templateUrl: './dashboard-header.component.html',
@@ -29,8 +29,8 @@ export class DashboardHeaderComponent implements OnInit {
 
     public username: string = this.user.username!;
     public lastName: string = '';
-    public incomes: number = 100000000000;
-    public expenses: number = 1000000000000;
+    @Input() public incomes: number = 0;
+    @Input() public expenses: number = 0;
     public image: string = this.userService.getImage();
     public contentLoaded: boolean = false;
 

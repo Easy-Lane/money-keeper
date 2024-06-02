@@ -13,7 +13,6 @@ export class AuthGuard implements CanActivate {
         | boolean
         | UrlTree {
         const isAuthorized = this.user.isAuthorized();
-        console.log(isAuthorized);
         return isAuthorized;
     }
 }

@@ -59,9 +59,6 @@ export class UserManagmentService implements IUserInterface {
         ).pipe(
             catchError((err) => {
                 switch (err.code) {
-                    case 'auth/weak-password': {
-                        throw new Error('Новый пароль ненадежный.');
-                    }
                     case 'auth/wrong-password': {
                         throw new Error('Введен неверный пароль');
                     }
@@ -105,6 +102,9 @@ export class UserManagmentService implements IUserInterface {
                 credentials.password
             )
         ).pipe(
+            catchError(() => {
+                throw new Error('Ошибка создания пользователя');
+            }),
             tap((obj: UserCredential) => {
                 this.CreateUserInfo(obj.user.uid, credentials);
                 this.SaveSessionInfo(credentials, obj.user.uid);

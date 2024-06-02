@@ -6,5 +6,12 @@
   <button (click)="goCalendar()" class="welcome-page__button" *ngIf="isAuthorized">
     Go Calendar
   </button>
-  <app-authorization-buttons *ngIf="!isAuthorized"></app-authorization-buttons>
+  <app-authorization-buttons *ngIf="!isAuthorized"
+    (loginEvent)="openLoginModal()"
+    (signupEvent)="openRegisterModal()"
+  ></app-authorization-buttons>
+
+  <ng-container #register #login></ng-container>
 </div>
+
+
