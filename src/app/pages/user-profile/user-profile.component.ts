@@ -1,27 +1,20 @@
-import { Component, OnInit, inject } from '@angular/core';
-import { HeaderNavigationComponent } from '../../components/header-navigation/header-navigation.component';
+import {Component, OnInit, inject} from '@angular/core';
+import {HeaderNavigationComponent} from '../../components/header-navigation/header-navigation.component';
 import {
     FormBuilder,
     FormGroup,
     ReactiveFormsModule,
     Validators,
 } from '@angular/forms';
-import { CustomValidators } from '../../services/custom-valiodators/CustomValidators';
-import { AsyncPipe, NgIf } from '@angular/common';
-import { SkeletonComponent } from '../../components/skeleton/skeleton.component';
-import { InputControlComponent } from '../../components/input-control/input-control.component';
-import { IUserToken } from '../../interfaces/IUserInterface';
-import { IUserInfo } from '../../interfaces/IUserInfo';
-import { ActivatedRoute } from '@angular/router';
-import { catchError, take } from 'rxjs';
-import { ValidatorsHandlerComponent } from '../../components/validators-handler/validators-handler.component';
-
-export interface User {
-    name: string;
-    email: string;
-    password: string;
-    img: string;
-}
+import {CustomValidators} from '../../services/custom-valiodators/CustomValidators';
+import {AsyncPipe, NgIf} from '@angular/common';
+import {SkeletonComponent} from '../../components/skeleton/skeleton.component';
+import {InputControlComponent} from '../../components/input-control/input-control.component';
+import {IUserInterface, IUserToken} from '../../interfaces/IUserInterface';
+import {IUserInfo} from '../../interfaces/IUserInfo';
+import {ActivatedRoute} from '@angular/router';
+import {catchError, take} from 'rxjs';
+import {ValidatorsHandlerComponent} from '../../components/validators-handler/validators-handler.component';
 
 @Component({
     selector: 'app-user-profile',
@@ -39,14 +32,12 @@ export interface User {
     styleUrl: './styles/user-profile.master.scss',
 })
 export class UserProfileComponent implements OnInit {
-    //userа надо получать с fb
-
-    public userService = inject(IUserToken);
+    public userService: IUserInterface = inject(IUserToken);
     public uid: string = '';
     public user: IUserInfo = this.userService.GetUserInfo();
 
-    public title: string = 'User Profile';
-    public contentLoaded: boolean = false;
+    protected title: string = 'User Profile';
+    protected contentLoaded: boolean = false;
 
     public userInfoForm!: FormGroup;
     public passwordChangeForm!: FormGroup;
@@ -55,7 +46,6 @@ export class UserProfileComponent implements OnInit {
         private formBuilder: FormBuilder,
         private route: ActivatedRoute
     ) {
-        route.queryParams.subscribe((params) => (this.uid = params['uid']));
         this.userInfoForm = this.formBuilder.group({
             name: [this.user.username, Validators.required],
             email: [
@@ -91,31 +81,44 @@ export class UserProfileComponent implements OnInit {
     }
 
     public ngOnInit(): void {
-        setTimeout((): void => {
-            this.contentLoaded = true;
-        }, 2000);
-
-        this.userInfoForm.patchValue({
-            name: this.user.username,
-            email: this.user.email,
-            img: this.user.photoUrl,
-        });
-
-        this.userInfoForm.controls['name'].disable();
-        this.userInfoForm.controls['email'].disable();
-        this.userInfoForm.controls['img'].disable();
+        this.loadUserData();
     }
 
-    public userImg: string = this.user.photoUrl
+    async loadUserData(): Promise<void> {
+        try {
+            this.route.queryParams.subscribe((params) => {
+                this.uid = params['uid'];
+            });
+
+            const userInfo: IUserInfo = this.userService.GetUserInfo();
+            this.user = userInfo;
+            this.userImg = this.user.photoUrl ? this.user.photoUrl : 'assets/images/default-avatar.png';
+
+            this.userInfoForm.patchValue({
+                name: this.user.username,
+                email: this.user.email,
+                img: this.user.photoUrl,
+            });
+
+            this.userInfoForm.controls['name'].disable();
+            this.userInfoForm.controls['email'].disable();
+            this.userInfoForm.controls['img'].disable();
+
+            this.contentLoaded = true;
+        } catch (error) {
+            console.error('Failed to load user data:', error);
+        }
+    }
+
+    protected userImg: string = this.user.photoUrl
         ? this.user.photoUrl
         : 'assets/images/default-avatar.png';
 
-    public toggleEditMode(): void {
+    protected toggleEditMode(): void {
         this.userInfoForm.controls['name'].enable();
-        this.userInfoForm.controls['email'].enable();
     }
 
-    public changePassword(): void {
+    protected changePassword(): void {
         this.userService
             .Reauthenticate(this.user)
             .pipe(take(1))
@@ -146,7 +149,7 @@ export class UserProfileComponent implements OnInit {
         }
     }
 
-    public onSubmitUserInfo(): void {
+    protected onSubmitUserInfo(): void {
         this.userService
             .Reauthenticate(this.user)
             .pipe(take(1))

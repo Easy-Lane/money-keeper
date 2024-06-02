@@ -1,13 +1,14 @@
-import { Component, ComponentRef, Injector, ViewChild, ViewContainerRef, inject } from '@angular/core';
-import { Router, RouterOutlet } from '@angular/router';
-import { NgIf } from '@angular/common';
-import { HeaderNavigationComponent } from '../../components/header-navigation/header-navigation.component';
-import { AuthorizationButtonsComponent } from '../../components/authorization/authorization-buttons/authorization-buttons.component';
-import { IUserToken } from '../../interfaces/IUserInterface';
-import {ErrorModalComponent} from "../../components/error-modal/error-modal.component";
-import { ModalService } from '../../services/modal-services/modal.service';
-import { RegisterComponent } from '../../components/authorization/register/register.component';
-import { LoginComponent } from '../../components/authorization/login/login.component';
+import {Component, ComponentRef, Injector, ViewChild, ViewContainerRef, inject} from '@angular/core';
+import {Router, RouterOutlet} from '@angular/router';
+import {NgIf} from '@angular/common';
+import {HeaderNavigationComponent} from '../../components/header-navigation/header-navigation.component';
+import {
+    AuthorizationButtonsComponent
+} from '../../components/authorization/authorization-buttons/authorization-buttons.component';
+import {IUserInterface, IUserToken} from '../../interfaces/IUserInterface';
+import {ModalService} from '../../services/modal-services/modal.service';
+import {RegisterComponent} from '../../components/authorization/register/register.component';
+import {LoginComponent} from '../../components/authorization/login/login.component';
 
 @Component({
     selector: 'app-welcome-page',
@@ -25,9 +26,10 @@ export class WelcomePageComponent {
     constructor(
         private router: Router,
         private modalService: ModalService
-    ) {}
+    ) {
+    }
 
-    private UserService = inject(IUserToken);
+    private UserService: IUserInterface = inject(IUserToken);
     public title: string = 'Money Keeper';
     public description: string = 'free manage tool for your wallet';
 
@@ -35,15 +37,15 @@ export class WelcomePageComponent {
 
     public injector: Injector = inject(Injector);
 
-    public goCalendar() {
+    public goCalendar(): void {
         const item = localStorage.getItem('session');
         if (item !== null)
             this.router.navigate(['/home/calendar'], {
-                queryParams: { uid: JSON.parse(item)[0] },
+                queryParams: {uid: JSON.parse(item)[0]},
             });
     }
 
-    
+
     @ViewChild('register', {read: ViewContainerRef, static: true})
     public registerTemplate!: ViewContainerRef;
 

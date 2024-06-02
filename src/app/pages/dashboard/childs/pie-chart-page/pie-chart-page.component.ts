@@ -5,7 +5,7 @@ import { DashboardMenuComponent } from '../../../../components/dashboard-menu/da
 import { ChartsButtonComponent } from '../../../../components/charts/charts-button/charts-button.component';
 import { PieChartComponent } from '../../../../components/charts/pie-charts/pie-chart.component';
 import { ITotalData } from '../../../../interfaces/dashboard/ITotalData';
-import { IUserToken } from '../../../../interfaces/IUserInterface';
+import {IUserInterface, IUserToken} from '../../../../interfaces/IUserInterface';
 import { MonthExpensesPipe } from '../../../../pipes/month-expenses-pipe/month-expenses.pipe';
 import { where } from '@angular/fire/firestore';
 import { take } from 'rxjs';
@@ -27,7 +27,7 @@ import { IDayExpenses } from '../../../../interfaces/calendar/IDayExpenses';
 export class PieChartPageComponent {
 
     private id!: string;
-    private userService = inject(IUserToken);
+    private userService: IUserInterface = inject(IUserToken);
     private months: string[] = [
         'January',
         'February',
