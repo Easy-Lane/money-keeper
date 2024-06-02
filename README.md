@@ -98,7 +98,8 @@
 | MVVM                                            | src/app/components/input-control/input-control.component.ts                                                                                                                            |
 | Сложное внедрение зависимостей                  | src/app/interfaces/IUserInterface.ts                                                                                                                                                   |
 | Global Error Handler                            | src/app/services/global-error-handler/global-error-handler.service.ts                                                                                                                  |
-| Хлебные крошки / Breadcrumbs                    |                                                                                                                                                                                        |
+| Хлебные крошки / Breadcrumbs                    |           src\app\services\breadcrumb-service\breadcrumb.service.ts 
+src\app\components\breadcrumbs\breadcrumbs.component.ts|
 | Использование @HostListener                     | src/app/components/calendar/slideout-menu/slideout-menu.component.ts<br/>src/app/components/header-navigation/header-navigation.component.ts                                           |
 | Динамический рендер компоненты                  | src/app/pages/user-profile/user-profile.component.html (с 81 строчки)                                                                                                                  |
 | Скелетоны                                       | src/app/components/skeleton/skeleton.component.ts                                                                                                                                      |
